@@ -33,14 +33,14 @@
  * @since Twenty Fourteen 1.0
  */
 if ( ! isset( $content_width ) ) {
-	$content_width = 474;
+    $content_width = 474;
 }
 
 /**
  * Twenty Fourteen only works in WordPress 3.6 or later.
  */
 if ( version_compare( $GLOBALS['wp_version'], '3.6', '<' ) ) {
-	require get_template_directory() . '/inc/back-compat.php';
+    require get_template_directory() . '/inc/back-compat.php';
 }
 
 if ( ! function_exists( 'twentyfourteen_setup' ) ) :
@@ -55,9 +55,9 @@ if ( ! function_exists( 'twentyfourteen_setup' ) ) :
  *
  * @since Twenty Fourteen 1.0
  */
-function twentyfourteen_setup() {
-
-	/*
+function twentyfourteen_setup()
+{
+    /*
 	 * Make Twenty Fourteen available for translation.
 	 *
 	 * Translations can be added to the /languages/ directory.
@@ -65,56 +65,56 @@ function twentyfourteen_setup() {
 	 * replace to change 'twentyfourteen' to the name of your theme in all
 	 * template files.
 	 */
-	load_theme_textdomain( 'twentyfourteen', get_template_directory() . '/languages' );
+    load_theme_textdomain( 'twentyfourteen', get_template_directory() . '/languages' );
 
-	// Add RSS feed links to <head> for posts and comments.
-	add_theme_support( 'automatic-feed-links' );
+    // Add RSS feed links to <head> for posts and comments.
+    add_theme_support( 'automatic-feed-links' );
 
-	// Enable support for Post Thumbnails, and declare two sizes.
-	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 1920, 1280, false );
-	add_image_size( 'full-screen', 1920, 1280, false );
-	add_image_size( 'gallery-view', 1640, 1100, false );
+    // Enable support for Post Thumbnails, and declare two sizes.
+    add_theme_support( 'post-thumbnails' );
+    set_post_thumbnail_size( 1920, 1280, false );
+    add_image_size( 'full-screen', 1920, 1280, false );
+    add_image_size( 'gallery-view', 1640, 1100, false );
 
-	// This theme uses wp_nav_menu() in two locations.
+    // This theme uses wp_nav_menu() in two locations.
 /*
 	register_nav_menus( array(
 		'primary'   => __( 'Primary menu in left sidebar', 'walkerangell' ),
 	) );
 */
 
-	/*
+    /*
 	 * Switch default core markup for search form, comment form, and comments
 	 * to output valid HTML5.
 	 */
-	add_theme_support( 'html5', array(
-		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
-	) );
+    add_theme_support( 'html5', array(
+        'search-form', 'comment-form', 'comment-list', 'gallery', 'caption'
+    ) );
 
-	/*
+    /*
 	 * Enable support for Post Formats.
 	 * See http://codex.wordpress.org/Post_Formats
 	 */
-	add_theme_support( 'post-formats', array(
-		'aside', 'image', 'video', 'audio', 'quote', 'link', 'gallery',
-	) );
+    add_theme_support( 'post-formats', array(
+        'aside', 'image', 'video', 'audio', 'quote', 'link', 'gallery',
+    ) );
 
+    // Add support for featured content.
+    add_theme_support( 'featured-content', array(
+        'featured_content_filter' => 'twentyfourteen_get_featured_posts',
+        'max_posts' => 6,
+    ) );
 
-	// Add support for featured content.
-	add_theme_support( 'featured-content', array(
-		'featured_content_filter' => 'twentyfourteen_get_featured_posts',
-		'max_posts' => 6,
-	) );
-
-	// This theme uses its own gallery styles.
-	add_filter( 'use_default_gallery_style', '__return_false' );
+    // This theme uses its own gallery styles.
+    add_filter( 'use_default_gallery_style', '__return_false' );
 }
 endif; // twentyfourteen_setup
 add_action( 'after_setup_theme', 'twentyfourteen_setup' );
 
 add_filter( 'image_size_names_choose', 'my_custom_sizes' );
 
-function my_custom_sizes( $sizes ) {
+function my_custom_sizes($sizes)
+{
     return array_merge( $sizes, array(
         'full-screen' => __('Full Screen'),
         'gallery-view' => __('Gallery View'),
@@ -126,10 +126,11 @@ function my_custom_sizes( $sizes ) {
  *
  * @since Twenty Fourteen 1.0
  */
-function twentyfourteen_content_width() {
-	if ( is_attachment() && wp_attachment_is_image() ) {
-		$GLOBALS['content_width'] = 810;
-	}
+function twentyfourteen_content_width()
+{
+    if ( is_attachment() && wp_attachment_is_image() ) {
+        $GLOBALS['content_width'] = 810;
+    }
 }
 add_action( 'template_redirect', 'twentyfourteen_content_width' );
 
@@ -140,15 +141,17 @@ add_action( 'template_redirect', 'twentyfourteen_content_width' );
  *
  * @return array An array of WP_Post objects.
  */
-function twentyfourteen_get_featured_posts() {
-	/**
+function twentyfourteen_get_featured_posts()
+{
+    /**
 	 * Filter the featured posts to return in Twenty Fourteen.
 	 *
 	 * @since Twenty Fourteen 1.0
 	 *
 	 * @param array|bool $posts Array of featured posts, otherwise false.
 	 */
-	return apply_filters( 'twentyfourteen_get_featured_posts', array() );
+
+    return apply_filters( 'twentyfourteen_get_featured_posts', array() );
 }
 
 /**
@@ -158,8 +161,9 @@ function twentyfourteen_get_featured_posts() {
  *
  * @return bool Whether there are featured posts.
  */
-function twentyfourteen_has_featured_posts() {
-	return ! is_paged() && (bool) twentyfourteen_get_featured_posts();
+function twentyfourteen_has_featured_posts()
+{
+    return ! is_paged() && (bool) twentyfourteen_get_featured_posts();
 }
 
 /**
@@ -167,25 +171,26 @@ function twentyfourteen_has_featured_posts() {
  *
  * @since Twenty Fourteen 1.0
  */
-function twentyfourteen_widgets_init() {
-	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'walkerangell' ),
-		'id'            => 'sidebar',
-		'description'   => __( 'Main sidebar that appears on the left.', 'walkerangell' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h1 class="widget-title">',
-		'after_title'   => '</h1>',
-	) );
-	register_sidebar( array(
-		'name'          => __( 'Footer Widget Area', 'walkerangell' ),
-		'id'            => 'footer',
-		'description'   => __( 'Appears in the footer section of the site.', 'walkerangell' ),
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h1 class="widget-title">',
-		'after_title'   => '</h1>',
-	) );
+function twentyfourteen_widgets_init()
+{
+    register_sidebar( array(
+        'name'          => __( 'Sidebar', 'walkerangell' ),
+        'id'            => 'sidebar',
+        'description'   => __( 'Main sidebar that appears on the left.', 'walkerangell' ),
+        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</aside>',
+        'before_title'  => '<h1 class="widget-title">',
+        'after_title'   => '</h1>',
+    ) );
+    register_sidebar( array(
+        'name'          => __( 'Footer Widget Area', 'walkerangell' ),
+        'id'            => 'footer',
+        'description'   => __( 'Appears in the footer section of the site.', 'walkerangell' ),
+        'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</aside>',
+        'before_title'  => '<h1 class="widget-title">',
+        'after_title'   => '</h1>',
+    ) );
 }
 add_action( 'widgets_init', 'twentyfourteen_widgets_init' );
 
@@ -194,15 +199,15 @@ add_action( 'widgets_init', 'twentyfourteen_widgets_init' );
  *
  * @since Twenty Fourteen 1.0
  */
-function twentyfourteen_scripts() {
+function twentyfourteen_scripts()
+{
+    // Load our main stylesheet.
+    wp_enqueue_style( 'galleryview-style', get_template_directory_uri() . '/js/filmstrip/stylesheets/jquery.galleryview-3.0-dev.css', array() );
+    wp_enqueue_style( 'walkerangell-style', get_stylesheet_uri(), array(), filemtime(get_stylesheet_directory(). '/style.css') );
 
-	// Load our main stylesheet.
-	wp_enqueue_style( 'galleryview-style', get_template_directory_uri() . '/js/filmstrip/stylesheets/jquery.galleryview-3.0-dev.css', array() );
-	wp_enqueue_style( 'walkerangell-style', get_stylesheet_uri(), array(), filemtime(get_stylesheet_directory(). '/style.css') );
+    wp_enqueue_style( 'google-roboto', 'http://fonts.googleapis.com/css?family=Roboto:400,300' );
 
-	wp_enqueue_style( 'google-roboto', 'http://fonts.googleapis.com/css?family=Roboto:400,300' );
-
-	// Load the Internet Explorer specific stylesheet.
+    // Load the Internet Explorer specific stylesheet.
 //	wp_enqueue_style( 'twentyfourteen-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentyfourteen-style', 'genericons' ), '20131205' );
 //	wp_style_add_data( 'twentyfourteen-ie', 'conditional', 'lt IE 9' );
 
@@ -215,10 +220,10 @@ function twentyfourteen_scripts() {
 	}
 */
 //	wp_enqueue_script( 'twentyfourteen-script', get_template_directory_uri() . '/js/functions.js', array( 'jquery' ), '20140319', true );
-	wp_enqueue_script( 'timers-script', get_template_directory_uri() . '/js/filmstrip/script/jquery.timers-1.2.js', array( 'jquery' ), time() );
-	wp_enqueue_script( 'easing-script', get_template_directory_uri() . '/js/filmstrip/script/jquery.easing.1.3.js', array( 'jquery' ), time() );
-	wp_enqueue_script( 'galleryview-script', get_template_directory_uri() . '/js/filmstrip/script/jquery.galleryview-3.0-dev.js', array( 'jquery', 'timers-script', 'easing-script' ), time() );
-	wp_enqueue_script( 'walkerangell-script', get_template_directory_uri() . '/js/walkerangell.js', array( 'jquery', 'galleryview-script' ), time() );
+    wp_enqueue_script( 'timers-script', get_template_directory_uri() . '/js/filmstrip/script/jquery.timers-1.2.js', array( 'jquery' ), time() );
+    wp_enqueue_script( 'easing-script', get_template_directory_uri() . '/js/filmstrip/script/jquery.easing.1.3.js', array( 'jquery' ), time() );
+    wp_enqueue_script( 'galleryview-script', get_template_directory_uri() . '/js/filmstrip/script/jquery.galleryview-3.0-dev.js', array( 'jquery', 'timers-script', 'easing-script' ), time() );
+    wp_enqueue_script( 'walkerangell-script', get_template_directory_uri() . '/js/walkerangell.js', array( 'jquery', 'galleryview-script' ), time() );
 }
 add_action( 'wp_enqueue_scripts', 'twentyfourteen_scripts' );
 
@@ -227,8 +232,9 @@ add_action( 'wp_enqueue_scripts', 'twentyfourteen_scripts' );
  *
  * @since Twenty Fourteen 1.0
  */
-function twentyfourteen_admin_fonts() {
-	wp_enqueue_style( 'twentyfourteen-lato', twentyfourteen_font_url(), array(), null );
+function twentyfourteen_admin_fonts()
+{
+    wp_enqueue_style( 'twentyfourteen-lato', twentyfourteen_font_url(), array(), null );
 }
 add_action( 'admin_print_scripts-appearance_page_custom-header', 'twentyfourteen_admin_fonts' );
 
@@ -238,9 +244,10 @@ if ( ! function_exists( 'twentyfourteen_the_attached_image' ) ) :
  *
  * @since Twenty Fourteen 1.0
  */
-function twentyfourteen_the_attached_image() {
-	$post                = get_post();
-	/**
+function twentyfourteen_the_attached_image()
+{
+    $post                = get_post();
+    /**
 	 * Filter the default Twenty Fourteen attachment size.
 	 *
 	 * @since Twenty Fourteen 1.0
@@ -252,50 +259,50 @@ function twentyfourteen_the_attached_image() {
 	 *     @type int $width  Width of the image in pixels. Default 810.
 	 * }
 	 */
-	$attachment_size     = apply_filters( 'twentyfourteen_attachment_size', array( 810, 810 ) );
-	$next_attachment_url = wp_get_attachment_url();
+    $attachment_size     = apply_filters( 'twentyfourteen_attachment_size', array( 810, 810 ) );
+    $next_attachment_url = wp_get_attachment_url();
 
-	/*
+    /*
 	 * Grab the IDs of all the image attachments in a gallery so we can get the URL
 	 * of the next adjacent image in a gallery, or the first image (if we're
 	 * looking at the last image in a gallery), or, in a gallery of one, just the
 	 * link to that image file.
 	 */
-	$attachment_ids = get_posts( array(
-		'post_parent'    => $post->post_parent,
-		'fields'         => 'ids',
-		'numberposts'    => -1,
-		'post_status'    => 'inherit',
-		'post_type'      => 'attachment',
-		'post_mime_type' => 'image',
-		'order'          => 'ASC',
-		'orderby'        => 'menu_order ID',
-	) );
+    $attachment_ids = get_posts( array(
+        'post_parent'    => $post->post_parent,
+        'fields'         => 'ids',
+        'numberposts'    => -1,
+        'post_status'    => 'inherit',
+        'post_type'      => 'attachment',
+        'post_mime_type' => 'image',
+        'order'          => 'ASC',
+        'orderby'        => 'menu_order ID',
+    ) );
 
-	// If there is more than 1 attachment in a gallery...
-	if ( count( $attachment_ids ) > 1 ) {
-		foreach ( $attachment_ids as $attachment_id ) {
-			if ( $attachment_id == $post->ID ) {
-				$next_id = current( $attachment_ids );
-				break;
-			}
-		}
+    // If there is more than 1 attachment in a gallery...
+    if ( count( $attachment_ids ) > 1 ) {
+        foreach ($attachment_ids as $attachment_id) {
+            if ($attachment_id == $post->ID) {
+                $next_id = current( $attachment_ids );
+                break;
+            }
+        }
 
-		// get the URL of the next image attachment...
-		if ( $next_id ) {
-			$next_attachment_url = get_attachment_link( $next_id );
-		}
+        // get the URL of the next image attachment...
+        if ($next_id) {
+            $next_attachment_url = get_attachment_link( $next_id );
+        }
 
-		// or get the URL of the first image attachment.
-		else {
-			$next_attachment_url = get_attachment_link( array_shift( $attachment_ids ) );
-		}
-	}
+        // or get the URL of the first image attachment.
+        else {
+            $next_attachment_url = get_attachment_link( array_shift( $attachment_ids ) );
+        }
+    }
 
-	printf( '<a href="%1$s" rel="attachment">%2$s</a>',
-		esc_url( $next_attachment_url ),
-		wp_get_attachment_image( $post->ID, $attachment_size )
-	);
+    printf( '<a href="%1$s" rel="attachment">%2$s</a>',
+        esc_url( $next_attachment_url ),
+        wp_get_attachment_image( $post->ID, $attachment_size )
+    );
 }
 endif;
 
@@ -305,22 +312,23 @@ if ( ! function_exists( 'twentyfourteen_list_authors' ) ) :
  *
  * @since Twenty Fourteen 1.0
  */
-function twentyfourteen_list_authors() {
-	$contributor_ids = get_users( array(
-		'fields'  => 'ID',
-		'orderby' => 'post_count',
-		'order'   => 'DESC',
-		'who'     => 'authors',
-	) );
+function twentyfourteen_list_authors()
+{
+    $contributor_ids = get_users( array(
+        'fields'  => 'ID',
+        'orderby' => 'post_count',
+        'order'   => 'DESC',
+        'who'     => 'authors',
+    ) );
 
-	foreach ( $contributor_ids as $contributor_id ) :
-		$post_count = count_user_posts( $contributor_id );
+    foreach ( $contributor_ids as $contributor_id ) :
+        $post_count = count_user_posts( $contributor_id );
 
-		// Move on if user has not published a post (yet).
-		if ( ! $post_count ) {
-			continue;
-		}
-	?>
+        // Move on if user has not published a post (yet).
+        if (! $post_count) {
+            continue;
+        }
+    ?>
 
 	<div class="contributor">
 		<div class="contributor-info">
@@ -338,7 +346,7 @@ function twentyfourteen_list_authors() {
 	</div><!-- .contributor -->
 
 	<?php
-	endforeach;
+    endforeach;
 }
 endif;
 
@@ -359,43 +367,44 @@ endif;
  * @param array $classes A list of existing body class values.
  * @return array The filtered body class list.
  */
-function twentyfourteen_body_classes( $classes ) {
-	if ( is_multi_author() ) {
-		$classes[] = 'group-blog';
-	}
+function twentyfourteen_body_classes($classes)
+{
+    if ( is_multi_author() ) {
+        $classes[] = 'group-blog';
+    }
 
-	if ( get_header_image() ) {
-		$classes[] = 'header-image';
-	} else {
-		$classes[] = 'masthead-fixed';
-	}
+    if ( get_header_image() ) {
+        $classes[] = 'header-image';
+    } else {
+        $classes[] = 'masthead-fixed';
+    }
 
-	if ( is_archive() || is_search() || is_home() ) {
-		$classes[] = 'list-view';
-	}
+    if ( is_archive() || is_search() || is_home() ) {
+        $classes[] = 'list-view';
+    }
 
-	if ( ( ! is_active_sidebar( 'sidebar-2' ) )
-		|| is_page_template( 'page-templates/full-width.php' )
-		|| is_page_template( 'page-templates/contributors.php' )
-		|| is_attachment() ) {
-		$classes[] = 'full-width';
-	}
+    if ( ( ! is_active_sidebar( 'sidebar-2' ) )
+        || is_page_template( 'page-templates/full-width.php' )
+        || is_page_template( 'page-templates/contributors.php' )
+        || is_attachment() ) {
+        $classes[] = 'full-width';
+    }
 
-	if ( is_active_sidebar( 'sidebar-3' ) ) {
-		$classes[] = 'footer-widgets';
-	}
+    if ( is_active_sidebar( 'sidebar-3' ) ) {
+        $classes[] = 'footer-widgets';
+    }
 
-	if ( is_singular() && ! is_front_page() ) {
-		$classes[] = 'singular';
-	}
+    if ( is_singular() && ! is_front_page() ) {
+        $classes[] = 'singular';
+    }
 
-	if ( is_front_page() && 'slider' == get_theme_mod( 'featured_content_layout' ) ) {
-		$classes[] = 'slider';
-	} elseif ( is_front_page() ) {
-		$classes[] = 'grid';
-	}
+    if ( is_front_page() && 'slider' == get_theme_mod( 'featured_content_layout' ) ) {
+        $classes[] = 'slider';
+    } elseif ( is_front_page() ) {
+        $classes[] = 'grid';
+    }
 
-	return $classes;
+    return $classes;
 }
 add_filter( 'body_class', 'twentyfourteen_body_classes' );
 
@@ -410,12 +419,13 @@ add_filter( 'body_class', 'twentyfourteen_body_classes' );
  * @param array $classes A list of existing post class values.
  * @return array The filtered post class list.
  */
-function twentyfourteen_post_classes( $classes ) {
-	if ( ! post_password_required() && ! is_attachment() && has_post_thumbnail() ) {
-		$classes[] = 'has-post-thumbnail';
-	}
+function twentyfourteen_post_classes($classes)
+{
+    if ( ! post_password_required() && ! is_attachment() && has_post_thumbnail() ) {
+        $classes[] = 'has-post-thumbnail';
+    }
 
-	return $classes;
+    return $classes;
 }
 add_filter( 'post_class', 'twentyfourteen_post_classes' );
 
@@ -429,27 +439,28 @@ add_filter( 'post_class', 'twentyfourteen_post_classes' );
  * @param string $sep Optional separator.
  * @return string The filtered title.
  */
-function twentyfourteen_wp_title( $title, $sep ) {
-	global $paged, $page;
+function twentyfourteen_wp_title($title, $sep)
+{
+    global $paged, $page;
 
-	if ( is_feed() ) {
-		return $title;
-	}
+    if ( is_feed() ) {
+        return $title;
+    }
 
-	// Add the site name.
-	$title .= get_bloginfo( 'name', 'display' );
+    // Add the site name.
+    $title .= get_bloginfo( 'name', 'display' );
 
-	// Add the site description for the home/front page.
-	$site_description = get_bloginfo( 'description', 'display' );
-	if ( $site_description && ( is_home() || is_front_page() ) ) {
-		$title = "$title $sep $site_description";
-	}
+    // Add the site description for the home/front page.
+    $site_description = get_bloginfo( 'description', 'display' );
+    if ( $site_description && ( is_home() || is_front_page() ) ) {
+        $title = "$title $sep $site_description";
+    }
 
-	// Add a page number if necessary.
-	if ( $paged >= 2 || $page >= 2 ) {
-		$title = "$title $sep " . sprintf( __( 'Page %s', 'twentyfourteen' ), max( $paged, $page ) );
-	}
+    // Add a page number if necessary.
+    if ($paged >= 2 || $page >= 2) {
+        $title = "$title $sep " . sprintf( __( 'Page %s', 'twentyfourteen' ), max( $paged, $page ) );
+    }
 
-	return $title;
+    return $title;
 }
 add_filter( 'wp_title', 'twentyfourteen_wp_title', 10, 2 );
