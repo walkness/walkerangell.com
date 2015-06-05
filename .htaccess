@@ -1,3 +1,4 @@
+RewriteRule \.git - [F,L]
 
 # BEGIN WordPress
 <IfModule mod_rewrite.c>
