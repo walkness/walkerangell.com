@@ -33,6 +33,7 @@
 </head>
 
 <body <?php body_class(); ?>>
+<h1>Hello World!</h1>
 <div id="page" class="hfeed site">
 	<?php if ( get_header_image() ) : ?>
 	<div id="site-header">
