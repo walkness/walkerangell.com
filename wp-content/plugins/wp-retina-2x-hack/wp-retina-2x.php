@@ -139,6 +139,13 @@ function wr2x_picture_rewrite( $buffer ) {
 				$buffer = str_replace( trim( $from, "</> "), trim($to, "</> "), $buffer );
 				wr2x_log( "Replaced img tag '$from' by '$to'" );
 				$nodes_replaced++;
+			} else {
+				$img_url = $element->src;
+				$element->srcset =  "$img_url";
+				$element->src = $img_url;
+				$to = $element;
+				$buffer = str_replace( trim( $from, "</> "), trim($to, "</> "), $buffer );
+				wr2x_log( "Replaced img tag '$from' by '$to'" );
 			}
 		}
 	}
