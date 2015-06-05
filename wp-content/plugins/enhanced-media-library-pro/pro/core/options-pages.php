@@ -212,7 +212,7 @@ function wpuxss_eml_pro_print_updates_options() {
                                     
                                     set_site_transient( 'update_plugins', $site_transient ); ?>
                             
-                                    <p><?php _e('To unlock updates, please enter your license key below. You can see your license key in <a href="http://www.wpuxsolutions.com/account/">Your Account</a>. If you don&#8217;t have a licence key, your are welcome to <a href="http://www.wpuxsolutions.com/pricing/">purchase it</a>.','eml'); ?></p>
+                                    <p><?php _e('To unlock updates, please enter your license key below. You can see your license key in <a href="http://www.wpuxsolutions.com/account/">Your Account</a>. If you don&#8217;t have a licence key, you are welcome to <a href="http://www.wpuxsolutions.com/pricing/">purchase it</a>.','eml'); ?></p>
                                     
                                     <table class="form-table">
                                         <tr>

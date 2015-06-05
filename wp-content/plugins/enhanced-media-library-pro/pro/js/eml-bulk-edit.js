@@ -123,13 +123,12 @@ window.eml = window.eml || { l10n: {} };
         clear: function( event ) {
             
             var library = this.controller.state().get('library'),
-                $spinner = this.controller.content.get().toolbar.$el.find('.spinner');
+                spinner = this.controller.content.get().toolbar.get('spinner');
             
             event.preventDefault();
             
             this.collection.reset();
             this._stopSelecting = true;
-            $spinner.hide();
 
             // Keep focus inside media modal
             if ( this.controller.modal ) {
@@ -141,14 +140,14 @@ window.eml = window.eml || { l10n: {} };
             
             var library = this.controller.state().get('library'),
                 selection = this.collection,
-                $spinner = this.controller.content.get().toolbar.$el.find('.spinner'),
+                spinner = this.controller.content.get().toolbar.get('spinner'),
                 self = this;
 
             if ( event ) {
                 event.preventDefault();
             }
             
-            if ( ! library.length || $spinner.is( ':visible' ) ) {
+            if ( ! library.length || spinner.spinnerTimeout ) {
                 return;
             }
             
@@ -161,7 +160,7 @@ window.eml = window.eml || { l10n: {} };
 
             if ( library.hasMore() ) {
                 
-                $spinner.show();
+                spinner.show();
                 loadAll();
             }
             
@@ -172,7 +171,7 @@ window.eml = window.eml || { l10n: {} };
                     if ( self._stopSelecting ) { 
 
                         selection.reset();
-                        $spinner.hide();
+                        spinner.hide();
                     }
                     else {
                     
@@ -182,11 +181,11 @@ window.eml = window.eml || { l10n: {} };
                         selection.trigger( 'selection:single', selection.model, selection );
                         
                         if ( this._hasMore ) {
-                            $spinner.show();
+                            spinner.show();
                             loadAll();
                         }
                         else {
-                            $spinner.hide();
+                            spinner.hide();
                         }
                     }
                 });
@@ -199,14 +198,14 @@ window.eml = window.eml || { l10n: {} };
             var data = {}, size = 500, chunks = [], atts = {},
                 selection = this.collection,
                 library = this.controller.state().get( 'library' ),
-                $spinner = this.controller.content.get().toolbar.$el.find('.spinner'),
+                spinner = this.controller.content.get().toolbar.get('spinner'),
                 modal = this.controller.modal;
 
             if ( event ) {
                 event.preventDefault();
             }
             
-            if ( ! selection.length || $spinner.is( ':visible' ) ) {
+            if ( ! selection.length || spinner.spinnerTimeout ) {
                 return;
             }
             
@@ -226,7 +225,7 @@ window.eml = window.eml || { l10n: {} };
             });
             
             chunkReset();
-            $spinner.show();
+            spinner.show();
             deleteAll();
                 
             // Clean queries' cache regardless of all or some might be deleted
@@ -246,12 +245,12 @@ window.eml = window.eml || { l10n: {} };
                     if ( chunks.length ) {
                         
                         chunkReset();
-                        $spinner.show();
+                        spinner.show();
                         deleteAll();
                         
                     } else {
                         
-                        $spinner.hide();
+                        spinner.hide();
                         selection.reset();
                         
                         // Clean queries' cache
@@ -491,7 +490,9 @@ window.eml = window.eml || { l10n: {} };
                 priority: -60
             }) );
 
-            if ( -1 !== $.inArray( this.options.filters, [ 'uploaded', 'all' ] ) || parseInt( eml.l10n.force_filters ) ) {
+            if ( ! this.controller.isModeActive( 'eml-bulk-edit' ) &&
+                ( -1 !== $.inArray( this.options.filters, [ 'uploaded', 'all' ] ) || 
+                parseInt( eml.l10n.force_filters ) ) ) {
 
                 this.toolbar.set( 'filtersLabel', new media.view.Label({
                     value: l10n.filterByType,
@@ -532,7 +533,9 @@ window.eml = window.eml || { l10n: {} };
                 }).render() );
             }
             
-            if ( -1 !== $.inArray( this.options.filters, [ 'uploaded', 'all' ] ) || parseInt( eml.l10n.force_filters ) ) {
+            if ( ! this.controller.isModeActive( 'eml-bulk-edit' ) &&
+                ( -1 !== $.inArray( this.options.filters, [ 'uploaded', 'all' ] ) || 
+                parseInt( eml.l10n.force_filters ) ) ) {
 
                 this.toolbar.set( 'dateFilterLabel', new media.view.Label({
                     value: l10n.filterByDate,
@@ -548,9 +551,10 @@ window.eml = window.eml || { l10n: {} };
                 }).render() );
             }
             
-            if ( -1 !== $.inArray( this.options.filters, [ 'uploaded', 'all', 'eml' ] ) || parseInt( eml.l10n.force_filters ) ) {
+            if ( ! this.controller.isModeActive( 'eml-bulk-edit' ) && 
+                ( -1 !== $.inArray( this.options.filters, [ 'uploaded', 'all', 'eml' ] ) ||
+                parseInt( eml.l10n.force_filters ) ) ) {
                 
-                //$.each( wpuxss_eml_taxonomies, function( taxonomy, values ) {
                 $.each( eml.l10n.taxonomies, function( taxonomy, values ) {
                     
                     if ( values.term_list ) {
@@ -788,20 +792,29 @@ window.eml = window.eml || { l10n: {} };
             
             var $primaryToolbar = this.controller.toolbar.get().primary.$el;
             
-            // TODO: use media.view instead
-            if ( parseInt( eml.l10n.bulk_edit_save_button_off ) && _.isUndefined( this.$spinner ) )
-            {
-                $primaryToolbar.prepend( '<span id="eml-bulk-save-changes-spinner" class="spinner"></span>' );
-                this.$spinner = $primaryToolbar.find('#eml-bulk-save-changes-spinner').hide();
-            } 
-            
+            // TODO: use media.view instead            
             if ( ! parseInt( eml.l10n.bulk_edit_save_button_off ) && _.isUndefined( this.$saveButton ) ) 
             {
                 $primaryToolbar.prepend( '<div id="eml-bulk-save-changes-success" class="updated"><p><strong>'+eml.l10n.saveButton_success+'</strong></p></div> <div id="eml-bulk-save-changes-failure" class="error"><p>'+eml.l10n.saveButton_failure+'</p></div> <span id="eml-bulk-save-changes-spinner" class="spinner"></span> <a href="#" class="button media-button button-primary button-large eml-button-bulk-save-changes">'+eml.l10n.saveButton_text+'</a>' );
-                this.$spinner = $primaryToolbar.find('#eml-bulk-save-changes-spinner').hide();
+
                 this.$saveButton = $primaryToolbar.find('.eml-button-bulk-save-changes');
                 this.$errorMessage = $primaryToolbar.find('#eml-bulk-save-changes-failure').hide();
-                this.$successMessage = $primaryToolbar.find('#eml-bulk-save-changes-success').hide();
+                this.$successMessage = $primaryToolbar.find('#eml-bulk-save-changes-success').hide(); 
+            }
+            
+            if ( parseInt( eml.l10n.bulk_edit_save_button_off ) && _.isUndefined( this.spinner ) )
+            {
+                $primaryToolbar.prepend( '<span id="eml-bulk-save-changes-spinner" class="spinner"></span>' );
+            } 
+            
+            this.spinner = new media.view.Spinner({
+                el: $primaryToolbar.find('#eml-bulk-save-changes-spinner'),
+                delay: 0
+            });
+            
+            if ( eml.l10n.wp_version < '4.2' )
+            {
+                this.spinner.$el.hide();
             }
             
             if ( ! parseInt( eml.l10n.bulk_edit_save_button_off ) ) 
@@ -837,7 +850,7 @@ window.eml = window.eml || { l10n: {} };
                 this.$saveButton.off( 'click' );
                 
                 this.$saveButton.remove();
-                this.$spinner.remove();
+                this.spinner.$el.remove();
                 this.$errorMessage.remove();
                 this.$successMessage.remove();
             }
@@ -876,7 +889,7 @@ window.eml = window.eml || { l10n: {} };
                 attachments = this.controller.state().get( 'selection' ),
                 $successMessage = this.$successMessage,
                 $errorMessage = this.$errorMessage,
-                $spinner = this.$spinner,
+                spinner = this.spinner,
                 $checkbox = this.$checkbox,
                 ids = [];
                 
@@ -904,13 +917,13 @@ window.eml = window.eml || { l10n: {} };
             });
 
             
-            $spinner.show();
+            spinner.show();
             $( 'input', $form).prop('disabled', true);
 
  
             attachments.bulkSave( data ).always( function() {
 
-                $spinner.hide();
+                spinner.hide();
                 $( 'input', $form).prop('disabled', false);
                 
             }).done( function() {

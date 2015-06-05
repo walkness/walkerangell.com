@@ -181,7 +181,7 @@ function wpuxss_eml_pro_in_plugin_update_message( $plugin_data, $r ) {
     }
 
     echo '<br />' . sprintf( 
-        __('To unlock updates, please enter your license key on the <a href="%s">EML PRO Updates</a> page. You can see your license key in <a href="%s">Your Account</a>. If you don&#8217;t have a licence key, your are welcome to <a href="%s">purchase it</a>.', 'eml'),
+        __('To unlock updates, please enter your license key on the <a href="%s">EML PRO Updates</a> page. You can see your license key in <a href="%s">Your Account</a>. If you don&#8217;t have a licence key, you are welcome to <a href="%s">purchase it</a>.', 'eml'),
         admin_url('plugins.php?page=eml-updates-options'),
         'http://www.wpuxsolutions.com/account/',
         'http://www.wpuxsolutions.com/pricing/'
