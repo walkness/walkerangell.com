@@ -152,7 +152,6 @@ body.upload-php.eml-grid #wpbody-content > .wrap {
     display: inline-block;
     float: left;
     margin-top: 19px;
-    display: none;
 }
 .media-frame .media-frame-toolbar #eml-bulk-save-changes-failure,
 .media-frame .media-frame-toolbar #eml-bulk-save-changes-success {
