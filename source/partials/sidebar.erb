@@ -1,0 +1,78 @@
+<div id="sidebar">
+
+	<h1 class="site-title">
+		<% link_to 'index.html' do %>
+			<%= data.site.info.title %>
+		<% end %>
+	</h1>
+
+	<% if data.site.info.description %>
+		<h2 class="site-description">
+			<%= data.site.info.description %>
+		</h2>
+	<% end %>
+
+	<% sitemap.find_resource_by_path('portfolio/index.html').children.each do |category| %>
+		<%= category.path %>
+	<% end %>
+
+	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+		<div class="menu-main-nav-container">
+			<ul id="menu-main-nav" class="menu">
+
+				<li class="menu-item current-menu-item">
+					<%= link_to 'About', 'about.html' %>
+				</li>
+
+				<li class="menu-item">
+					<%= link_to 'Contact', 'contact.html' %>
+				</li>
+
+				<li class="menu-item">
+
+					<%= link_to 'Portfolio', '/portfolio/index.html' %>
+
+					<ul class="sub-menu" style="display: none;">
+
+						<% data.portfolio.categories.each do |category| %>
+
+						<li class="menu-item">
+
+							<%= sitemap.resources %>
+
+							<%= link_to category.name, category.path %>
+
+							<ul class="sub-menu" style="display: none;">
+
+								<li class="menu-item">
+									<a href="http://walkerangell.com/portfolio/travel/scotland/">Scotland</a>
+								</li>
+
+								<li class="menu-item">
+									<a href="http://walkerangell.com/portfolio/travel/ireland/">Ireland</a>
+								</li>
+
+								<li class="menu-item">
+									<a href="http://walkerangell.com/portfolio/travel/scandinavia/">Scandinavia</a>
+								</li>
+
+								<li class="menu-item">
+									<a href="http://walkerangell.com/portfolio/travel/mount-desert-island/">Mount Desert Island</a>
+								</li>
+
+							</ul>
+
+						</li>
+
+						<% end %>
+
+					</ul>
+
+				</li>
+
+			</ul>
+
+		</div>
+	</div>
+
+</div>

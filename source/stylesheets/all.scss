@@ -1,0 +1,181 @@
+@import "../../node_modules/normalize.css/normalize.css";
+
+body {
+  color: #2b2b2b;
+  font-family: "brandon-grotesque", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+  background: #191919;
+
+  &.home {
+    #main-content {
+      background: none;
+      box-shadow: none;
+      border: none;
+      padding-top: 0;
+    }
+
+    #primary {
+      padding-top: 20px;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 20px;
+      left: 38%;
+      color: #ccc;
+    }
+
+    &.admin-bar footer {
+      bottom: 52px;
+    }
+
+    #sidebar {
+      h1,
+      li {
+        a {
+          color: #eee;
+          text-shadow: 2px 2px 1px rgba(0,0,0,.4);
+        }
+      }
+    }
+  }
+}
+
+a {
+  color: #24890d;
+  text-decoration: none;
+}
+
+#main {
+  position: relative;
+  z-index: 1;
+}
+
+#background_img {
+  width: 100%;
+  height: 100vh;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  z-index: -9999;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#sidebar {
+  width: 15%;
+  min-width: 85px;
+  max-width: 150px;
+  float: left;
+  padding: 15px 20px 0;
+
+  h1 {
+    margin-bottom: 1.5em;
+
+    a {
+      font-weight: 500;
+      letter-spacing: -.07em;
+    }
+  }
+
+  h1, li {
+    a {
+      color: #656565;
+      text-shadow: 2px 2px 1px #000;
+    }
+  }
+
+  li {
+    line-height: 1.25em;
+
+    &.current-menu-item {
+      a {
+        color: #bbb;
+      }
+
+      ul {
+        a {
+          color: #656565;
+        }
+      }
+    }
+
+    ul {
+      li {
+        &.current-menu-item {
+          a {
+            color: #bbb;
+          }
+        }
+      }
+    }
+  }
+}
+
+#main-content {
+  width: auto;
+  overflow: auto;
+  padding: 15px 20px 0;
+  background: #2c2c2c;
+  min-height: 100vh;
+  box-shadow: -1px 0px 3px 0px rgba(255, 255, 255, .2);
+  color: #ccc;
+}
+
+footer {
+  color: #999;
+  font-size: 0.8em;
+  margin: 20px 0;
+  text-align: center;
+}
+
+h1 {
+  &.site-title {
+    margin-top: 0;
+  }
+}
+
+/*
+**  NAVIGATION
+*/
+
+ul {
+  &.menu,
+  &.sub-menu { 
+    list-style-type: none;
+    margin: 0;
+    font-size: 20px;
+    font-weight: 200;
+    text-transform: lowercase;
+    word-spacing: -2px;
+  }
+
+  &.menu ul.menu,
+  &.sub-menu {
+    font-size: 0.9em;
+    margin: 0 5%;
+  }
+
+  &.menu {
+    li {
+      padding: 0.25em 0;
+    }
+
+    ul.sub-menu {
+      li {
+        margin: 0.4em 0 0 0;
+      }
+    }
+
+    li {
+      &.current-menu-item {
+        font-weight: 400;
+      }
+    }
+  }
+
+}

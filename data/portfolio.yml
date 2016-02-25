@@ -1,0 +1,13 @@
+categories:
+
+  - name: Travel & Landscapes
+    slug: travel
+    galleries:
+
+      - name: Scotland
+        slug: scotland
+        images:
+
+      - name: Ireland
+        slug: ireland
+        images:
