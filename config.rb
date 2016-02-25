@@ -4,6 +4,10 @@
 #   'last 2 versions'
 # ]
 
+require './lib/middleman-simple-thumbnailer-master/lib/middleman-simple-thumbnailer.rb'
+
+activate :middleman_simple_thumbnailer
+
 activate :directory_indexes
 
 data.portfolio.categories.each do |category|
@@ -41,17 +45,17 @@ configure :build do
 
   activate :minify_html
 
-  activate :gzip
-
   # Enable cache buster
   activate :asset_hash
 
-  # activate :asset_host, host:'http://assets.nearby.supply'
+  activate :asset_host, host:'//media.walkerangell.com', sources: %w(.css .htm .html .php .xhtml), rewrite_ignore: [
+    '.+\.js'
+  ]
 
   # Use relative URLs
-  activate :relative_assets
+  # activate :relative_assets
 
-  config[:relative_links] = true
+  # config[:relative_links] = true
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"

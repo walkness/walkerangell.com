@@ -31,7 +31,7 @@
 					<ul class="sub-menu">
 
 					<% sitemap.find_resource_by_path('portfolio/index.html').children.each do |category| %>
-						<% if category.options[:ignore] %>
+						<% if not category.options[:ignore] %>
 
 						<li class="menu-item<% if category.children %> menu-item-has-children<% end %><% if current_page.path == category.path %> current-menu-item<% end %>">
 

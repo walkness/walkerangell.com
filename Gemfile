@@ -2,7 +2,9 @@
 # the following line to use "http://" instead
 source 'https://rubygems.org'
 
-gem "middleman", "~> 4.0.0"
+gem "middleman", "~> 4.1.1"
+
+gem 'mini_magick', '~> 4'
 
 # Linting
 gem "middleman-scss-lint", github: "middleman/middleman-scss-lint", branch: "master"

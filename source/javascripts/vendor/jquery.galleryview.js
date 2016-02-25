@@ -23,6 +23,10 @@ if (typeof Object.create !== 'function') {
 			panel: img.attr('src'),
 			frame: img.data('frame') || img.attr('src')
 		};
+		this.srcset = { 
+			panel: img.attr('srcset'),
+			frame: img.data('frame') || img.attr('srcset')
+		};
 		this.scale = {
 			panel: null,
 			frame: null
@@ -508,25 +512,29 @@ if (typeof Object.create !== 'function') {
 					img.clone(true)
 						.data('parent',{type:'gv_panels',index:i})
 						.appendTo(dom.gv_imageStore)
-						.attr('src',gvImage.src.panel);
+						.attr('src',gvImage.src.panel)
+						.attr('srcset',gvImage.srcset.panel);
 				}
 				
 				if(self.opts.show_filmstrip) {
 					img.clone(true)
 						.data('parent',{type:'gv_thumbnails',index:i})
 						.appendTo(dom.gv_imageStore)
-						.attr('src',gvImage.src.frame);
+						.attr('src',gvImage.src.frame)
+						.attr('srcset',gvImage.srcset.frame);
 					
 					if(dom.gv_frames.length > dom.gv_panels.length) {
 						img.clone(true)
 							.data('parent',{type:'gv_thumbnails',index:i+self.numImages})
 							.appendTo(dom.gv_imageStore)
-							.attr('src',gvImage.src.frame);
+							.attr('src',gvImage.src.frame)
+							.attr('srcset',gvImage.srcset.frame);
 							
 						img.clone(true)
 							.data('parent',{type:'gv_thumbnails',index:i+self.numImages+self.numImages})
 							.appendTo(dom.gv_imageStore)
-							.attr('src',gvImage.src.frame);
+							.attr('src',gvImage.src.frame)
+							.attr('srcset',gvImage.srcset.frame);
 					}
 				}
 			});
