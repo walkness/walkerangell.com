@@ -1,1 +1,9 @@
-<h1><%= gallery.name %></h1>
+<% if gallery.images %>
+<ul class="gallery">
+	<% gallery.images.each do |image| %>
+		<li class="gallery-image">
+			<%= image_tag "portfolio/#{gallery.slug}/#{image.file}", :width => 1000 %>
+		</li>
+	<% end %>
+</ul>
+<% end %>

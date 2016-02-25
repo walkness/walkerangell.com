@@ -1,4 +1,4 @@
 node_modules/**
-source/javascripts/vendor/**
+source/javascripts/vendor/**/*.js
 webpack.config.js
 .tmp/**

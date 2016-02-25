@@ -1,0 +1,15 @@
+@import "vendor/galleryview";
+
+.gv_galleryWrap {
+  background-color: transparent;
+}
+
+.gv_panelNavNext {
+  height: 35px;
+  background-image: url(../images/galleryview/Arrows_next.png);
+}
+
+.gv_panelNavPrev {
+  height: 35px;
+  background-image: url(../images/galleryview/Arrows_prev.png);
+}

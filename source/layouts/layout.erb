@@ -23,9 +23,11 @@
 
     <div id="page" class="hfeed site">
 
-      <img src="" id="background_img_dummy" style="display: none;" />
+    <% if current_page.path == 'index.html' %>
+        <img src="<%= image_path 'Ireland-6638.jpg' %>" id="background_img_dummy" style="display: none;" />
 
-      <div id="background_img"></div>
+        <div id="background_img" style="background-image: url(<%= image_path 'Ireland-6638.jpg' %>);"></div>
+      <% end %>
 
       <div id="main" class="site-main">
 

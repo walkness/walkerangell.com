@@ -1,0 +1,66 @@
+h1 {
+  &.site-title {
+    margin-top: 0;
+  }
+}
+
+#sidebar {
+  width: 15%;
+  min-width: 85px;
+  max-width: 200px;
+  float: left;
+  padding: 15px 20px 0;
+
+  h1 {
+    margin-bottom: 1.5em;
+
+    a {
+      font-weight: 500;
+      letter-spacing: -.07em;
+    }
+  }
+
+  h1, li {
+    a {
+      color: #656565;
+      text-shadow: 2px 2px 1px #000;
+    }
+  }
+
+  li {
+    line-height: 1.25em;
+
+    &.current-menu-item {
+      a {
+        color: #bbb;
+      }
+
+      ul {
+        a {
+          color: #656565;
+        }
+      }
+    }
+
+    ul {
+      li {
+        &.current-menu-item {
+          a {
+            color: #bbb;
+          }
+        }
+      }
+    }
+  }
+
+  body.index & {
+    h1,
+    li {
+      a {
+        color: #eee;
+        text-shadow: 2px 2px 1px rgba(0,0,0,.4);
+      }
+    }
+  }
+
+}

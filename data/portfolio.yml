@@ -7,7 +7,308 @@ categories:
       - name: Scotland
         slug: scotland
         images:
+          - name: Scotland-2380
+            file: Scotland-2380.jpg
+
+          - name: Scotland-2393
+            file: Scotland-2393.jpg
+
+          - name: Scotland-2485
+            file: Scotland-2485.jpg
+
+          - name: Scotland-2554
+            file: Scotland-2554.jpg
+
+          - name: Scotland-2627
+            file: Scotland-2627.jpg
+
+          - name: Scotland-2696
+            file: Scotland-2696.jpg
+
+          - name: Scotland-2735
+            file: Scotland-2735.jpg
+
+          - name: Scotland-2951
+            file: Scotland-2951.jpg
+
+          - name: Scotland-3050
+            file: Scotland-3050.jpg
+
+          - name: Scotland-3060
+            file: Scotland-3060.jpg
+
+          - name: Scotland-3162
+            file: Scotland-3162.jpg
+
+          - name: Scotland-3327
+            file: Scotland-3327.jpg
+
+          - name: Scotland-4880
+            file: Scotland-4880.jpg
+
+          - name: Scotland-5173
+            file: Scotland-5173.jpg
+
+          - name: Scotland-5563
+            file: Scotland-5563.jpg
+
+          - name: Scotland-5618
+            file: Scotland-5618.jpg
+
+          - name: Scotland-5801
+            file: Scotland-5801.jpg
+
+          - name: Scotland-6499
+            file: Scotland-6499.jpg
+
+          - name: Scotland-6666
+            file: Scotland-6666.jpg
+
+          - name: Scotland-6897
+            file: Scotland-6897.jpg
+
+          - name: Scotland-7064
+            file: Scotland-7064.jpg
+
+          - name: Scotland-7072
+            file: Scotland-7072.jpg
+
+          - name: Scotland-7401
+            file: Scotland-7401.jpg
+
+          - name: Scotland-7488
+            file: Scotland-7488.jpg
+
+          - name: Scotland-7546
+            file: Scotland-7546.jpg
+
+          - name: Scotland-7861
+            file: Scotland-7861.jpg
+
+          - name: Scotland-7959
+            file: Scotland-7959.jpg
+
+          - name: Scotland-7967
+            file: Scotland-7967.jpg
+
+          - name: Scotland-8270
+            file: Scotland-8270.jpg
+
+          - name: Scotland-8422
+            file: Scotland-8422.jpg
+
+          - name: Scotland-8431
+            file: Scotland-8431.jpg
+
+          - name: Scotland-8465
+            file: Scotland-8465.jpg
+
+          - name: Scotland-8726
+            file: Scotland-8726.jpg
+
+          - name: Scotland-8757
+            file: Scotland-8757.jpg
+
+          - name: Scotland-8910
+            file: Scotland-8910.jpg
+
+          - name: Scotland-9284
+            file: Scotland-9284.jpg
 
       - name: Ireland
         slug: ireland
         images:
+        - name: Ireland-5701
+          file: Ireland-5701.jpg
+
+        - name: Ireland-5755
+          file: Ireland-5755.jpg
+
+        - name: Ireland-5854
+          file: Ireland-5854.jpg
+
+        - name: Ireland-5870
+          file: Ireland-5870.jpg
+
+        - name: Ireland-5993
+          file: Ireland-5993.jpg
+
+        - name: Ireland-6008
+          file: Ireland-6008.jpg
+
+        - name: Ireland-6095
+          file: Ireland-6095.jpg
+
+        - name: Ireland-6125
+          file: Ireland-6125.jpg
+
+        - name: Ireland-6222
+          file: Ireland-6222.jpg
+
+        - name: Ireland-6353
+          file: Ireland-6353.jpg
+
+        - name: Ireland-6419
+          file: Ireland-6419.jpg
+
+        - name: Ireland-6507
+          file: Ireland-6507.jpg
+
+        - name: Ireland-6540
+          file: Ireland-6540.jpg
+
+        - name: Ireland-6560
+          file: Ireland-6560.jpg
+
+        - name: Ireland-6591
+          file: Ireland-6591.jpg
+
+        - name: Ireland-6638
+          file: Ireland-6638.jpg
+
+        - name: Ireland-6665
+          file: Ireland-6665.jpg
+
+      - name: Scandinavia
+        slug: scandinavia
+        images:
+        - name: Scandinavia-0078
+          file: Scandinavia-0078.jpg
+
+        - name: Scandinavia-0165
+          file: Scandinavia-0165.jpg
+
+        - name: Scandinavia-0292
+          file: Scandinavia-0292.jpg
+
+        - name: Scandinavia-0307
+          file: Scandinavia-0307.jpg
+
+        - name: Scandinavia-0320
+          file: Scandinavia-0320.jpg
+
+        - name: Scandinavia-0433
+          file: Scandinavia-0433.jpg
+
+        - name: Scandinavia-0567
+          file: Scandinavia-0567.jpg
+
+        - name: Scandinavia-8986
+          file: Scandinavia-8986.jpg
+
+        - name: Scandinavia-8990
+          file: Scandinavia-8990.jpg
+
+        - name: Scandinavia-9035
+          file: Scandinavia-9035.jpg
+
+        - name: Scandinavia-9076
+          file: Scandinavia-9076.jpg
+
+        - name: Scandinavia-9391
+          file: Scandinavia-9391.jpg
+
+        - name: Scandinavia-9405
+          file: Scandinavia-9405.jpg
+
+        - name: Scandinavia-9425
+          file: Scandinavia-9425.jpg
+
+        - name: Scandinavia-9492
+          file: Scandinavia-9492.jpg
+
+        - name: Scandinavia-9523
+          file: Scandinavia-9523.jpg
+
+        - name: Scandinavia-9628
+          file: Scandinavia-9628.jpg
+
+        - name: Scandinavia-9648
+          file: Scandinavia-9648.jpg
+
+        - name: Scandinavia-9723
+          file: Scandinavia-9723.jpg
+
+        - name: Scandinavia-9859
+          file: Scandinavia-9859.jpg
+
+        - name: Scandinavia-9862
+          file: Scandinavia-9862.jpg
+
+        - name: Scandinavia-9880
+          file: Scandinavia-9880.jpg
+
+        - name: Scandinavia-9887
+          file: Scandinavia-9887.jpg
+
+      - name: Mount Desert Island
+        slug: maine
+        images:
+        - name: Maine-2427
+          file: Maine-2427.jpg
+
+        - name: Maine-2451
+          file: Maine-2451.jpg
+
+        - name: Maine-2473
+          file: Maine-2473.jpg
+
+        - name: Maine-2475
+          file: Maine-2475.jpg
+
+        - name: Maine-2539
+          file: Maine-2539.jpg
+
+        - name: Maine-2565
+          file: Maine-2565.jpg
+
+        - name: Maine-2619
+          file: Maine-2619.jpg
+
+        - name: Maine-2678
+          file: Maine-2678.jpg
+
+        - name: Maine-2771
+          file: Maine-2771.jpg
+
+        - name: Maine-2824
+          file: Maine-2824.jpg
+
+        - name: Maine-2857
+          file: Maine-2857.jpg
+
+        - name: Maine-2887
+          file: Maine-2887.jpg
+
+        - name: Maine-2936
+          file: Maine-2936.jpg
+
+        - name: Maine-3150
+          file: Maine-3150.jpg
+
+        - name: Maine-3164
+          file: Maine-3164.jpg
+
+        - name: Maine-3190
+          file: Maine-3190.jpg
+
+        - name: Maine-3195
+          file: Maine-3195.jpg
+
+        - name: Maine-3232
+          file: Maine-3232.jpg
+
+        - name: Maine-3330
+          file: Maine-3330.jpg
+
+        - name: Maine-3348
+          file: Maine-3348.jpg
+
+        - name: Maine-3571
+          file: Maine-3571.jpg
+
+        - name: Maine-3619
+          file: Maine-3619.jpg
+
+        - name: Maine-3691
+          file: Maine-3691.jpg

@@ -1,0 +1,14 @@
+footer {
+  color: #999;
+  font-size: 0.8em;
+  margin: 20px 0;
+  text-align: center;
+
+  body.index & {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ccc;
+  }
+}

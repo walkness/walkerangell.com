@@ -34,3 +34,4 @@ middleman.log
 vendor/bundle
 node_modules
 build
+source/images/portfolio
