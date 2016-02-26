@@ -8,7 +8,7 @@
 module MiddlemanSimpleThumbnailer
   class Extension < Middleman::Extension
 
-    option :cache_dir, '.tmp/simple-thumbnailer-cache', 'Directory (relative to project root) for cached thumbnails.'
+    option :cache_dir, 'source/images/.thumbnails', 'Directory (relative to project root) for cached thumbnails.'
 
     def initialize(app, options_hash={}, &block)
       super
@@ -39,7 +39,7 @@ module MiddlemanSimpleThumbnailer
 
         image = MiddlemanSimpleThumbnailer::Image.new(path, resize_to, self.config)
         if config.environment == :development
-          super("data:#{image.mime_type};base64,#{image.base64_data}")
+          super(".thumbnails/images/#{image.resized_img_tmp_path}")
         else
           image.save!
           super(image.resized_img_path)

@@ -1,3 +1,21 @@
 ---
 title: Portfolio
 ---
+
+<h1>Portfolio</h1>
+
+<ul class="categories">
+<% current_page.children.each do |child| %>
+	
+	<% category = child.locals[:category] %>
+	<% gallery = category.galleries[0] %>
+	<% featuredImage = gallery.images[-1] %>
+
+	<li>
+		<% link_to "/#{child.path}" do %>
+			<img src="<%= image_path "portfolio/#{gallery.slug}/#{featuredImage.file}", :resize_to => 'x350>' %>" srcset="<%= image_path "portfolio/#{gallery.slug}/#{featuredImage.file}", :resize_to => 'x350>' %> 1x, <%= image_path "portfolio/#{gallery.slug}/#{featuredImage.file}", :resize_to => 'x700>' %> 2x" />
+			<div class="name"><%= category.name %></div>
+		<% end %>
+	</li>
+<% end %>
+</ul>

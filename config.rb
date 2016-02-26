@@ -40,6 +40,9 @@ configure :build do
   # "Ignore" JS so webpack has full control.
   ignore { |path| path =~ /\/(.*)\.(js|css)$/ && $1 != 'all' }
 
+  ignore 'images/.thumbnails/**/*'
+  ignore 'partials/**/*'
+
   # Minify Javascript on build
   activate :minify_javascript
 

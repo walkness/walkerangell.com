@@ -9,24 +9,7 @@ import './vendor/jquery.galleryview';
 import '../stylesheets/all.scss';
 
 
-jQuery(document).ready(function(){
-      
-  // Navigation animation
-  jQuery('ul.sub-menu').filter(":not(:has(li.current-menu-item))").hide();
-  
-  jQuery("ul.menu li.menu-item a, ul.sub-menu li.menu-item a").click(function(event){
-    if ( jQuery(this).closest('li').hasClass('menu-item-has-children') ){
-      event.preventDefault();
-      jQuery(this).siblings('ul').slideToggle();
-    }
-  });
-  
-  jQuery('#gallery_nav li.album a').filter(':not(#gallery_nav li.gallery a)').click(function(event){
-    event.preventDefault();
-    jQuery(this).siblings('ul.menu').slideToggle();
-  });
-  
-  
+jQuery(document).ready(function () {
   // Home Page Background
   jQuery('#background_img_dummy').load(function(){
     jQuery('#background_img').fadeIn(1000);
@@ -34,7 +17,7 @@ jQuery(document).ready(function(){
 
   var mainContentWidth    = jQuery('#main-content').width();
   var mainContentHeight   = jQuery(window).height() - 15;
-  
+
   jQuery('.gallery').galleryView({
     transition_speed: 800,                                //INT - duration of panel/frame transition (in milliseconds)
     // transition_interval: 4000,                         //INT - delay between panel/frame transitions (in milliseconds)

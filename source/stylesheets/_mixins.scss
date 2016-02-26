@@ -3,3 +3,14 @@
   margin-left: 0;
   padding-left: 0;
 }
+
+@mixin clearfix {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
+  }
+}

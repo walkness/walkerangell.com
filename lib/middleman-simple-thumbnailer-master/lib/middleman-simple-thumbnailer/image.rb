@@ -25,6 +25,16 @@ module MiddlemanSimpleThumbnailer
       img_path.gsub(image_name, resized_image_name)
     end
 
+    def resized_img_tmp_path
+      unless cached_thumbnail_available?
+        resize!
+        save_cached_thumbnail
+      end
+      img_path.gsub(image_name, resized_image_name).split('.').tap { |a|
+        a.insert(-2, image_checksum)
+      }.join('.')
+    end
+
     def base64_data
       unless cached_thumbnail_available?
         resize!
