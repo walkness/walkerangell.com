@@ -2,6 +2,13 @@
 
 .gv_galleryWrap {
   background-color: transparent;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+
+  @media (max-width: $screen-sm-max) {
+  	margin-left: - $container-padding-xs;
+  	margin-right: - $container-padding-xs;
+  }
 }
 
 .gv_panelNavNext {

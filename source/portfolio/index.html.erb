@@ -1,8 +1,8 @@
 ---
-title: Portfolio
+title: Photography
 ---
 
-<h1>Portfolio</h1>
+<h1><%= current_page.data.title %></h1>
 
 <ul class="categories">
 <% current_page.children.each do |child| %>
@@ -14,7 +14,7 @@ title: Portfolio
 	<li>
 		<% link_to "/#{child.path}" do %>
 			<img src="<%= image_path "portfolio/#{gallery.slug}/#{featuredImage.file}", :resize_to => 'x350>' %>" srcset="<%= image_path "portfolio/#{gallery.slug}/#{featuredImage.file}", :resize_to => 'x350>' %> 1x, <%= image_path "portfolio/#{gallery.slug}/#{featuredImage.file}", :resize_to => 'x700>' %> 2x" />
-			<div class="name"><%= category.name %></div>
+			<span class="name"><%= category.name %></span>
 		<% end %>
 	</li>
 <% end %>

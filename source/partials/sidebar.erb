@@ -1,62 +1,72 @@
 <div id="sidebar">
 
-	<h1 class="site-title">
-		<% link_to '/index.html' do %>
-			<%= data.site.info.title %>
+	<div class="mobile-nav">
+
+		<h1 class="site-title">
+			<% link_to '/index.html' do %>
+				<%= data.site.info.title %>
+			<% end %>
+		</h1>
+
+		<% if data.site.info.description %>
+			<h2 class="site-description">
+				<%= data.site.info.description %>
+			</h2>
 		<% end %>
-	</h1>
 
-	<% if data.site.info.description %>
-		<h2 class="site-description">
-			<%= data.site.info.description %>
-		</h2>
-	<% end %>
+		<button id="menu-collapse-button" class="collapsed">
+			<span>&nbsp;</span>
+			<span>&nbsp;</span>
+			<span>&nbsp;</span>
+		</button>
 
-	<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
-		<div class="menu-main-nav-container">
-			<ul id="menu-main-nav" class="menu">
+	</div>
 
-				<li class="menu-item menu-item-has-children<% if current_page.path == 'portfolio/index.html' %> current-menu-item<% end %>">
+	<nav id="menu-main-nav">
+		<ul class="menu">
 
-					<%= link_to 'Portfolio', '/portfolio/index.html' %>
+			<% photo_page = sitemap.find_resource_by_path('portfolio/index.html') %>
 
-					<ul class="sub-menu">
+			<li class="menu-item menu-item-has-children<% if current_page.path == photo_page.path %> current-menu-item<% end %>">
 
-					<% sitemap.find_resource_by_path('portfolio/index.html').children.each do |category| %>
-						<% if not category.options[:ignore] %>
+				<%= link_to photo_page.data.title, "/#{photo_page.path}" %>
 
-						<li class="menu-item<% if category.children %> menu-item-has-children<% end %><% if current_page.path == category.path %> current-menu-item<% end %>">
+				<ul class="sub-menu">
 
-							<%= link_to category.locals[:category]['name'], "/#{category.path}" %>
+				<% photo_page.children.each do |category| %>
+					<% if not category.options[:ignore] %>
 
-							<% if category.children %>
+					<li class="menu-item<% if category.children %> menu-item-has-children<% end %><% if current_page.path == category.path %> current-menu-item<% end %>">
 
-							<ul class="sub-menu">
+						<%= link_to category.locals[:category]['name'], "/#{category.path}" %>
 
-								<% category.children.each do |gallery| %>
+						<% if category.children %>
 
-								<li class="menu-item<% if current_page.path == gallery.path %> current-menu-item<% end %>">
-									<%= link_to gallery.locals[:gallery]['name'], "/#{gallery.path}" %>
-								</li>
+						<ul class="sub-menu">
 
-								<% end %>
+							<% category.children.each do |gallery| %>
 
-							</ul>
+							<li class="menu-item<% if current_page.path == gallery.path %> current-menu-item<% end %>">
+								<%= link_to gallery.locals[:gallery]['name'], "/#{gallery.path}" %>
+							</li>
 
 							<% end %>
 
-						</li>
+						</ul>
 
 						<% end %>
+
+					</li>
+
 					<% end %>
+				<% end %>
 
-					</ul>
+				</ul>
 
-				</li>
+			</li>
 
-			</ul>
+		</ul>
 
-		</div>
-	</div>
+	</nav>
 
 </div>
