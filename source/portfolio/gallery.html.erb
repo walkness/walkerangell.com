@@ -1,11 +1,13 @@
 <% if gallery.images %>
-<ul class="gallery">
-	<% gallery.images.each do |image| %>
-		<li class="gallery-image">
-			<img src="<%= image_path "portfolio/#{gallery.slug}/#{image.file}", :resize_to => '1640x1640' %>" 
-				 srcset="<%= image_path "portfolio/#{gallery.slug}/#{image.file}", :resize_to => '1640x1640' %> 1x, 
-				 		 <%= image_path "portfolio/#{gallery.slug}/#{image.file}", :resize_to => '3280x3280' %> 2x, "/>
-		</li>
-	<% end %>
-</ul>
+<div class="gallery centered-vertically centered-horizontally">
+	<ul>
+		<% gallery.images.each do |image| %>
+			<li class="gallery-image">
+				<img src="<%= image_path "portfolio/#{gallery.slug}/#{image.file}", :resize_to => '1640x1640' %>" 
+					 srcset="<%= image_path "portfolio/#{gallery.slug}/#{image.file}", :resize_to => '1640x1640' %> 1x, 
+					 		 <%= image_path "portfolio/#{gallery.slug}/#{image.file}", :resize_to => '3280x3280' %> 2x, "/>
+			</li>
+		<% end %>
+	</ul>
+</div>
 <% end %>

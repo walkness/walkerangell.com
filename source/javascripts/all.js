@@ -2,18 +2,169 @@ import 'babel-polyfill';
 
 import jQuery from 'jquery';
 
-import 'jquery.easing';
-import './vendor/jquery.timers';
-import './vendor/jquery.galleryview';
-
 import '../stylesheets/all.scss';
 
+class Gallery {
+  constructor(el) {
+    this.filmstripClass = 'filmstrip';
+    this.gallery = jQuery(el);
+    this.display = jQuery(el + ' > ul:first-child');
+    this.images = this.display.children('li');
+    jQuery(this.images[0]).addClass('current');
+
+    this.buildFilmstrip();
+    this.updateDimensions();
+    this.addListeners();
+  }
+
+  updateDimensions() {
+    this.displayWidth = this.display.width();
+    this.filmstripWidth = this.filmstrip.width();
+  }
+
+  buildFilmstrip() {
+    this.display.after('<ul class="' + this.filmstripClass + '"></ul>');
+    const filmstrip = jQuery('.' + this.filmstripClass);
+    const self = this;
+    self.images.each(function () {
+      const image = jQuery(this);
+      const clone = self.cloneImage(image);
+      filmstrip.append(clone);
+    });
+    self.filmstrip = filmstrip;
+  }
+
+  cloneImage(image) {
+    const clone = image.clone();
+    return clone;
+  }
+
+  addListeners() {
+    this.addKeyboardListener();
+    this.addFilmstripListener();
+    this.addArrowListener();
+    this.addWindowResizeListener();
+    this.addImageChangedListener();
+  }
+
+  addWindowResizeListener() {
+    const self = this;
+    jQuery(window).resize(function () {
+      self.updateDimensions();
+    });
+  }
+
+  addFilmstripListener() {
+    const filmstrip = jQuery('.' + this.filmstripClass);
+    const self = this;
+    filmstrip.children('li').each(function () {
+      jQuery(this).on('click', function () {
+        self.goToFilmstripImage(this);
+      });
+    });
+  }
+
+  addKeyboardListener() {
+    const self = this;
+    jQuery(document).keydown(function (e) {
+      if (e.which === 37) {
+        self.goToPreviousImage();
+      } else if (e.which === 39) {
+        self.goToNextImage();
+      }
+    });
+  }
+
+  addArrowListener() {
+    const self = this;
+    const arrowWidth = 1 / 3;
+    self.display.click(function (e) {
+      if (e.offsetX <= self.displayWidth * arrowWidth) {
+        self.goToPreviousImage();
+      } else if (e.offsetX >= self.displayWidth * (1 - arrowWidth)) {
+        self.goToNextImage();
+      }
+    });
+  }
+
+  addImageChangedListener() {
+    const self = this;
+    this.gallery.on('image-changed', function () {
+      self.scrollFilmstrip();
+    });
+  }
+
+  goToNextImage() {
+    const current = this.display.find('li.current');
+    const currentFilmstrip = this.filmstrip.find('li.current');
+    current.removeClass('current');
+    currentFilmstrip.removeClass('current');
+    if (current.is(':last-child')) {
+      this.display.find('li:first-child').addClass('current');
+      this.filmstrip.find('li:first-child').addClass('current');
+    } else {
+      current.next().addClass('current');
+      currentFilmstrip.next().addClass('current');
+    }
+    this.gallery.trigger('image-changed');
+    this.gallery.trigger('next-image');
+  }
+
+  goToPreviousImage() {
+    const current = this.display.find('li.current');
+    const currentFilmstrip = this.filmstrip.find('li.current');
+    current.removeClass('current');
+    currentFilmstrip.removeClass('current');
+    if (current.is(':first-child')) {
+      this.display.find('li:last-child').addClass('current');
+      this.filmstrip.find('li:last-child').addClass('current');
+    } else {
+      current.prev().addClass('current');
+      currentFilmstrip.prev().addClass('current');
+    }
+    this.gallery.trigger('image-changed');
+    this.gallery.trigger('previous-image');
+  }
+
+  goToImageWithSrc(src) {
+    this.display.find('li.current').removeClass('current');
+    this.filmstrip.find('li.current').removeClass('current');
+    this.display.find('img[src="' + src + '"]').parent().addClass('current');
+    this.filmstrip.find('img[src="' + src + '"]').parent().addClass('current');
+    this.gallery.trigger('image-changed');
+  }
+
+  goToFilmstripImage(image) {
+    const src = jQuery(image).find('img').attr('src');
+    this.goToImageWithSrc(src);
+  }
+
+  scrollFilmstrip() {
+    const currentImage = this.filmstrip.find('.current').first();
+    const scrollLeft = this.filmstrip.scrollLeft();
+    const left = currentImage.position().left + scrollLeft;
+    const currentImageWidth = currentImage.width();
+    const center = left + currentImageWidth / 2;
+    const filmstripCenter = this.filmstripWidth / 2;
+    if (left >= filmstripCenter) {
+      this.scrollFilmstripWithOffset(center - filmstripCenter);
+    } else {
+      this.scrollFilmstripWithOffset(0);
+    }
+  }
+
+  scrollFilmstripWithOffset(offset) {
+    this.filmstrip.animate({ scrollLeft: offset });
+  }
+}
 
 jQuery(document).ready(function () {
   // Home Page Background
   jQuery('#background_img_dummy').load(function () {
     jQuery('#background_img').fadeIn(1000);
   });
+
+  const gallery = new Gallery('.gallery');
 
   // Mobile nav
   const collapseButton = jQuery('#menu-collapse-button');
@@ -22,61 +173,5 @@ jQuery(document).ready(function () {
   collapseButton.click(function () {
     navMenu.slideToggle();
     collapseButton.toggleClass('open');
-  });
-
-  let headerHeight = 0;
-  const footerHeight = jQuery('.site-footer').height();
-  const mainContent = jQuery('#main-content');
-  const mainContentPadding = parseInt(mainContent.css('padding-top').replace('px', ''), 10) + parseInt(mainContent.css('padding-bottom').replace('px', ''), 10);
-  const frameGap = 5;
-  let frameWidth = 130;
-  const frameHeight = 70;
-
-  let mainContentWidth;
-  const windowWidth = jQuery(window).width();
-  if (windowWidth < 769) {
-    if (windowWidth < 480) {
-      frameWidth = windowWidth / 3 - frameGap;
-    } else {
-      frameWidth = windowWidth / 5 - frameGap;
-    }
-    mainContentWidth = windowWidth;
-    headerHeight = jQuery('#sidebar').outerHeight(true);
-  } else {
-    mainContentWidth = mainContent.width();
-  }
-  const mainContentHeight = jQuery(window).height() - headerHeight - footerHeight - frameHeight - mainContentPadding - frameGap;
-
-  jQuery('.gallery').galleryView({
-    transition_speed: 800,                                // INT - duration of panel/frame transition (in milliseconds)
-    // transition_interval: 4000,                         // INT - delay between panel/frame transitions (in milliseconds)
-    // easing: 'easeInQuart',                             // STRING - easing method to use for animations (jQuery provides 'swing' or 'linear', more available with jQuery UI or Easing plugin)
-    // show_panels: true,                                 // BOOLEAN - flag to show or hide panel portion of gallery
-    // show_panel_nav: false,                             // BOOLEAN - flag to show or hide panel navigation buttons
-    // enable_overlays: true,                             // BOOLEAN - flag to show or hide panel overlays
-    panel_width: Math.min(mainContentWidth, 1650),        // INT - width of gallery panel (in pixels)
-    panel_height: Math.min(mainContentHeight, 1098),      // INT - height of gallery panel (in pixels)
-    panel_animation: 'crossfade',                         // STRING - animation method for panel transitions (crossfade,fade,slide,none)
-    panel_scale: 'fit',                                   // STRING - cropping option for panel images (crop = scale image and fit to aspect ratio determined by panel_width and panel_height, fit = scale image and preserve original aspect ratio)
-    // overlay_position: 'bottom',                        // STRING - position of panel overlay (bottom, top)
-    // pan_images: true,                                  // BOOLEAN - flag to allow user to grab/drag oversized images within gallery
-    // pan_style: 'drag',                                 // STRING - panning method (drag = user clicks and drags image to pan, track = image automatically pans based on mouse position
-    // pan_smoothness: 15,                                // INT - determines smoothness of tracking pan animation (higher number = smoother)
-    // start_frame: 1,                                    // INT - index of panel/frame to show first when gallery loads
-    show_filmstrip: true,                                 // BOOLEAN - flag to show or hide filmstrip portion of gallery
-    show_filmstrip_nav: false,                            // BOOLEAN - flag indicating whether to display navigation buttons
-    // enable_slideshow: false,                           // BOOLEAN - flag indicating whether to display slideshow play/pause button
-    // autoplay: false,                                   // BOOLEAN - flag to start slideshow on gallery load
-    // show_captions: true,                               // BOOLEAN - flag to show or hide frame captions
-    // filmstrip_size: 3,                                 // INT - number of frames to show in filmstrip-only gallery
-    // filmstrip_style: 'scroll',                         // STRING - type of filmstrip to use (scroll = display one line of frames, scroll filmstrip if necessary, showall = display multiple rows of frames if necessary)
-    // filmstrip_position: 'bottom',                      // STRING - position of filmstrip within gallery (bottom, top, left, right)
-    frame_width: frameWidth,                              // INT - width of filmstrip frames (in pixels)
-    frame_height: frameHeight,                            // INT - width of filmstrip frames (in pixels)
-    // frame_opacity: 0.5,                                // FLOAT - transparency of non-active frames (1.0 = opaque, 0.0 = transparent)
-    // frame_scale: 'crop',                               // STRING - cropping option for filmstrip images (same as above)
-    frame_gap: frameGap,                                  // INT - spacing between frames within filmstrip (in pixels)
-    show_infobar: true,                                   // BOOLEAN - flag to show or hide infobar
-    // infobar_opacity: 1                                 // FLOAT - transparency for info bar
   });
 });
