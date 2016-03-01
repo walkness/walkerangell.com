@@ -46,6 +46,11 @@ module MiddlemanSimpleThumbnailer
         end
       end
 
+      def image_width(path)
+        image = MiddlemanSimpleThumbnailer::Image.new(path, nil, self.config)
+        image.width
+      end
+
     end
   end
 end

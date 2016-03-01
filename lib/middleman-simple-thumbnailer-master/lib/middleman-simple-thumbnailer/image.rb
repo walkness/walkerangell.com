@@ -17,6 +17,10 @@ module MiddlemanSimpleThumbnailer
       @hash = middleman_config.environment != :development
     end
 
+    def width
+      image.width
+    end
+
     def mime_type
       image.mime_type
     end
