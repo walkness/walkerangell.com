@@ -60,30 +60,39 @@ $arrow-padding: 10px;
         cursor: pointer;
         background-repeat: no-repeat;
         background-size: 15px;
+        background-color: transparent;
+        border: none;
         opacity: 0;
         visibility: hidden;
+        text-indent: -1000px;
+        overflow: hidden;
         transition: visibility 0s linear 0.3s, opacity .3s ease-in;
+        outline: none;
 
         &.previous {
           content: '';
           left: 0;
-          // background-image: url(../images/left-arrow.svg);
+          background-image: icon(chevronLeft, #fff);
           background-position: $arrow-padding center;
         }
 
         &.next {
           content: '';
           right: 0;
-          // background-image: url(../images/right-arrow.svg);
+          background-image: icon(chevronRight, #fff);
           background-position: right $arrow-padding center;
         }
       }
 
       &:hover {
         button {
-          opacity: 0.8;
+          opacity: 0.6;
           visibility: visible;
           transition-delay: 0s;
+
+          &:hover {
+            opacity: 1;
+          }
         }
       }
     }

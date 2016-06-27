@@ -1,0 +1,44 @@
+@function color-to-str($color) {
+  $string: inspect($color);
+  
+  @if str-slice($string, 1, 1) == '#' {
+    @return unquote('%23#{str-slice($string, 2, str-length($string))}');
+  } @else {
+    @return $color;
+  }
+}
+
+@function _buildIcon($icon, $width: 100, $height: 100) {
+  $icon: '%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20width%3D%22#{$width}%22%20height%3D%22#{$height}%22%3E#{$icon}%3C%2Fsvg%3E';
+  @return $icon;
+}
+
+@function _buildPath($path, $parameters) {
+  $icon: '%3Cpath%20fill%3D%22#{map-get($parameters, color)}%22%20stroke%3D%22#{map-get($parameters, stroke-color)}%22%20stroke-width%3D%22#{map-get($parameters, stroke-width)}%22%20style%3D%22#{map-get($parameters, css)}%22%20d%3D%22#{$path}%22%20%2F%3E';
+  @return $icon;
+}
+
+@function icon(
+  $icon-name,
+  $color, 
+  $stroke-color: transparent,
+  $stroke-width: 0,
+  $css: '' // arbitrary css,
+  ){
+    $parameters: (
+      'color': color-to-str($color),
+      'stroke-color': color-to-str($stroke-color),
+      'stroke-width': $stroke-width,
+      'css': $css
+    );
+    
+    $icons: (
+      chevronRight: (_buildPath('M79.41 52.65L35.682 96.38c-.748.747-1.633 1.12-2.652 1.12-1.02 0-1.906-.373-2.654-1.12l-9.78-9.78c-.748-.748-1.122-1.634-1.122-2.652 0-1.022.374-1.907 1.122-2.655L51.886 50l-31.29-31.29c-.748-.75-1.122-1.63-1.122-2.653 0-1.022.374-1.907 1.122-2.65l9.78-9.785C31.124 2.874 32.01 2.5 33.03 2.5c1.02 0 1.905.374 2.653 1.122L79.41 47.35c.743.747 1.117 1.632 1.117 2.65 0 1.023-.375 1.908-1.118 2.65z', $parameters), 100, 100),
+      chevronLeft: (_buildPath('M19.474 50c0-1.02.374-1.904 1.117-2.65L64.318 3.62C65.065 2.874 65.95 2.5 66.97 2.5c1.02 0 1.907.374 2.655 1.122l9.78 9.785c.747.743 1.12 1.628 1.12 2.65 0 1.023-.373 1.904-1.12 2.652L48.112 50l31.29 31.292c.75.748 1.123 1.633 1.123 2.655 0 1.02-.374 1.904-1.122 2.652l-9.78 9.778c-.747.748-1.633 1.12-2.655 1.12-1.02 0-1.904-.372-2.652-1.12L20.59 52.65c-.742-.742-1.116-1.627-1.116-2.65z', $parameters), 100, 100),
+    );
+
+
+    $component: map-get($icons, $icon-name);
+    $icon: _buildIcon(nth($component, 1), nth($component, 2), nth($component, 3));
+    @return url("data:image/svg+xml;charset=utf8,#{$icon}");
+  }
