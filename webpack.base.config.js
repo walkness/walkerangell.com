@@ -30,9 +30,17 @@ module.exports = {
     loaders: [
       {
         test: /.*\.(gif|png|jpe?g|svg)$/i,
+        exclude: path.join(__dirname, 'app/images/portfolio'),
         loaders: [
           'url?limit=10000?hash=sha512&digest=hex&name=images/[name]-[hash].[ext]',
           'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
+        ],
+      },
+      {
+        test: /.*\.(gif|png|jpe?g|svg)$/i,
+        include: path.join(__dirname, 'app/images/portfolio'),
+        loaders: [
+          'url?limit=10000?hash=sha512&digest=hex&name=images/[name]-[hash].[ext]',
         ],
       },
       {
