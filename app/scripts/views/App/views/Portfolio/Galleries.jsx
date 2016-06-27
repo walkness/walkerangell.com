@@ -21,12 +21,13 @@ class Galleries extends Component {
 
           { Object.keys(galleries).map(slug => {
             const gallery = galleries[slug];
-            const image = require('../../../../../images/' + data.portfolio.images[gallery.featured].filename);
+            const src350 = require(`../../../../../images/${data.portfolio.images[gallery.featured].filename}-350x350.jpg`);
+            const src700 = require(`../../../../../images/${data.portfolio.images[gallery.featured].filename}-700x700.jpg`);
             i++;
             return (
               <li key={i}>
                 <Link to={this.props.location.pathname + slug + '/'}>
-                  <img src={image}/>
+                  <img src={src350} srcSet={`${src350} 1x, ${src700} 2x`}/>
                   <span className='name'>{gallery.title}</span>
                 </Link>
               </li>

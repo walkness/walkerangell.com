@@ -11,6 +11,7 @@ class Gallery extends Component {
     const gallery = data.portfolio.categories[props.params.category].galleries[props.params.gallery];
     this.state = {
       current: gallery.images[0],
+      loaded: [],
     };
   }
 
@@ -22,6 +23,13 @@ class Gallery extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.current !== this.state.current)
       this.scrollFilmstrip();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params !== this.props.params) {
+      const gallery = data.portfolio.categories[nextProps.params.category].galleries[nextProps.params.gallery];
+      this.setState({current: gallery.images[0], loaded: []});
+    }
   }
 
   advanceImage(i) {
@@ -80,7 +88,7 @@ class Gallery extends Component {
 
   render() {
     const gallery = data.portfolio.categories[this.props.params.category].galleries[this.props.params.gallery];
-    const { current } = this.state;
+    const { current, loaded } = this.state;
     return (
       <div className='gallery centered-vertically centered-horizontally'>
 
@@ -88,10 +96,16 @@ class Gallery extends Component {
 
           { gallery.images.map(key => {
             const image = data.portfolio.images[key];
-            const src = require('../../../../../images/' + image.filename);
+            const src830 = require(`../../../../../images/${image.filename}-830x830.jpg`);
+            const src1640 = require(`../../../../../images/${image.filename}-1640x1640.jpg`);
+            const src3280 = require(`../../../../../images/${image.filename}-3280x3280.jpg`);
             return (
               <li key={key} className={`gallery-image${ current === key ? ' current' : '' }`}>
-                <img src={src}/>
+                <img
+                  src={src1640}
+                  srcSet={`${src830} 830w, ${src1640} 1640w, ${src3280} 3280w`}
+                  sizes='(min-width: 769px) calc(100vw - 291px), 100vw'
+                  onLoad={(e) => this.setState({loaded: [...loaded, key]})}/>
               </li>
             )
           }) }
@@ -105,13 +119,23 @@ class Gallery extends Component {
 
           { gallery.images.map(key => {
             const image = data.portfolio.images[key];
-            const src = require('../../../../../images/' + image.filename);
+            const src50 = require(`../../../../../images/${image.filename}-x50.jpg`);
+            const src830 = require(`../../../../../images/${image.filename}-830x830.jpg`);
+            const src1640 = require(`../../../../../images/${image.filename}-1640x1640.jpg`);
+            const src3280 = require(`../../../../../images/${image.filename}-3280x3280.jpg`);
             return (
               <li
                 key={key}
                 className={`gallery-image${ current === key ? ' current' : '' }`}
                 onClick={(e) => this.setState({current: key})}>
-                <img src={src}/>
+                { loaded.indexOf(key) === -1 ?
+                  <img src={src50} className='placeholder'/>
+                :
+                  <img
+                    src={src1640}
+                    srcSet={`${src830} 830w, ${src1640} 1640w, ${src3280} 3280w`}
+                    sizes='(min-width: 769px) calc(100vw - 291px), 100vw'/>
+                }
               </li>
             )
           }) }
