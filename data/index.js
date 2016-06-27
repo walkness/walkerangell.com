@@ -1,0 +1,150 @@
+module.exports = {
+
+  name: 'Walker Angell',
+
+  description: '',
+
+  portfolio: {
+
+    title: 'Portfolio',
+
+    categories: {
+
+      travel: {
+        
+        title: 'Travel & Landscapes',
+
+        featured: 'Scotland-9284',
+
+        galleries: {
+
+          scotland: {
+            title: 'Scotland',
+            featured: 'Scotland-9284',
+            images: ['Scotland-9284', 'Scotland-8910', 'Scotland-8757', 'Scotland-8726', 'Scotland-8465', 'Scotland-8431', 'Scotland-8422', 'Scotland-8270', 'Scotland-7967', 'Scotland-7959', 'Scotland-7861', 'Scotland-7546', 'Scotland-7488', 'Scotland-7401', 'Scotland-7072', 'Scotland-7064', 'Scotland-6897', 'Scotland-6666', 'Scotland-6499', 'Scotland-5801', 'Scotland-5618', 'Scotland-5563', 'Scotland-5173', 'Scotland-4880', 'Scotland-3327', 'Scotland-3162', 'Scotland-3060', 'Scotland-3050', 'Scotland-2951', 'Scotland-2735', 'Scotland-2696', 'Scotland-2627', 'Scotland-2554', 'Scotland-2485', 'Scotland-2393', 'Scotland-2380'],
+          },
+
+          ireland: {
+            title: 'Ireland',
+            featured: 'Ireland-6222',
+          },
+
+          scandinavia: {
+            title: 'Scandinavia',
+            featured: 'Scandinavia-9887',
+          },
+
+          maine: {
+            title: 'Mount Desert Island',
+            featured: 'Maine-3691',
+          },
+
+        },
+      },
+
+    },
+
+    images: {
+      'Scotland-9284':    {filename: 'portfolio/scotland/Scotland-9284.jpg'},
+      'Scotland-8910':    {filename: 'portfolio/scotland/Scotland-8910.jpg'},
+      'Scotland-8757':    {filename: 'portfolio/scotland/Scotland-8757.jpg'},
+      'Scotland-8726':    {filename: 'portfolio/scotland/Scotland-8726.jpg'},
+      'Scotland-8465':    {filename: 'portfolio/scotland/Scotland-8465.jpg'},
+      'Scotland-8431':    {filename: 'portfolio/scotland/Scotland-8431.jpg'},
+      'Scotland-8422':    {filename: 'portfolio/scotland/Scotland-8422.jpg'},
+      'Scotland-8270':    {filename: 'portfolio/scotland/Scotland-8270.jpg'},
+      'Scotland-7967':    {filename: 'portfolio/scotland/Scotland-7967.jpg'},
+      'Scotland-7959':    {filename: 'portfolio/scotland/Scotland-7959.jpg'},
+      'Scotland-7861':    {filename: 'portfolio/scotland/Scotland-7861.jpg'},
+      'Scotland-7546':    {filename: 'portfolio/scotland/Scotland-7546.jpg'},
+      'Scotland-7488':    {filename: 'portfolio/scotland/Scotland-7488.jpg'},
+      'Scotland-7401':    {filename: 'portfolio/scotland/Scotland-7401.jpg'},
+      'Scotland-7072':    {filename: 'portfolio/scotland/Scotland-7072.jpg'},
+      'Scotland-7064':    {filename: 'portfolio/scotland/Scotland-7064.jpg'},
+      'Scotland-6897':    {filename: 'portfolio/scotland/Scotland-6897.jpg'},
+      'Scotland-6666':    {filename: 'portfolio/scotland/Scotland-6666.jpg'},
+      'Scotland-6499':    {filename: 'portfolio/scotland/Scotland-6499.jpg'},
+      'Scotland-5801':    {filename: 'portfolio/scotland/Scotland-5801.jpg'},
+      'Scotland-5618':    {filename: 'portfolio/scotland/Scotland-5618.jpg'},
+      'Scotland-5563':    {filename: 'portfolio/scotland/Scotland-5563.jpg'},
+      'Scotland-5173':    {filename: 'portfolio/scotland/Scotland-5173.jpg'},
+      'Scotland-4880':    {filename: 'portfolio/scotland/Scotland-4880.jpg'},
+      'Scotland-3327':    {filename: 'portfolio/scotland/Scotland-3327.jpg'},
+      'Scotland-3162':    {filename: 'portfolio/scotland/Scotland-3162.jpg'},
+      'Scotland-3060':    {filename: 'portfolio/scotland/Scotland-3060.jpg'},
+      'Scotland-3050':    {filename: 'portfolio/scotland/Scotland-3050.jpg'},
+      'Scotland-2951':    {filename: 'portfolio/scotland/Scotland-2951.jpg'},
+      'Scotland-2735':    {filename: 'portfolio/scotland/Scotland-2735.jpg'},
+      'Scotland-2696':    {filename: 'portfolio/scotland/Scotland-2696.jpg'},
+      'Scotland-2627':    {filename: 'portfolio/scotland/Scotland-2627.jpg'},
+      'Scotland-2554':    {filename: 'portfolio/scotland/Scotland-2554.jpg'},
+      'Scotland-2485':    {filename: 'portfolio/scotland/Scotland-2485.jpg'},
+      'Scotland-2393':    {filename: 'portfolio/scotland/Scotland-2393.jpg'},
+      'Scotland-2380':    {filename: 'portfolio/scotland/Scotland-2380.jpg'},
+      'Ireland-6222':     {filename: 'portfolio/ireland/Ireland-6222.jpg'},
+      'Ireland-6353':     {filename: 'portfolio/ireland/Ireland-6353.jpg'},
+      'Ireland-6419':     {filename: 'portfolio/ireland/Ireland-6419.jpg'},
+      'Ireland-6507':     {filename: 'portfolio/ireland/Ireland-6507.jpg'},
+      'Ireland-6540':     {filename: 'portfolio/ireland/Ireland-6540.jpg'},
+      'Ireland-6560':     {filename: 'portfolio/ireland/Ireland-6560.jpg'},
+      'Ireland-6591':     {filename: 'portfolio/ireland/Ireland-6591.jpg'},
+      'Ireland-5701':     {filename: 'portfolio/ireland/Ireland-5701.jpg'},
+      'Ireland-5755':     {filename: 'portfolio/ireland/Ireland-5755.jpg'},
+      'Ireland-6125':     {filename: 'portfolio/ireland/Ireland-6125.jpg'},
+      'Ireland-5854':     {filename: 'portfolio/ireland/Ireland-5854.jpg'},
+      'Ireland-5870':     {filename: 'portfolio/ireland/Ireland-5870.jpg'},
+      'Ireland-5993':     {filename: 'portfolio/ireland/Ireland-5993.jpg'},
+      'Ireland-6008':     {filename: 'portfolio/ireland/Ireland-6008.jpg'},
+      'Ireland-6095':     {filename: 'portfolio/ireland/Ireland-6095.jpg'},
+      'Ireland-6638':     {filename: 'portfolio/ireland/Ireland-6638.jpg'},
+      'Scandinavia-9887': {filename: 'portfolio/scandinavia/Scandinavia-9887.jpg'},
+      'Scandinavia-9880': {filename: 'portfolio/scandinavia/Scandinavia-9880.jpg'},
+      'Scandinavia-9862': {filename: 'portfolio/scandinavia/Scandinavia-9862.jpg'},
+      'Scandinavia-9859': {filename: 'portfolio/scandinavia/Scandinavia-9859.jpg'},
+      'Scandinavia-9723': {filename: 'portfolio/scandinavia/Scandinavia-9723.jpg'},
+      'Scandinavia-9648': {filename: 'portfolio/scandinavia/Scandinavia-9648.jpg'},
+      'Scandinavia-9628': {filename: 'portfolio/scandinavia/Scandinavia-9628.jpg'},
+      'Scandinavia-9523': {filename: 'portfolio/scandinavia/Scandinavia-9523.jpg'},
+      'Scandinavia-9492': {filename: 'portfolio/scandinavia/Scandinavia-9492.jpg'},
+      'Scandinavia-9425': {filename: 'portfolio/scandinavia/Scandinavia-9425.jpg'},
+      'Scandinavia-9405': {filename: 'portfolio/scandinavia/Scandinavia-9405.jpg'},
+      'Scandinavia-9391': {filename: 'portfolio/scandinavia/Scandinavia-9391.jpg'},
+      'Scandinavia-9076': {filename: 'portfolio/scandinavia/Scandinavia-9076.jpg'},
+      'Scandinavia-9035': {filename: 'portfolio/scandinavia/Scandinavia-9035.jpg'},
+      'Scandinavia-8990': {filename: 'portfolio/scandinavia/Scandinavia-8990.jpg'},
+      'Scandinavia-8986': {filename: 'portfolio/scandinavia/Scandinavia-8986.jpg'},
+      'Scandinavia-0567': {filename: 'portfolio/scandinavia/Scandinavia-0567.jpg'},
+      'Scandinavia-0433': {filename: 'portfolio/scandinavia/Scandinavia-0433.jpg'},
+      'Scandinavia-0320': {filename: 'portfolio/scandinavia/Scandinavia-0320.jpg'},
+      'Scandinavia-0307': {filename: 'portfolio/scandinavia/Scandinavia-0307.jpg'},
+      'Scandinavia-0292': {filename: 'portfolio/scandinavia/Scandinavia-0292.jpg'},
+      'Scandinavia-0165': {filename: 'portfolio/scandinavia/Scandinavia-0165.jpg'},
+      'Scandinavia-0078': {filename: 'portfolio/scandinavia/Scandinavia-0078.jpg'},
+      'Maine-3691':       {filename: 'portfolio/maine/Maine-3691.jpg'},
+      'Maine-3619':       {filename: 'portfolio/maine/Maine-3619.jpg'},
+      'Maine-3571':       {filename: 'portfolio/maine/Maine-3571.jpg'},
+      'Maine-3348':       {filename: 'portfolio/maine/Maine-3348.jpg'},
+      'Maine-3330':       {filename: 'portfolio/maine/Maine-3330.jpg'},
+      'Maine-3232':       {filename: 'portfolio/maine/Maine-3232.jpg'},
+      'Maine-3195':       {filename: 'portfolio/maine/Maine-3195.jpg'},
+      'Maine-3190':       {filename: 'portfolio/maine/Maine-3190.jpg'},
+      'Maine-3164':       {filename: 'portfolio/maine/Maine-3164.jpg'},
+      'Maine-3150':       {filename: 'portfolio/maine/Maine-3150.jpg'},
+      'Maine-2936':       {filename: 'portfolio/maine/Maine-2936.jpg'},
+      'Maine-2887':       {filename: 'portfolio/maine/Maine-2887.jpg'},
+      'Maine-2857':       {filename: 'portfolio/maine/Maine-2857.jpg'},
+      'Maine-2824':       {filename: 'portfolio/maine/Maine-2824.jpg'},
+      'Maine-2771':       {filename: 'portfolio/maine/Maine-2771.jpg'},
+      'Maine-2678':       {filename: 'portfolio/maine/Maine-2678.jpg'},
+      'Maine-2619':       {filename: 'portfolio/maine/Maine-2619.jpg'},
+      'Maine-2565':       {filename: 'portfolio/maine/Maine-2565.jpg'},
+      'Maine-2539':       {filename: 'portfolio/maine/Maine-2539.jpg'},
+      'Maine-2475':       {filename: 'portfolio/maine/Maine-2475.jpg'},
+      'Maine-2473':       {filename: 'portfolio/maine/Maine-2473.jpg'},
+      'Maine-2451':       {filename: 'portfolio/maine/Maine-2451.jpg'},
+      'Maine-2427':       {filename: 'portfolio/maine/Maine-2427.jpg'},
+    },
+
+  },
+
+}

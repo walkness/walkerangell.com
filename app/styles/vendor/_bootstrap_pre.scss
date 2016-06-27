@@ -1,0 +1,18 @@
+$font-size:         16px;
+$body-color:        #ccc;
+$body-bg:           #2c2c2c;
+
+$link-color: #24890d;
+
+$navbar-height:       70px;
+
+$sidebar-width:       250px;
+$sidebar-color:       #656565;
+$sidebar-color-home:    darken(#fff, 2.5%);
+$sidebar-background:    #191919;
+$sidebar-link-color:    $sidebar-color;
+$sidebar-hover-color:     lighten($sidebar-link-color, 10%);
+$sidebar-border:      1px solid lighten($body-bg, 2.5%);
+
+$footer-height:       60px;
+

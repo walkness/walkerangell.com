@@ -1,0 +1,56 @@
+@import "sidebar";
+@import "nav";
+@import "footer";
+
+body, html {
+  height: 100%;
+}
+
+body {
+  background: $body-bg;
+
+  @media (min-width: $sidebar-breakpoint) {
+    background: $sidebar-background;
+  }
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+#primary {
+  padding-bottom: $footer-height;
+
+  body.index & {
+    padding-top: 20px;
+  }
+}
+
+#main-content {
+  width: auto;
+  overflow: auto;
+  padding: 0 $grid-gutter-width / 2;
+  box-shadow: -3px 0px 10px 2px rgba(#000, .5);
+  min-height: calc(100vh - #{$navbar-height});
+  position: relative;
+
+  @media (min-width: $sidebar-breakpoint) {
+    min-height: 100vh;
+    background: $body-bg;
+    border-left: $sidebar-border;
+  }
+
+  @media (min-width: $screen-sm-min) {
+    padding-left: $grid-gutter-width / 2;
+    padding-right: $grid-gutter-width / 2;
+  }
+
+  body.index & {
+    background: none;
+    box-shadow: none;
+    border: none;
+    padding-top: 0;
+    min-height: inherit;
+  }
+}

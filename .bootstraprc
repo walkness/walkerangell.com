@@ -1,3 +1,8 @@
+---
+# Output debugging info
+# loglevel: debug
+
+# Major version of Bootstrap: 3 or 4
 bootstrapVersion: 3
 
 # If Bootstrap version 3 is used - turn on/off custom icon font path
@@ -7,6 +12,7 @@ useCustomIconFontPath: false
 styleLoaders:
   - style
   - css
+  - postcss
   - sass
 
 # Extract styles to stand-alone css file
@@ -14,32 +20,33 @@ styleLoaders:
 # It depends on value of NODE_ENV environment variable
 # This param can also be set in webpack config:
 #   entry: 'bootstrap-loader/extractStyles'
-extractStyles: true
-# env:
-#   development:
-#     extractStyles: false
-#   production:
-#     extractStyles: true
+# extractStyles: true
+env:
+  development:
+    extractStyles: false
+  production:
+    extractStyles: true
 
 
 # Customize Bootstrap variables that get imported before the original Bootstrap variables.
 # Thus, derived Bootstrap variables can depend on values from here.
 # See the Bootstrap _variables.scss file for examples of derived Bootstrap variables.
 #
-preBootstrapCustomizations: ./source/stylesheets/vendor/_bootstrap_pre.scss
+preBootstrapCustomizations: ./app/styles/vendor/_bootstrap_pre.scss
 
 
 # This gets loaded after bootstrap/variables is loaded
 # Thus, you may customize Bootstrap variables
 # based on the values established in the Bootstrap _variables.scss file
 #
-# bootstrapCustomizations: ./path/to/bootstrap/customizations.scss
+bootstrapCustomizations: ./app/styles/vendor/_bootstrap_post.scss
 
 
 # Import your custom styles here
 # Usually this endpoint-file contains list of @imports of your application styles
 #
-appStyles: ./source/stylesheets/all.scss
+appStyles: ./app/styles/main.scss
+
 
 ### Bootstrap styles
 styles:
@@ -95,16 +102,4 @@ styles:
   responsive-utilities: true
 
 ### Bootstrap scripts
-scripts:
-   transition: false
-   alert: true
-   button: true
-   carousel: false
-   collapse: false
-   dropdown: false
-   modal: false
-   tooltip: false
-   popover: false
-   scrollspy: false
-   tab: false
-   affix: false
+scripts: false
