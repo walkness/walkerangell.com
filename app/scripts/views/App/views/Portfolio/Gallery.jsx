@@ -17,8 +17,7 @@ class Gallery extends Component {
   advanceImage(i) {
     const images = data.portfolio.categories[this.props.params.category].galleries[this.props.params.gallery].images;
     const currentIndex = images.indexOf(this.state.current);
-    let nextIndex = (currentIndex + i) % images.length;
-    console.log(nextIndex);
+    let nextIndex = (((currentIndex + i) % images.length) + images.length) % images.length;
     this.setState({current: images[nextIndex]});
   }
 
