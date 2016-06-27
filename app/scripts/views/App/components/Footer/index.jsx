@@ -4,10 +4,16 @@ import data from '../../../../../../data';
 
 const Footer = ({}) => {
   return (
-    <footer>
-      <div className='container'>
-        <em>{data.name} serves clients throughout Long Island, New York City and Westchester County.</em>
+    <footer id='colophon' className='site-footer' role='contentinfo'>
+
+      <div id='supplementary'>
+
+        <div id='footer-content' className='footer-content widget-area' role='complementary'>
+          All site content and images copyright &copy;{ new Date().getFullYear() } by Walker Angell.
+        </div>
+
       </div>
+
     </footer>
   )
 }
