@@ -23,7 +23,7 @@ class Gallery extends Component {
     const hash = this.props.location.hash.substring(1);
     const gallery = data.portfolio.categories[this.props.params.category].galleries[this.props.params.gallery];
     if (!hash || gallery.images.indexOf(hash) === -1)
-      this.context.router.push(Object.assign({}, this.props.location, {hash: `#${gallery.images[0]}`}));
+      this.context.router.replace(Object.assign({}, this.props.location, {hash: `#${gallery.images[0]}`}));
   }
 
   componentDidMount() {
