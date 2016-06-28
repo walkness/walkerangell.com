@@ -14,7 +14,20 @@ class App extends Component {
         <Helmet
           htmlAttributes={{'lang': 'en'}}
           defaultTitle='Walker Angell'
-          titleTemplate='%s | Walker Angell'/>
+          titleTemplate='%s | Walker Angell'
+          meta={[
+            {charset: 'utf-8'},
+            {'http-equiv': 'x-ua-compatible', content: 'ie=edge'},
+            {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+          ]}
+          script={[
+            {
+              src: '//use.typekit.net/ioi4abv.js',
+              type: 'text/javascript',
+              async: true,
+              onLoad: 'try{Typekit.load({async:true});}catch(e){}'
+            },
+          ]}/>
 
         <main className='site-main'>
 

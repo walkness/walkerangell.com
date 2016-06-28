@@ -32,7 +32,7 @@ ul {
     li {
       padding: $link-spacing 0;
 
-      #sidebar &.current-menu-item {
+      #sidebar &.active {
         > a {
           color: $sidebar-hover-color;
           font-weight: 400;
@@ -44,7 +44,7 @@ ul {
           font-weight: 500;
         }
 
-        #sidebar &.current-menu-item {
+        #sidebar &.active {
           > a {
             font-weight: 600;
           }
