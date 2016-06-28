@@ -6,7 +6,7 @@ module.exports = {
 
   portfolio: {
 
-    title: 'Portfolio',
+    title: 'Photography',
 
     categories: {
 

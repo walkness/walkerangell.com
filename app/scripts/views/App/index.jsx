@@ -8,8 +8,9 @@ import Sidebar from './components/Sidebar';
 
 class App extends Component {
   render() {
+    const routeName = this.props.children.props.route.name;
     return (
-      <div id='app'>
+      <div id='app' className={routeName}>
 
         <Helmet
           htmlAttributes={{'lang': 'en'}}
@@ -27,7 +28,12 @@ class App extends Component {
               async: true,
               onLoad: 'try{Typekit.load({async:true});}catch(e){}'
             },
+            {type: 'text/javascript', innerHTML: 'try{Typekit.load({async:true});}catch(e){}'},
           ]}/>
+
+        { routeName === 'home' ?
+          <div id='background_img'/>
+        : null }
 
         <main className='site-main'>
 

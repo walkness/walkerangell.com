@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Helmet from 'react-helmet';
 import { Link } from 'react-router';
 
 import data from '../../../../../../data';
@@ -14,6 +15,8 @@ class Galleries extends Component {
 
     return (
       <div>
+
+        <Helmet title={title}/>
 
         <h1>{title}</h1>
 

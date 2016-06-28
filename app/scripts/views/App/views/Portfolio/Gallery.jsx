@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Helmet from 'react-helmet';
 import { Link } from 'react-router';
 
 import data from '../../../../../../data';
@@ -30,6 +31,10 @@ class Gallery extends Component {
       const gallery = data.portfolio.categories[nextProps.params.category].galleries[nextProps.params.gallery];
       this.setState({current: gallery.images[0], loaded: []});
     }
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.boundKeyPressHandler);
   }
 
   advanceImage(i) {
@@ -87,10 +92,13 @@ class Gallery extends Component {
   }
 
   render() {
-    const gallery = data.portfolio.categories[this.props.params.category].galleries[this.props.params.gallery];
+    const category = data.portfolio.categories[this.props.params.category];
+    const gallery = category.galleries[this.props.params.gallery];
     const { current, loaded } = this.state;
     return (
       <div className='gallery centered-vertically centered-horizontally'>
+
+        <Helmet title={`${gallery.title} | ${category.title}`}/>
 
         <ul>
 
@@ -102,10 +110,10 @@ class Gallery extends Component {
             return (
               <li key={key} className={`gallery-image${ current === key ? ' current' : '' }`}>
                 <img
+                  onLoad={(e) => this.setState({loaded: [...loaded, key]})}
                   src={src1640}
                   srcSet={`${src830} 830w, ${src1640} 1640w, ${src3280} 3280w`}
-                  sizes='(min-width: 769px) calc(100vw - 291px), 100vw'
-                  onLoad={(e) => this.setState({loaded: [...loaded, key]})}/>
+                  sizes='(min-width: 769px) calc(100vw - 291px), 100vw'/>
               </li>
             )
           }) }

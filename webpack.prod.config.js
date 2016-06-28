@@ -9,7 +9,7 @@ var config = require('./webpack.base.config.js')
 
 config.output.path = require('path').resolve('./build')
 config.output.filename = 'scripts/[name]-[hash].js'
-config.output.publicPath = '//d16o2nvjav3td9.cloudfront.net/'
+config.output.publicPath = '//d2hsdu90o9mztm.cloudfront.net/'
 
 // Add HotModuleReplacementPlugin and BundleTracker plugins
 config.plugins = config.plugins.concat([

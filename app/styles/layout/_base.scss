@@ -22,7 +22,7 @@ main {
 #primary {
   padding-bottom: $footer-height;
 
-  body.index & {
+  #app.home & {
     padding-top: 20px;
   }
 }
@@ -46,7 +46,7 @@ main {
     padding-right: $grid-gutter-width / 2;
   }
 
-  body.index & {
+  #app.home & {
     background: none;
     box-shadow: none;
     border: none;

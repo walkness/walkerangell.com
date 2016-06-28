@@ -25,7 +25,15 @@ const Sidebar = ({}) => {
               </ul>
             );
           }
-          return <NavLink key={i} to={`/portfolio/${slug1}/`} dropdown={subMenu()}>{gallery1.title}</NavLink>
+          return (
+            <NavLink
+              key={i}
+              liClassName='menu-item menu-item-has-children'
+              to={`/portfolio/${slug1}/`}
+              dropdown={subMenu()}
+              indexOnly={true}>
+              {gallery1.title}
+            </NavLink>)
         })}
       </ul>
     )
@@ -53,9 +61,10 @@ const Sidebar = ({}) => {
 
           <NavLink
             to='/portfolio/'
-            className='menu-item menu-item-has-children'
-            dropdown={portfolioDropdown()}>
-            Portfolio
+            liClassName='menu-item menu-item-has-children'
+            dropdown={portfolioDropdown()}
+            indexOnly={true}>
+            {data.portfolio.title}
           </NavLink>
 
         </ul>

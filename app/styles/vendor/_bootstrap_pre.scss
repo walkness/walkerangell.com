@@ -1,9 +1,15 @@
-$font-size:         16px;
+$font-size-base:         16px;
 $font-family-sans-serif: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $body-color:        #ccc;
 $body-bg:           #2c2c2c;
 
 $link-color: #24890d;
+$link-hover-decoration: none;
+$text-color: #ccc;
+
+$font-size-h1:            floor(($font-size-base * 2));
+
+$grid-gutter-width: 40px;
 
 $navbar-height:       70px;
 

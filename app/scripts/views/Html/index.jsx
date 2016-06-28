@@ -20,9 +20,13 @@ const Html = ({reactApp, head, publicPath, assets}) => {
         {head.meta.toComponent()}
         {head.link.toComponent()}
 
+        {head.style.toComponent()}
+
         { css.map(filename => {
           return <link type='text/css' rel='stylesheet' href={publicPath + filename}/>
         }) }
+
+        {head.script.toComponent()}
 
       </head>
 

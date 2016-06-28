@@ -8,7 +8,8 @@
     "build-production": "NODE_ENV=production webpack --config webpack.prod.config.js --progress --colors",
     "build-staging": "NODE_ENV=production webpack --config webpack.staging.config.js --progress --colors",
     "watch": "NODE_ENV=development DEBUG=true node devServer.js",
-    "deploy": "aws s3 cp build/ s3://walkerangell.com/ --recursive"
+    "deploy": "aws s3 cp build/ s3://walkerangell.com/ --recursive",
+    "deploy-no-images": "aws s3 cp build/ s3://walkerangell.com/ --recursive --exclude *.jpg"
   },
   "author": "Walker Angell",
   "license": "ISC",
