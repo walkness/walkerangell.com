@@ -37,7 +37,7 @@ class App extends Component {
 
         <main className='site-main'>
 
-          <Sidebar/>
+          <Sidebar location={this.props.location}/>
 
           <div id="main-content" class="main-content">
 

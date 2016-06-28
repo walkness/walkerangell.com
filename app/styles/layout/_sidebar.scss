@@ -7,6 +7,12 @@
 
   .mobile-nav {
     @include clearfix;
+
+    #menu-collapse-button {
+      &.active {
+        background-color: $navbar-inverse-toggle-hover-bg;
+      }
+    }
   }
 
   a {

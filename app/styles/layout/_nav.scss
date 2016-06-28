@@ -1,8 +1,19 @@
 #menu-main-nav {
-  display: none;
+  $duration: 200ms;
+  visibility: hidden;
+  max-height: 0;
+  overflow: hidden;
+  transition: visibility 0ms linear $duration, max-height $duration linear;
+
+  &.not-collapsed {
+    visibility: visible;
+    max-height: 300px;
+    transition-delay: 0ms;
+  }
 
   @media (min-width: $sidebar-breakpoint) {
-    display: inherit;
+    visibility: visible;
+    max-height: inherit;
   }
 
   .menu {
