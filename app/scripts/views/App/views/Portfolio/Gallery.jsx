@@ -1,19 +1,29 @@
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
+import { routerShape } from 'react-router/lib/PropTypes';
 
 import data from '../../../../../../data';
 
 
 class Gallery extends Component {
 
+  static contextTypes = {
+    router: routerShape.isRequired,
+  };
+
   constructor(props, context) {
     super(props, context);
-    const gallery = data.portfolio.categories[props.params.category].galleries[props.params.gallery];
     this.state = {
-      current: gallery.images[0],
       loaded: [],
     };
+  }
+
+  componentWillMount() {
+    const hash = this.props.location.hash.substring(1);
+    const gallery = data.portfolio.categories[this.props.params.category].galleries[this.props.params.gallery];
+    if (!hash || gallery.images.indexOf(hash) === -1)
+      this.context.router.push(Object.assign({}, this.props.location, {hash: `#${gallery.images[0]}`}));
   }
 
   componentDidMount() {
@@ -25,18 +35,22 @@ class Gallery extends Component {
       if (img.complete && this.state.loaded.indexOf(key) === -1)
         loaded.push(key);
     }
+    this.scrollFilmstrip();
     this.setState({loaded: loaded});
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.current !== this.state.current)
+    if (prevProps.location.hash !== this.props.location.hash)
       this.scrollFilmstrip();
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.params !== this.props.params) {
-      const gallery = data.portfolio.categories[nextProps.params.category].galleries[nextProps.params.gallery];
-      this.setState({current: gallery.images[0], loaded: []});
+    if (nextProps.params.category !== this.props.params.category || nextProps.params.gallery !== this.props.params.gallery) {
+      this.setState({loaded: []});
+      if (!nextProps.location.hash) {
+        const gallery = data.portfolio.categories[nextProps.params.category].galleries[nextProps.params.gallery];
+        this.context.router.push(Object.assign({}, nextProps.location, {hash: `#${gallery.images[0]}`}));
+      }
     }
   }
 
@@ -46,9 +60,10 @@ class Gallery extends Component {
 
   advanceImage(i) {
     const images = data.portfolio.categories[this.props.params.category].galleries[this.props.params.gallery].images;
-    const currentIndex = images.indexOf(this.state.current);
+    const current = this.props.location.hash.substring(1);
+    const currentIndex = images.indexOf(current);
     let nextIndex = (((currentIndex + i) % images.length) + images.length) % images.length;
-    this.setState({current: images[nextIndex]});
+    this.context.router.push(Object.assign({}, this.props.location, {hash: `#${images[nextIndex]}`}));
   }
 
   handleKeyPress(e) {
@@ -101,7 +116,9 @@ class Gallery extends Component {
   render() {
     const category = data.portfolio.categories[this.props.params.category];
     const gallery = category.galleries[this.props.params.gallery];
-    const { current, loaded } = this.state;
+    let current = this.props.location.hash.substring(1);
+    if (!current || gallery.images.indexOf(current) === -1) current = gallery.images[0];
+    const { loaded } = this.state;
     return (
       <div className='gallery centered-vertically centered-horizontally'>
 
@@ -143,7 +160,7 @@ class Gallery extends Component {
               <li
                 key={key}
                 className={`gallery-image${ current === key ? ' current' : '' }`}
-                onClick={(e) => this.setState({current: key})}>
+                onClick={(e) => this.context.router.push(Object.assign({}, this.props.location, {hash: `#${key}`}))}>
                 { loaded.indexOf(key) === -1 ?
                   <img src={src50} className='placeholder'/>
                 :
