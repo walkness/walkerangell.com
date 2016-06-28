@@ -19,6 +19,13 @@ class Gallery extends Component {
   componentDidMount() {
     this.boundKeyPressHandler = this.handleKeyPress.bind(this);
     document.addEventListener('keydown', this.boundKeyPressHandler);
+    const loaded = this.state.loaded;
+    for (const img of this.refs.panel.getElementsByTagName('img')) {
+      const key = img.dataset.imagekey;
+      if (img.complete && this.state.loaded.indexOf(key) === -1)
+        loaded.push(key);
+    }
+    this.setState({loaded: loaded});
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -100,7 +107,7 @@ class Gallery extends Component {
 
         <Helmet title={`${gallery.title} | ${category.title}`}/>
 
-        <ul>
+        <ul ref='panel'>
 
           { gallery.images.map(key => {
             const image = data.portfolio.images[key];
@@ -113,7 +120,8 @@ class Gallery extends Component {
                   onLoad={(e) => this.setState({loaded: [...loaded, key]})}
                   src={src1640}
                   srcSet={`${src830} 830w, ${src1640} 1640w, ${src3280} 3280w`}
-                  sizes='(min-width: 769px) calc(100vw - 291px), 100vw'/>
+                  sizes='(min-width: 769px) calc(100vw - 291px), 100vw'
+                  data-imagekey={key}/>
               </li>
             )
           }) }
