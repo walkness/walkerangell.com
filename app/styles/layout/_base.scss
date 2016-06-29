@@ -9,9 +9,9 @@ body, html {
 body {
   background: $body-bg;
 
-  @media (min-width: $sidebar-breakpoint) {
-    background: $sidebar-background;
-  }
+  // @media (min-width: $sidebar-breakpoint) {
+  //   background: $sidebar-background;
+  // }
 }
 
 main {

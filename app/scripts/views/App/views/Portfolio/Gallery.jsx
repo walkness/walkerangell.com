@@ -3,7 +3,7 @@ import Helmet from 'react-helmet';
 import { Link } from 'react-router';
 import { routerShape } from 'react-router/lib/PropTypes';
 
-import data from '../../../../../../data';
+import { photography } from '../../../../../../data';
 
 
 class Gallery extends Component {
@@ -21,7 +21,7 @@ class Gallery extends Component {
 
   componentWillMount() {
     const hash = this.props.location.hash.substring(1);
-    const gallery = data.portfolio.categories[this.props.params.category].galleries[this.props.params.gallery];
+    const gallery = photography.portfolio.categories[this.props.params.category].galleries[this.props.params.gallery];
     if (!hash || gallery.images.indexOf(hash) === -1)
       this.context.router.replace(Object.assign({}, this.props.location, {hash: `#${gallery.images[0]}`}));
   }
@@ -48,7 +48,7 @@ class Gallery extends Component {
     if (nextProps.params.category !== this.props.params.category || nextProps.params.gallery !== this.props.params.gallery) {
       this.setState({loaded: []});
       if (!nextProps.location.hash) {
-        const gallery = data.portfolio.categories[nextProps.params.category].galleries[nextProps.params.gallery];
+        const gallery = photography.portfolio.categories[nextProps.params.category].galleries[nextProps.params.gallery];
         this.context.router.push(Object.assign({}, nextProps.location, {hash: `#${gallery.images[0]}`}));
       }
     }
@@ -59,7 +59,7 @@ class Gallery extends Component {
   }
 
   advanceImage(i) {
-    const images = data.portfolio.categories[this.props.params.category].galleries[this.props.params.gallery].images;
+    const images = photography.portfolio.categories[this.props.params.category].galleries[this.props.params.gallery].images;
     const current = this.props.location.hash.substring(1);
     const currentIndex = images.indexOf(current);
     let nextIndex = (((currentIndex + i) % images.length) + images.length) % images.length;
@@ -114,7 +114,7 @@ class Gallery extends Component {
   }
 
   render() {
-    const category = data.portfolio.categories[this.props.params.category];
+    const category = photography.portfolio.categories[this.props.params.category];
     const gallery = category.galleries[this.props.params.gallery];
     let current = this.props.location.hash.substring(1);
     if (!current || gallery.images.indexOf(current) === -1) current = gallery.images[0];
@@ -127,7 +127,7 @@ class Gallery extends Component {
         <ul ref='panel'>
 
           { gallery.images.map(key => {
-            const image = data.portfolio.images[key];
+            const image = photography.portfolio.images[key];
             const src830 = require(`../../../../../images/${image.filename}-830x830.jpg`);
             const src1640 = require(`../../../../../images/${image.filename}-1640x1640.jpg`);
             const src3280 = require(`../../../../../images/${image.filename}-3280x3280.jpg`);
@@ -151,7 +151,7 @@ class Gallery extends Component {
         <ul className='filmstrip' ref='filmstrip'>
 
           { gallery.images.map(key => {
-            const image = data.portfolio.images[key];
+            const image = photography.portfolio.images[key];
             const src50 = require(`../../../../../images/${image.filename}-x50.jpg`);
             const src830 = require(`../../../../../images/${image.filename}-830x830.jpg`);
             const src1640 = require(`../../../../../images/${image.filename}-1640x1640.jpg`);

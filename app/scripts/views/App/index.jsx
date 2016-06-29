@@ -8,7 +8,7 @@ import Sidebar from './components/Sidebar';
 
 class App extends Component {
   render() {
-    const routeName = this.props.children.props.route.name;
+    const routeName = this.props.main.props.route.name;
     return (
       <div id='app' className={routeName}>
 
@@ -31,13 +31,9 @@ class App extends Component {
             {type: 'text/javascript', innerHTML: 'try{Typekit.load({async:true});}catch(e){}'},
           ]}/>
 
-        { routeName === 'home' ?
-          <div id='background_img'/>
-        : null }
-
         <main className='site-main'>
 
-          <Sidebar location={this.props.location}/>
+          { this.props.sidebar }
 
           <div id="main-content" class="main-content">
 
@@ -45,7 +41,7 @@ class App extends Component {
 
               <div id="content" class="site-content" role="main">
 
-                { this.props.children }
+                { this.props.main }
 
               </div>
               

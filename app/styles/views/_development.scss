@@ -1,0 +1,17 @@
+#development-list {
+  .project {    
+
+    .content {
+      @include make-sm-column(8);
+    }
+
+    .screenshot {
+      @include make-sm-column(4);
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}

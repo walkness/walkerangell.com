@@ -23,8 +23,8 @@ class Sidebar extends Component {
       let i = 0;
       return (
         <ul className='sub-menu'>
-          { Object.keys(data.portfolio.categories).map(slug1 => {
-            const gallery1 = data.portfolio.categories[slug1];
+          { Object.keys(data.photography.portfolio.categories).map(slug1 => {
+            const gallery1 = data.photography.portfolio.categories[slug1];
             i++;
             const subMenu = () => {
               let j = 0;
@@ -82,7 +82,7 @@ class Sidebar extends Component {
               liClassName='menu-item menu-item-has-children'
               dropdown={portfolioDropdown()}
               indexOnly={true}>
-              {data.portfolio.title}
+              {data.photography.portfolio.title}
             </NavLink>
 
           </ul>
