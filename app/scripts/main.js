@@ -19,8 +19,15 @@ if (typeof document !== 'undefined') {
     ga.pageview(window.location.pathname);
   };
 
+  const shouldScroll = (prevRouterProps, { location }) => {
+    if (location.pathname === '/development/' && (location.hash || (location.state && location.state.userScroll)))
+      return false;
+
+    return true;
+  }
+
   ReactDOM.render(
-    <Router history={browserHistory} onUpdate={logPageView} render={applyRouterMiddleware(useScroll())}>
+    <Router history={browserHistory} onUpdate={logPageView} render={applyRouterMiddleware(useScroll(shouldScroll))}>
       { routes() }
     </Router>,
     document.getElementById('root'));

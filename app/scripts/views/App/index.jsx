@@ -7,6 +7,32 @@ import Sidebar from './components/Sidebar';
 
 
 class App extends Component {
+
+  static childContextTypes = {
+    typekitLoaded: PropTypes.bool,
+  };
+
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      typekitLoaded: window.Typekit && true,
+    };
+  }
+
+  getChildContext() {
+    return {
+      typekitLoaded: this.state.typekitLoaded,
+    };
+  }
+
+  componentDidMount() {
+    window.typekitLoaded = this.typekitLoaded.bind(this);
+  }
+
+  typekitLoaded() {
+    this.setState({typekitLoaded: true});
+  }
+
   render() {
     const routeName = this.props.main.props.route.name;
     return (
@@ -26,7 +52,7 @@ class App extends Component {
               src: '//use.typekit.net/ioi4abv.js',
               type: 'text/javascript',
               async: true,
-              onLoad: 'try{Typekit.load({async:true});}catch(e){}'
+              onLoad: 'try{Typekit.load({async:true, active: window.typekitLoaded || function(){}});}catch(e){}'
             },
             {type: 'text/javascript', innerHTML: 'try{Typekit.load({async:true});}catch(e){}'},
           ]}/>

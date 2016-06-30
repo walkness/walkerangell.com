@@ -25,30 +25,35 @@ module.exports = {
         link: 'http://nearby.supply/',
         screenshot: 'development/nearbysupply.png',
         launchDate: null,
+        primaryColor: [240, 85, 69],
       },
       chargerville: {
         name: 'Chargerville',
         link: 'https://chargerville.com/',
         screenshot: 'development/chargerville.png',
         launchDate: new Date(2016, 5, 13),
+        primaryColor: [0, 99, 157],
       },
       nbngroup: {
         name: 'The NBN Group',
         link: 'http://nothingbutnav.com/',
         screenshot: 'development/nbngroup.png',
         launchDate: new Date(2015, 11, 24),
+        primaryColor: [28, 154, 212],
       },
       personal: {
         name: 'Personal Site',
         link: 'http://walkerangell.com/',
         screenshot: 'development/personal.png',
-        launchDate: new Date(2014, 10, 31),
+        launchDate: new Date(2014, 10, 30),
+        primaryColor: [44, 44, 44],
       },
       forinstants: {
         name: 'For Instants',
         link: 'https://walkandalie.com/',
         screenshot: 'development/forinstants.png',
         launchDate: new Date(2010, 9, 27),
+        primaryColor: [52, 60, 39],
       },
     },
 
@@ -63,6 +68,7 @@ module.exports = {
       django: {title: 'Django'},
       wordpress: {title: 'WordPress'},
       craft: {title: 'Craft CMS'},
+      sass: {title: 'Sass'},
     },
 
     languages: {
@@ -263,5 +269,7 @@ module.exports = {
       },
     },
   },
+
+  monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
 
 }

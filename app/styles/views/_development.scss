@@ -1,5 +1,43 @@
 #development-list {
-  .project {    
+
+  .projects-header {
+    h2,
+    .nav {
+      display: inline-block;
+      vertical-align: bottom;
+    }
+
+    h2 {
+      line-height: 1;
+      margin-top: 5px;
+    }
+
+    .nav {
+      margin-bottom: 3px;
+      margin-left: 30px;
+    }
+
+    &.fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #fff;
+      width: 100%;
+      z-index: $zindex-navbar-fixed;
+
+      & + .projects-header-spacer {
+        display: block;
+      }
+    }
+  }
+
+  .projects-header-spacer {
+    height: 50px;
+    display: none;
+  }
+
+  .project {
+    padding: ($line-height-computed * 5) 0;  
 
     .content {
       @include make-sm-column(8);
