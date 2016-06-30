@@ -1,9 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
-
-import { attorneys, practiceAreas } from '../../../../../../data';
-import logo from '../../../../../images/logo.svg';
-import header_image from '../../../../../images/header_image.jpg';
+import { Link, IndexLink } from 'react-router';
 
 import NavLink from '../NavLink';
 
@@ -28,6 +24,22 @@ class Header extends Component {
       <header>
 
         <div className='container'>
+
+          <nav>
+
+            <Link to='/development/' activeClassName='active'>
+              Development
+            </Link>
+
+            <IndexLink to='/' className='site-title' activeClassName='active'>
+              Walker Angell
+            </IndexLink>
+
+            <Link to='/photography/' activeClassName='active'>
+              Photography
+            </Link>
+
+          </nav>
 
         </div>
 

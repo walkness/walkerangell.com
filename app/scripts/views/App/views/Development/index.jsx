@@ -103,7 +103,7 @@ class Development extends Component {
   handleScroll(e) {
     const scroll = window.scrollY;
 
-    const inProjects = scroll >= this.projectsStart;
+    const inProjects = scroll >= this.projectOffsets[0].start;
     if (inProjects !== this.state.inProjects)
       this.setState({inProjects: inProjects});
 
@@ -128,7 +128,6 @@ class Development extends Component {
 
   setProjectOffsets() {
     const projectsHeaderRect = this.refs.projectsHeader.getBoundingClientRect();
-    this.projectsStart = projectsHeaderRect.top + window.scrollY;
     this.projectsHeaderHeight = projectsHeaderRect.height;
     this.projectOffsets = [];
     for (const el of this.refs.projects.getElementsByTagName('article')) {

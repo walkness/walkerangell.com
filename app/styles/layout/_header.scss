@@ -1,0 +1,53 @@
+#app > header {
+  nav {
+    text-align: center;
+
+    > a {
+      $spacing: 20px;
+      display: inline-block;
+      color: $gray-light;
+      font-size: 1.25em;
+      padding: $spacing ($spacing / 2);
+      margin: 0 $spacing / 2;
+      text-transform: lowercase;
+      vertical-align: middle;
+      position: relative;
+      transition: color 150ms ease-in;
+
+      &:hover,
+      &:active {
+        color: $brand-primary;
+      }
+
+      &.site-title {
+        font-size: 2em;
+        font-weight: bold;
+        text-transform: none;
+
+        &::after {
+          display: none;
+        }
+      }
+
+      &::after {
+        content: ' ';
+        height: 3px;
+        width: 0;
+        background-color: $brand-primary;
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: width 150ms ease-in;
+      }
+
+      &.active {
+        color: $brand-primary;
+
+        &::after {
+          width: 60%;
+        }
+      }
+    }
+  }
+}

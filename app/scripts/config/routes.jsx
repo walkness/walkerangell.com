@@ -19,7 +19,7 @@ export default () => (
 
         <Route path='development' components={{main: Development}} />
 
-        <Route path='portfolio' components={{main: Portfolio, sidebar: Sidebar}}>
+        <Route path='photography' components={{main: Portfolio, sidebar: Sidebar}}>
 
           <IndexRoute name='portfolio' component={Galleries}/>
 

@@ -1,5 +1,5 @@
+@import "header";
 @import "sidebar";
-@import "nav";
 @import "footer";
 
 body, html {
@@ -23,7 +23,7 @@ main {
   width: auto;
   overflow: auto;
   // padding: 0 $grid-gutter-width / 2;
-  box-shadow: -3px 0px 10px 2px rgba(#000, .5);
+  // box-shadow: -3px 0px 10px 2px rgba(#000, .5);
   min-height: calc(100vh - #{$navbar-height});
   position: relative;
 

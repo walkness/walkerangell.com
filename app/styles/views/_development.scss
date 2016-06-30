@@ -1,5 +1,11 @@
 #development-list {
 
+  .projects-header,
+  .projects-header-spacer {
+    height: 50px;
+    // margin-bottom: $grid-gutter-width / 2;
+  }
+
   .projects-header {
     h2,
     .nav {
@@ -13,7 +19,7 @@
     }
 
     .nav {
-      margin-bottom: 3px;
+      margin-bottom: 4.5px;
       margin-left: 30px;
     }
 
@@ -32,7 +38,6 @@
   }
 
   .projects-header-spacer {
-    height: 50px;
     display: none;
   }
 
@@ -40,11 +45,68 @@
     padding: ($line-height-computed * 5) 0;  
 
     .content {
-      @include make-sm-column(8);
+      @include make-sm-column(7);
+
+      h3 {
+        text-transform: uppercase;
+      }
+
+      .label {
+        font-size: 85%;
+        font-weight: normal;
+        padding: 2px 7px 1px;
+        margin-right: 10px;
+        margin-bottom: 1px;
+      }
+
+      .technologies,
+      .hosting {
+        @include make-md-column(6);
+        margin-top: $grid-gutter-width / 2;
+        margin-bottom: $grid-gutter-width / 2;
+
+        > p {
+          background-size: auto 100%;
+          background-repeat: no-repeat;
+          background-position: left center;
+          padding-left: $line-height-computed + 5px;
+        }
+
+        > ul {
+          @include list-unstyled;
+          margin-left: -2px;
+          margin-right: -2px;
+
+          > li {
+            display: inline-block;
+            margin: 0 2px;
+
+            > a {
+              padding: ($padding-small-vertical / 2) $padding-small-horizontal;
+              border: 1px solid $gray-lighter;
+              border-radius: $border-radius-base;
+              transition: all 150ms ease-in;
+
+              &:hover {
+                background-color: $gray-lighter;
+                border-color: darken($gray-lighter, 10%);
+              }
+            }
+          }
+        }
+      }
+
+      .technologies > p {
+        background-image: icon(code, $text-color);
+      }
+
+      .hosting > p {
+        background-image: icon(server, $text-color);
+      }
     }
 
     .screenshot {
-      @include make-sm-column(4);
+      @include make-sm-column(5);
 
       img {
         width: 100%;

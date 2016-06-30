@@ -26,6 +26,8 @@ module.exports = {
         screenshot: 'development/nearbysupply.png',
         launchDate: null,
         primaryColor: [240, 85, 69],
+        technologies: ['ios', 'react', 'django', 'sass'],
+        hosting: ['aws'],
       },
       chargerville: {
         name: 'Chargerville',
@@ -33,6 +35,8 @@ module.exports = {
         screenshot: 'development/chargerville.png',
         launchDate: new Date(2016, 5, 13),
         primaryColor: [0, 99, 157],
+        technologies: ['react', 'django', 'sass'],
+        hosting: ['aws'],
       },
       nbngroup: {
         name: 'The NBN Group',
@@ -40,13 +44,17 @@ module.exports = {
         screenshot: 'development/nbngroup.png',
         launchDate: new Date(2015, 11, 24),
         primaryColor: [28, 154, 212],
+        technologies: ['craft', 'jquery', 'sass'],
+        hosting: ['webfaction', 'aws'],
       },
       personal: {
         name: 'Personal Site',
         link: 'http://walkerangell.com/',
         screenshot: 'development/personal.png',
         launchDate: new Date(2014, 10, 30),
-        primaryColor: [44, 44, 44],
+        primaryColor: [36, 137, 13],
+        technologies: ['react', 'sass'],
+        hosting: ['aws'],
       },
       forinstants: {
         name: 'For Instants',
@@ -54,6 +62,8 @@ module.exports = {
         screenshot: 'development/forinstants.png',
         launchDate: new Date(2010, 9, 27),
         primaryColor: [52, 60, 39],
+        technologies: ['wordpress', 'jquery', 'sass'],
+        hosting: ['linode', 'aws'],
       },
     },
 
@@ -64,11 +74,34 @@ module.exports = {
     },
 
     technologies: {
-      react: {title: 'React'},
-      django: {title: 'Django'},
-      wordpress: {title: 'WordPress'},
-      craft: {title: 'Craft CMS'},
-      sass: {title: 'Sass'},
+      react: {
+        title: 'React',
+        link: 'https://facebook.github.io/react/',
+      },
+      django: {
+        title: 'Django',
+        link: 'https://www.djangoproject.com/',
+      },
+      wordpress: {
+        title: 'WordPress',
+        link: 'https://wordpress.org/',
+      },
+      craft: {
+        title: 'Craft CMS',
+        link: 'https://craftcms.com/',
+      },
+      sass: {
+        title: 'Sass',
+        link: 'http://sass-lang.com/',
+      },
+      ios: {
+        title: 'iOS',
+        link: 'https://developer.apple.com/library/ios/navigation/',
+      },
+      jquery: {
+        title: 'jQuery',
+        link: 'https://jquery.com/',
+      },
     },
 
     languages: {
@@ -76,6 +109,21 @@ module.exports = {
       swift: {title: 'Swift 2'},
       php: {title: 'PHP'},
       python: {title: 'Python'},
+    },
+
+    hosting: {
+      aws: {
+        title: 'Amazon Web Services',
+        link: 'https://aws.amazon.com/',
+      },
+      linode: {
+        title: 'Linode',
+        link: 'https://www.linode.com/',
+      },
+      webfaction: {
+        title: 'Webfaction',
+        link: 'https://www.webfaction.com/',
+      },
     },
   },
 

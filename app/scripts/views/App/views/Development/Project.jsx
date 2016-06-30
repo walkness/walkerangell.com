@@ -1,5 +1,5 @@
 import React from 'react';
-import { monthNames } from '../../../../../../data';
+import { monthNames, development } from '../../../../../../data';
 
 
 const Project = ({slug, project}) => {
@@ -13,11 +13,54 @@ const Project = ({slug, project}) => {
 
           <div className='content'>
 
-            <h3>{ project.name }</h3>
+            <h3>
+              { project.name }
+            </h3>
 
-            <p><ProjectLink>{project.link}</ProjectLink></p>
+            <p>
+              <span className='label' style={{backgroundColor: `rgb(${project.primaryColor.join(', ')})`}}>
+                {project.launchDate ? `${monthNames[project.launchDate.getMonth() - 1]} ${project.launchDate.getFullYear()}` : 'TBA'}
+              </span>
+              <ProjectLink>{project.link}</ProjectLink>
+            </p>
 
-            <p>Launch Date: {project.launchDate ? `${monthNames[project.launchDate.getMonth() - 1]} ${project.launchDate.getFullYear()}` : 'TBA'}</p>
+            <div className='row'>
+            { project.technologies && project.technologies.length > 0 ?
+              <div className='technologies'>
+                <p><strong>Technologies</strong></p>
+                <ul>
+                  { project.technologies.map(slug => {
+                    const tech = development.technologies[slug];
+                    return (
+                      <li key={slug}>
+                        <a href={tech.link} title={tech.title} target='_blank'>
+                          {tech.title}
+                        </a>
+                      </li>
+                    )
+                  }) }
+                </ul>
+              </div>
+            : null }
+
+            { project.hosting && project.hosting.length > 0 ?
+              <div className='hosting'>
+                <p><strong>Hosting</strong></p>
+                <ul>
+                  { project.hosting.map(slug => {
+                    const item = development.hosting[slug];
+                    return (
+                      <li key={slug}>
+                        <a href={item.link} title={item.title} target='_blank'>
+                          {item.title}
+                        </a>
+                      </li>
+                    )
+                  }) }
+                </ul>
+              </div>
+            : null }
+            </div>
 
             <div className='body' dangerouslySetInnerHTML={{__html: require(`../../../../../../data/content/development/projects/${slug}.md`)}}/>
 

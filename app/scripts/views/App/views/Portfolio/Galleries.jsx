@@ -18,8 +18,6 @@ class Galleries extends Component {
 
         <Helmet title={title}/>
 
-        <h1>{title}</h1>
-
         <ul className='galleries'>
 
           { Object.keys(galleries).map(slug => {

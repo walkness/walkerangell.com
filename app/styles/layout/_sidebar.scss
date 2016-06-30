@@ -1,19 +1,5 @@
 #sidebar {
-  color: $sidebar-color;
-  background-color: $sidebar-background;
-  border-bottom: $sidebar-border;
-  text-shadow: -1px 0 1px rgba(#000, .6);
   padding: 0 $grid-gutter-width / 2;
-
-  .mobile-nav {
-    @include clearfix;
-
-    #menu-collapse-button {
-      &.active {
-        background-color: $navbar-inverse-toggle-hover-bg;
-      }
-    }
-  }
 
   a {
     color: $sidebar-link-color;
@@ -23,92 +9,109 @@
     }
   }
 
-  .site-title {
-    float: left;
-    line-height: 1;
-    margin: ($navbar-height - $font-size-h1) / 2 0;
-
-    a {
-      font-weight: 500;
-      letter-spacing: -.07em;
-    }
-
-    @media (min-width: $sidebar-breakpoint) {
-      margin-top: 0;
-      margin-bottom: 1.5em;
-    }
-  }
-
   @media (min-width: $sidebar-breakpoint) {
     width: $sidebar-width;
     float: left;
-    padding: 15px 20px 0;
+    padding-top: 15px;
     border-bottom: 0;
-  }
 
-  #menu-collapse-button {
-    $bar-width: 25px;
-    $bar-height: round($bar-width * 0.08);
-    $bar-spacing: 0.2;
-    $border-width: 1px;
+    &.sidebar-enter {
+      width: 0;
+      padding-left: 0;
+      padding-right: 0;
+      white-space: nowrap !important;
 
-    background-color: transparent;
-    border: $border-width solid $sidebar-color;
-    border-radius: 5px;
-    height: auto;
-    padding: $bar-spacing * $bar-width 8px;
-    float: right;
-    margin: ($navbar-height - ($bar-height * 3 + $bar-spacing * $bar-width * 6 + $border-width * 2)) / 2 0;
-
-    > span {
-      background-color: $sidebar-color;
-      width: $bar-width;
-      height: $bar-height;
-      margin: $bar-spacing * 100 + % 0;
-      display: block;
-      border-radius: 10px;
-    }
-
-    &.open {
-      background-color: lighten($sidebar-background, 10%);
-
-      #app.home & {
-        background-color: rgba($sidebar-color-home, 0.25);
-      }
-
-      > span {
-        background-color: darken($sidebar-color, 2.5%);
+      &.sidebar-enter-active {
+        width: $sidebar-width;
+        padding-left: $grid-gutter-width / 2;
+        padding-right: $grid-gutter-width / 2;
+        transition: all 150ms ease-in;
       }
     }
 
-    &:active,
-    &:focus {
-      outline: none;
-    }
+    &.sidebar-leave {
+      width: $sidebar-width;
+      padding-left: $grid-gutter-width / 2;
+      padding-right: $grid-gutter-width / 2;
+      white-space: nowrap !important;
 
-    @media (min-width: $sidebar-breakpoint) {
-      display: none;
+      &.sidebar-leave-active {
+        width: 0;
+        padding-left: 0;
+        padding-right: 0;
+        transition: all 150ms ease-in;
+      }
     }
   }
+}
 
-  #app.home & {
-    background-color: transparent;
-    border: 0;
+#photo-nav {
+  $duration: 200ms;
+  visibility: hidden;
+  max-height: 0;
+  overflow: hidden;
+  transition: visibility 0ms linear $duration, max-height $duration linear;
 
-    .site-title,
-    a {
-      color: $sidebar-color-home;
+  &.not-collapsed {
+    visibility: visible;
+    max-height: 300px;
+    transition-delay: 0ms;
+  }
 
-      &:hover {
-        color: darken($sidebar-color-home, 2.5%);
+  @media (min-width: $sidebar-breakpoint) {
+    visibility: visible;
+    max-height: inherit;
+  }
+
+  .menu {
+    font-size: 1.5em;
+  }
+}
+
+ul {
+
+  &.menu {
+    $link-spacing: 8px;
+    font-weight: 300;
+
+    &,
+    ul {
+      @include list-unstyled;
+      margin-top: - $link-spacing;
+      margin-bottom: - $link-spacing;
+    }
+
+    ul {
+      font-size: 0.85em;
+      padding-top: 15px;
+      padding-bottom: $link-spacing;
+    }
+
+    li {
+      padding: $link-spacing 0;
+
+      #sidebar &.active {
+        > a {
+          color: $sidebar-hover-color;
+          font-weight: 400;
+        }
+      }
+
+      &.menu-item-has-children {
+        > a {
+          font-weight: 500;
+        }
+
+        #sidebar &.active {
+          > a {
+            font-weight: 600;
+          }
+        }
       }
     }
 
-    #menu-collapse-button {
-      border-color: $sidebar-color-home;
-      > span {
-        background-color: $sidebar-color-home;
-      }
+    #app.home & {
+      font-weight: 400;
     }
   }
 }

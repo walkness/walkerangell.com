@@ -1,9 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { routerShape } from 'react-router/lib/PropTypes';
 import Helmet from 'react-helmet';
 
+import Header from './components/Header';
 import Footer from './components/Footer';
-import Sidebar from './components/Sidebar';
 
 
 class App extends Component {
@@ -57,9 +58,16 @@ class App extends Component {
             {type: 'text/javascript', innerHTML: 'try{Typekit.load({async:true});}catch(e){}'},
           ]}/>
 
+        <Header/>
+
         <main className='site-main'>
 
-          { this.props.sidebar }
+          <ReactCSSTransitionGroup
+            transitionName='sidebar'
+            transitionEnterTimeout={150}
+            transitionLeaveTimeout={150}>
+            { this.props.sidebar }
+          </ReactCSSTransitionGroup>
 
           <div id="main-content" class="main-content">
 
