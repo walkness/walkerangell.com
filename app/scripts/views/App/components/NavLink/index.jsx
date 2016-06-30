@@ -20,7 +20,9 @@ const NavLink = (props, context) => {
 
   return (
     <li className={ liClassName.join(' ') }>
-      <Link {...props}/>
+      { props.noLinkActive ?
+        props.children
+      : <Link {...props}/>}
       { props.dropdown }
     </li>
   )
@@ -32,12 +34,14 @@ NavLink.propTypes = {
   additionalRoutes: PropTypes.array,
   indexOnly: PropTypes.bool,
   callback: PropTypes.func,
+  noLinkActive: PropTypes.bool,
 }
 
 NavLink.defaultProps = {
   additionalRoutes: [],
   indexOnly: false,
   callback: (e) => e,
+  noLinkActive: false,
 }
 
 NavLink.contextTypes = {

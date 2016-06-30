@@ -46,3 +46,8 @@
     $icon: _buildIcon(nth($component, 1), nth($component, 2), nth($component, 3));
     @return url("data:image/svg+xml;charset=utf8,#{$icon}");
   }
+
+
+@function browser-buttons() {
+  @return url("data:image/svg+xml;charset=utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22105.333%22%20height%3D%2227%22%20viewBox%3D%220%200%20105.333%2027%22%3E%3Ccircle%20fill%3D%22%23ED6A5F%22%20cx%3D%2214.321%22%20cy%3D%2213.5%22%20r%3D%224.5%22%2F%3E%3Ccircle%20fill%3D%22%2362C655%22%20cx%3D%2243.321%22%20cy%3D%2213.5%22%20r%3D%224.5%22%2F%3E%3Ccircle%20fill%3D%22%23F5BF4F%22%20cx%3D%2229.321%22%20cy%3D%2213.5%22%20r%3D%224.5%22%2F%3E%3Cpath%20fill%3D%22%23F6F6F6%22%20d%3D%22M75%2019c0%201.657-1.343%203-3%203H60c-1.657%200-3-1.343-3-3V8c0-1.657%201.343-3%203-3h12c1.657%200%203%201.343%203%203v11zM94%2019c0%201.657-1.343%203-3%203H79c-1.657%200-3-1.343-3-3V8c0-1.657%201.343-3%203-3h12c1.657%200%203%201.343%203%203v11z%22%2F%3E%3C%2Fsvg%3E");
+}

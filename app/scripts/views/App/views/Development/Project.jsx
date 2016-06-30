@@ -1,5 +1,6 @@
 import React from 'react';
 import { monthNames, development } from '../../../../../../data';
+import Screen from '../../components/Screen';
 
 
 const Project = ({slug, project}) => {
@@ -68,7 +69,9 @@ const Project = ({slug, project}) => {
 
           <div className='screenshot'>
             <ProjectLink>
-              <img src={require(`../../../../../images/${project.screenshot}`)}/>
+              <Screen url={project.link} color={project.primaryColor}>
+                <img src={require(`../../../../../images/${project.screenshot}`)}/>
+              </Screen>
             </ProjectLink>
           </div>
 

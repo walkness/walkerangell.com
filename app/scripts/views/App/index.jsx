@@ -49,6 +49,7 @@ class App extends Component {
             {name: 'viewport', content: 'width=device-width, initial-scale=1'},
           ]}
           script={[
+            {type: 'text/javascript', innerHTML: 'document.getElementsByTagName("html")[0].className+=" js"'},
             {
               src: '//use.typekit.net/ioi4abv.js',
               type: 'text/javascript',
@@ -71,21 +72,13 @@ class App extends Component {
 
           <div id="main-content" class="main-content">
 
-            <div id="primary" class="content-area">
-
-              <div id="content" class="site-content" role="main">
-
-                { this.props.main }
-
-              </div>
+            { this.props.main }
               
-            </div>
-
-            <Footer/>
-
           </div>
 
         </main>
+
+        <Footer/>
 
       </div>
     );

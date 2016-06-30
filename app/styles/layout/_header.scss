@@ -1,18 +1,28 @@
 #app > header {
   nav {
     text-align: center;
+    margin-bottom: 20px;
+
+    @media (min-width: $grid-float-breakpoint) {
+      margin-bottom: 50px;
+    }
 
     > a {
       $spacing: 20px;
       display: inline-block;
       color: $gray-light;
       font-size: 1.25em;
-      padding: $spacing ($spacing / 2);
+      padding: 10px ($spacing / 2);
       margin: 0 $spacing / 2;
       text-transform: lowercase;
       vertical-align: middle;
       position: relative;
       transition: color 150ms ease-in;
+
+      @media (min-width: $grid-float-breakpoint) {
+        padding-top: $spacing;
+        padding-bottom: $spacing;
+      }
 
       &:hover,
       &:active {

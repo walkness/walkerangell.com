@@ -53,6 +53,7 @@ class Development extends Component {
   constructor(props, context) {
     super(props, context);
     this.animatingScroll = false;
+    this.mounted = false;
     this.state = {
       inProjects: false,
     };
@@ -67,6 +68,7 @@ class Development extends Component {
     window.addEventListener('resize', this.boundResizeHandler);
     if (this.props.location.hash && window.scrollY === 0)
       this.scrollToAnchor(this.props.location.hash.substring(1));
+    setTimeout(() => {this.mounted = true}, 5);
   }
 
   componentWillReceiveProps(nextProps, nextContext) {
@@ -107,14 +109,14 @@ class Development extends Component {
     if (inProjects !== this.state.inProjects)
       this.setState({inProjects: inProjects});
 
-    if (!this.animatingScroll) {
+    if (!this.animatingScroll && this.mounted) {
       let hash = '';
       for (const el of this.projectOffsets) {
         if (scroll >= el.start && scroll < el.end)
           hash = `#${el.id}`;
       }
       if (hash !== this.props.location.hash) {
-        this.context.router.push(Object.assign({}, this.props.location, {
+        this.context.router.replace(Object.assign({}, this.props.location, {
           hash: hash,
           state: {userScroll: true},
         }));

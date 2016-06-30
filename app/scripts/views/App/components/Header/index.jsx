@@ -27,11 +27,15 @@ class Header extends Component {
 
           <nav>
 
+            <IndexLink to='/' className='site-title visible-xs' activeClassName='active'>
+              Walker Angell
+            </IndexLink>
+
             <Link to='/development/' activeClassName='active'>
               Development
             </Link>
 
-            <IndexLink to='/' className='site-title' activeClassName='active'>
+            <IndexLink to='/' className='site-title hidden-xs' activeClassName='active'>
               Walker Angell
             </IndexLink>
 

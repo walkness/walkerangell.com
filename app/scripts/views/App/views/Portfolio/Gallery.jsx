@@ -3,6 +3,8 @@ import Helmet from 'react-helmet';
 import { Link } from 'react-router';
 import { routerShape } from 'react-router/lib/PropTypes';
 
+import NavLink from '../../components/NavLink';
+import LazyImg from '../../components/LazyImg';
 import { photography } from '../../../../../../data';
 
 
@@ -124,20 +126,35 @@ class Gallery extends Component {
 
         <Helmet title={`${gallery.title} | ${category.title}`}/>
 
-        <ul ref='panel'>
+        <div className='container'>
+          <ol className='breadcrumb'>
+            <NavLink to={`/photography/${this.props.params.category}/`} indexOnly={true}>
+              {category.title}
+            </NavLink>
+            <NavLink to={`/photography/${this.props.params.category}/${this.props.params.gallery}/`} noLinkActive={true}>
+              {gallery.title}
+            </NavLink>
+          </ol>
+        </div>
+
+        <ul ref='panel' className='panel'>
 
           { gallery.images.map(key => {
             const image = photography.portfolio.images[key];
             const src830 = require(`../../../../../images/${image.filename}-830x830.jpg`);
             const src1640 = require(`../../../../../images/${image.filename}-1640x1640.jpg`);
             const src3280 = require(`../../../../../images/${image.filename}-3280x3280.jpg`);
+            const size = require(`image-size!../../../../../images/${image.filename}-1640x1640.jpg`)
             return (
               <li key={key} className={`gallery-image${ current === key ? ' current' : '' }`}>
-                <img
+                <LazyImg
                   onLoad={(e) => this.setState({loaded: [...loaded, key]})}
+                  width={size.width}
+                  height={size.height}
                   src={src1640}
                   srcSet={`${src830} 830w, ${src1640} 1640w, ${src3280} 3280w`}
                   sizes='(min-width: 769px) calc(100vw - 291px), 100vw'
+                  alt={key}
                   data-imagekey={key}/>
               </li>
             )
@@ -162,9 +179,9 @@ class Gallery extends Component {
                 className={`gallery-image${ current === key ? ' current' : '' }`}
                 onClick={(e) => this.context.router.push(Object.assign({}, this.props.location, {hash: `#${key}`}))}>
                 { loaded.indexOf(key) === -1 ?
-                  <img src={src50} className='placeholder'/>
+                  <LazyImg src={src50} className='placeholder'/>
                 :
-                  <img
+                  <LazyImg
                     src={src1640}
                     srcSet={`${src830} 830w, ${src1640} 1640w, ${src3280} 3280w`}
                     sizes='(min-width: 769px) calc(100vw - 291px), 100vw'/>

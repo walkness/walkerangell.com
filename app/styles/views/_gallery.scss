@@ -4,23 +4,24 @@ $arrow-padding: 10px;
 
 .gallery {
   max-width: 2000px;
-  margin-left: - $grid-gutter-width / 2;
-  margin-right: - $grid-gutter-width / 2;
 
   @media (min-width: $sidebar-breakpoint) {
     margin-left: 0;
-    margin-right: 0;
+    margin-right: $grid-gutter-width / 2;
+
+    .breadcrumb {
+      display: none;
+    }
   }
 
   ul {
-    &:first-child {
+    &.panel {
       @include list-unstyled;
       position: relative;
       width: 100%;
       padding-bottom: 67%;
       height: 0;
-      margin-bottom: 0;
-      margin-top: $grid-gutter-width / 2;
+      margin: 0;
 
 
       .gallery-image {
@@ -45,10 +46,18 @@ $arrow-padding: 10px;
           left: 0;
           top: 0;
           max-width: 100%;
-          max-height: 100%;
           width: auto;
-          height: auto;
+          height: 100%;
           margin: auto;
+          transition: opacity 150ms ease-in;
+
+          html.js &.not-loaded {
+            opacity: 0;
+          }
+
+          &.loaded {
+            opacity: 1;
+          }
         }
       }
 

@@ -16,25 +16,26 @@ class Home extends Component {
           titleTemplate='%s'/>
 
         <section className='intro'>
-          <div className='container'>
 
             <div className='jumbotron'>
-              
-              <h1>Hello</h1>
 
-              <p>I'm Walker Angell, I live in Brooklyn, NY, and I really like web/app development and photography.</p>
+              <div className='container'>
+                
+                <h1>Hello</h1>
 
-              <SocialLinks/>
+                <div className='body' dangerouslySetInnerHTML={{__html: require('../../../../../../data/content/index.md')}}/>
+
+                <SocialLinks/>
+
+              </div>
 
             </div>
-
-          </div>
         </section>
 
         <section className='development'>
           <div className='container'>
 
-            <h2>{data.development.sectionTitle}</h2>
+            <h2><Link to='/development/'>{data.development.sectionTitle}</Link></h2>
 
             <ul className='projects'>
             { Object.keys(data.development.projects).map(
@@ -45,7 +46,13 @@ class Home extends Component {
         </section>
 
         <section className='photography'>
+          <div className='container'>
 
+            <h2><Link to='/photography/'>{data.photography.sectionTitle}</Link></h2>
+
+
+
+          </div>
         </section>
 
       </div>
