@@ -6,6 +6,7 @@ import data from '../../../../../../data';
 import SocialLinks from '../../components/SocialLinks';
 import DevelopmentProject from './DevelopmentProject';
 
+
 class Home extends Component {
   render() {
     return (
@@ -21,38 +22,17 @@ class Home extends Component {
 
               <div className='container'>
                 
-                <h1>Hello</h1>
+                <h1>Hello!</h1>
 
                 <div className='body' dangerouslySetInnerHTML={{__html: require('../../../../../../data/content/index.md')}}/>
+
+                <Link to='/contact/' className='btn'>Say Hello</Link>
 
                 <SocialLinks/>
 
               </div>
 
             </div>
-        </section>
-
-        <section className='development'>
-          <div className='container'>
-
-            <h2><Link to='/development/'>{data.development.sectionTitle}</Link></h2>
-
-            <ul className='projects'>
-            { Object.keys(data.development.projects).map(
-                slug => <DevelopmentProject key={slug} slug={slug} project={data.development.projects[slug]}/>) }
-            </ul>
-
-          </div>
-        </section>
-
-        <section className='photography'>
-          <div className='container'>
-
-            <h2><Link to='/photography/'>{data.photography.sectionTitle}</Link></h2>
-
-
-
-          </div>
         </section>
 
       </div>

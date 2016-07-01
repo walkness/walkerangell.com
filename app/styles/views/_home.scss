@@ -1,3 +1,75 @@
+#app.home {
+  .jumbotron {
+    background-color: rgba(darken(#a54b0d, 10%), .8);
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 0;
+    padding-top: 5%;
+    padding-bottom: 5%;
+
+    > .container {
+      width: 600px;
+    }
+
+    .btn {
+      border: 1px solid #fff;
+      background-color: transparent;
+      color: #fff;
+      transition: all 150ms ease-in;
+
+      &:hover {
+        border-color: darken($brand-primary, 5%);
+        background-color: $brand-primary;
+      }
+    }
+
+    .social-links {
+      display: inline-block;
+      margin-bottom: 0;
+      vertical-align: middle;
+      margin-left: 10px;
+      margin-bottom: -5px;
+
+      > .social-link {
+        $color: #fff;
+        $hover-color: $brand-primary;
+        margin-left: 5px;
+        margin-right: 5px;
+
+        > a {
+          background-color: transparent;
+          border-radius: 50%;
+          border: 1px transparent solid;
+          width: $line-height-computed + $padding-base-vertical * 2 + 2px;
+          height: $line-height-computed + $padding-base-vertical * 2 + 2px;
+          transition: all 150ms ease-in;
+        }
+
+        &.facebook > a {
+          background-image: icon(facebook, $color);
+
+          &:hover {
+            background-color: $hover-color;
+            border-color: darken($hover-color, 5%);
+          }
+        }
+
+        &.linkedin > a {
+          background-image: icon(linkedin, $color);
+
+          &:hover {
+            background-color: $hover-color;
+            border-color: darken($hover-color, 5%);
+          }
+        }
+      }
+    }
+  }
+}
+
 section {
   &.development {
     .projects {

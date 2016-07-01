@@ -1,0 +1,14 @@
+#app.contact {
+  .contact-form {
+
+    fieldset {
+      &.details {
+        @include make-md-column(4);
+      }
+    }
+
+    .message {
+      @include make-md-column(8);
+    }
+  }
+}

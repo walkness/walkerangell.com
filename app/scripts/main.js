@@ -19,8 +19,12 @@ if (typeof document !== 'undefined') {
     ga.pageview(window.location.pathname);
   };
 
-  const shouldScroll = (prevRouterProps, { location }) => {
-    if (location.pathname === '/development/' && (location.hash || (location.state && location.state.userScroll)))
+  const shouldScroll = (prevRouterProps, nextRouterProps) => {
+    if (nextRouterProps.location.pathname === '/development/' && (nextRouterProps.location.hash || (nextRouterProps.location.state && nextRouterProps.location.state.userScroll)))
+      return false;
+    if (prevRouterProps && nextRouterProps.location.pathname === prevRouterProps.location.pathname && nextRouterProps.location.hash !== prevRouterProps.location.hash)
+      return false;
+    if (prevRouterProps && nextRouterProps.params.category && nextRouterProps.params.gallery && prevRouterProps.params.category && prevRouterProps.params.gallery)
       return false;
 
     return true;

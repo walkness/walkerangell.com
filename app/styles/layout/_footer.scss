@@ -4,4 +4,8 @@ footer {
   padding: 20px 0;
   text-align: center;
   height: $footer-height;
+
+  #app.home & {
+    display: none;
+  }
 }

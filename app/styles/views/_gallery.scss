@@ -6,8 +6,10 @@ $arrow-padding: 10px;
   max-width: 2000px;
 
   @media (min-width: $sidebar-breakpoint) {
-    margin-left: 0;
-    margin-right: $grid-gutter-width / 2;
+    max-width: calc(155vh - #{$sidebar-width});
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: $grid-gutter-width / 2;
 
     .breadcrumb {
       display: none;

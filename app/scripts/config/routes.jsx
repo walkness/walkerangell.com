@@ -10,6 +10,7 @@ import {
   Gallery
 } from '../views/App/views/Portfolio';
 import Sidebar from '../views/App/components/Sidebar';
+import Contact from '../views/App/views/Contact';
 
 
 export default () => (
@@ -17,9 +18,9 @@ export default () => (
 
         <IndexRoute name='home' components={{main: Home}} />
 
-        <Route path='development' components={{main: Development}} />
+        <Route name='development' path='development' components={{main: Development}} />
 
-        <Route path='photography' components={{main: Portfolio, sidebar: Sidebar}}>
+        <Route name='photography' path='photography' components={{main: Portfolio, sidebar: Sidebar}}>
 
           <IndexRoute name='portfolio' component={Galleries}/>
 
@@ -29,6 +30,8 @@ export default () => (
           </Route>
 
         </Route>
+
+        <Route name='contact' path='contact' components={{main: Contact}} />
 
     </Route>
 )

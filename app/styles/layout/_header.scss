@@ -1,4 +1,6 @@
 #app > header {
+  z-index: $zindex-navbar;
+
   nav {
     text-align: center;
     margin-bottom: 20px;
@@ -9,6 +11,7 @@
 
     > a {
       $spacing: 20px;
+      z-index: $zindex-navbar;
       display: inline-block;
       color: $gray-light;
       font-size: 1.25em;

@@ -3,6 +3,8 @@
 
   > .social-link {
     $size: 40px;
+    $color: #fff;
+    $hover-color: darken(#fff, 25%);
     display: inline-block;
 
     > a {
@@ -14,22 +16,7 @@
       background-position: center;
       background-size: auto 50%;
       background-repeat: no-repeat;
-    }
-
-    &.facebook > a {
-      background-image: icon(facebook, $text-color);
-
-      &:hover {
-        background-image: icon(facebook, lighten($text-color, 25%));        
-      }
-    }
-
-    &.linkedin > a {
-      background-image: icon(linkedin, $text-color);
-
-      &:hover {
-        background-image: icon(linkedin, lighten($text-color, 25%));        
-      }
+      transition: background-image 150ms ease-in-out;
     }
   }
 }

@@ -5,6 +5,7 @@ import Helmet from 'react-helmet';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
+import BackgroundImage from './components/BackgroundImage';
 
 
 class App extends Component {
@@ -79,6 +80,15 @@ class App extends Component {
         </main>
 
         <Footer/>
+
+        <ReactCSSTransitionGroup
+          transitionName='fadeIn'
+          transitionEnterTimeout={300}
+          transitionLeave={false}>
+          { routeName === 'home' ?
+            <BackgroundImage/>
+          : null }
+        </ReactCSSTransitionGroup>
 
       </div>
     );
