@@ -43,3 +43,66 @@ gulp.task('portfolio', () => {
     }, {errorOnEnlargement: false}))
     .pipe(gulp.dest('./app/images/portfolio'));
 })
+
+gulp.task('home', () => {
+  return gulp.src('./images/home/**/*.jpg')
+    .pipe(gulp.dest('./app/images/home'))
+    .pipe(responsive({
+      '**/*': [
+        {
+          width: 375 * 2,
+          height: 667 * 2,
+          crop: 'center',
+          rename: {suffix: '-750x1334crop'},
+        },
+        {
+          width: 768 * 2,
+          height: 1024 * 2,
+          crop: 'center',
+          rename: {suffix: '-1536x2048crop'},
+        },
+        {
+          width: 414 * 3,
+          height: 736 * 3,
+          crop: 'center',
+          rename: {suffix: '-1242x2208crop'},
+        },
+        {
+          height: 800,
+          max: true,
+          rename: {suffix: '-x800'},
+        },
+        {
+          height: 1200,
+          max: true,
+          rename: {suffix: '-x1200'},
+        },
+        {
+          height: 1600,
+          max: true,
+          rename: {suffix: '-x1600'},
+        },
+        {
+          height: 2000,
+          max: true,
+          rename: {suffix: '-x2000'},
+        },
+        {
+          height: 2400,
+          max: true,
+          rename: {suffix: '-x2400'},
+        },
+        {
+          height: 2800,
+          max: true,
+          rename: {suffix: '-x2800'},
+        },
+        {
+          height: 3200,
+          max: true,
+          rename: {suffix: '-x3200'},
+        },
+      ]
+    }, {errorOnEnlargement: false}))
+    .pipe(gulp.dest('./app/images/home'));
+})

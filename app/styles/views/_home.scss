@@ -1,17 +1,26 @@
 #app.home {
   .jumbotron {
     background-color: rgba(darken(#a54b0d, 10%), .8);
+    border-top: 1px solid darken(#a54b0d, 10%);
     color: #fff;
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     margin-bottom: 0;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
+
+    @media (min-height: 1100px) {
+      top: 62%;
+    }
 
     > .container {
       width: 600px;
+    }
+
+    h1 {
+      margin-top: 0;
     }
 
     .btn {

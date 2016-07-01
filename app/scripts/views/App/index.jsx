@@ -83,10 +83,10 @@ class App extends Component {
 
         <ReactCSSTransitionGroup
           transitionName='fadeIn'
-          transitionEnterTimeout={300}
+          transitionEnterTimeout={500}
           transitionLeave={false}>
           { routeName === 'home' ?
-            <BackgroundImage/>
+            <BackgroundImage image='Iceland-5497'/>
           : null }
         </ReactCSSTransitionGroup>
 
