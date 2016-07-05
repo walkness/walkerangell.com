@@ -5,6 +5,7 @@ import Helmet from 'react-helmet';
 
 import { development } from '../../../../../../data';
 import PageHeader from '../../components/PageHeader';
+import CaptureLinks from '../../components/CaptureLinks';
 import Project from './Project';
 
 
@@ -153,7 +154,7 @@ class Development extends Component {
 
           <PageHeader title={development.sectionTitle}/>
 
-          <div className='body' dangerouslySetInnerHTML={{__html: require('../../../../../../data/content/development/index.md')}}/>
+          <CaptureLinks className='body' dangerouslySetInnerHTML={{__html: require('../../../../../../data/content/development/index.md')}}/>
         </div>
 
         <section ref='projects' className='projects'>

@@ -144,7 +144,7 @@ class Gallery extends Component {
             const src830 = require(`../../../../../images/${image.filename}-830x830.jpg`);
             const src1640 = require(`../../../../../images/${image.filename}-1640x1640.jpg`);
             const src3280 = require(`../../../../../images/${image.filename}-3280x3280.jpg`);
-            const size = require(`image-size!../../../../../images/${image.filename}-1640x1640.jpg`)
+            const size = require(`image-size?name=images/[name].[ext]!../../../../../images/${image.filename}-1640x1640.jpg`)
             return (
               <li key={key} className={`gallery-image${ current === key ? ' current' : '' }`}>
                 <LazyImg

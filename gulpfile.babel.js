@@ -44,6 +44,27 @@ gulp.task('portfolio', () => {
     .pipe(gulp.dest('./app/images/portfolio'));
 })
 
+gulp.task('screenshots', () => {
+  return gulp.src('./images/development/**/*.jpg')
+    .pipe(responsive({
+      '**/*': [
+        {
+          width: 455,
+          rename: {suffix: '-455x'},
+        },
+        {
+          width: 910,
+          rename: {suffix: '-910x'},
+        },
+        {
+          width: 1365,
+          rename: {suffix: '-1365x'},
+        },
+      ]
+    }, {errorOnEnlargement: false}))
+    .pipe(gulp.dest('./app/images/development'));
+})
+
 gulp.task('home', () => {
   return gulp.src('./images/home/**/*.jpg')
     .pipe(gulp.dest('./app/images/home'))

@@ -23,7 +23,7 @@ module.exports = {
       nearbysupply: {
         name: 'Nearby Supply',
         link: 'http://nearby.supply/',
-        screenshot: 'development/nearbysupply.jpg',
+        screenshot: 'development/nearbysupply',
         launchDate: null,
         primaryColor: [240, 85, 69],
         technologies: ['ios', 'react', 'django', 'sass'],
@@ -32,7 +32,7 @@ module.exports = {
       idj: {
         name: 'Ivone, Devine & Jensen',
         link: 'http://www.idjlaw.com/',
-        screenshot: 'development/idj.jpg',
+        screenshot: 'development/idj',
         launchDate: new Date(2016, 7, 1),
         primaryColor: [42, 75, 94],
         technologies: ['react', 'sass'],
@@ -41,7 +41,7 @@ module.exports = {
       chargerville: {
         name: 'Chargerville',
         link: 'https://chargerville.com/',
-        screenshot: 'development/chargerville.jpg',
+        screenshot: 'development/chargerville',
         launchDate: new Date(2016, 5, 13),
         primaryColor: [0, 99, 157],
         technologies: ['react', 'django', 'sass'],
@@ -50,7 +50,7 @@ module.exports = {
       nbngroup: {
         name: 'The NBN Group',
         link: 'http://nothingbutnav.com/',
-        screenshot: 'development/nbngroup.jpg',
+        screenshot: 'development/nbngroup',
         launchDate: new Date(2015, 11, 24),
         primaryColor: [28, 154, 212],
         technologies: ['craft', 'jquery', 'sass'],
@@ -59,7 +59,7 @@ module.exports = {
       personal: {
         name: 'Personal Site',
         link: 'http://walkerangell.com/',
-        screenshot: 'development/personal.jpg',
+        screenshot: 'development/personal',
         launchDate: new Date(2014, 10, 30),
         primaryColor: [118, 54, 9],
         technologies: ['react', 'sass'],
@@ -68,7 +68,7 @@ module.exports = {
       forinstants: {
         name: 'For Instants',
         link: 'https://walkandalie.com/',
-        screenshot: 'development/forinstants.jpg',
+        screenshot: 'development/forinstants',
         launchDate: new Date(2010, 9, 27),
         primaryColor: [52, 60, 39],
         technologies: ['wordpress', 'jquery', 'sass'],

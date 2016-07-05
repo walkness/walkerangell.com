@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Formsy from 'formsy-react';
 
+import PageHeader from '../../components/PageHeader';
 import { Input, TextArea, SubmitButton } from '../../components/Forms';
 
 
@@ -14,9 +15,9 @@ class Directions extends Component {
       formValid: false,
       isSubmitting: false,
       error: false,
-      success: false,
+      success: props.location && props.location.hash === '#success',
     };
-    this.submitUrl = 'https://formspree.io/w@lker.co';
+    this.submitUrl = 'https://formspree.io/hello@walkerangell.com';
   }
 
   onValidSubmit(data, resetForm, invalidateForm) {
@@ -52,7 +53,7 @@ class Directions extends Component {
 
         <Helmet title='Contact'/>
 
-        <h1>Say Hello</h1>
+        <PageHeader title='Contact'/>
 
         <div
           className='body'
@@ -75,6 +76,8 @@ class Directions extends Component {
 
         <Formsy.Form
           className='contact-form form'
+          action={this.submitUrl}
+          method='POST'
           onValid={() => this.setState({formValid: true})}
           onInvalid={() => this.setState({formValid: false})}
           onValidSubmit={this.onValidSubmit.bind(this)}
@@ -118,6 +121,8 @@ class Directions extends Component {
           <Input
             name='_gotcha'
             style={{display: 'none'}}/>
+
+          <input type='hidden' name='_next' value='http://localhost:3000/contact/#success' />
 
           <SubmitButton
             className='pull-right'

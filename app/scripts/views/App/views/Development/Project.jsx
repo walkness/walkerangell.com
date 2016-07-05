@@ -1,10 +1,16 @@
 import React from 'react';
 import { monthNames, development } from '../../../../../../data';
 import Screen from '../../components/Screen';
+import CaptureLinks from '../../components/CaptureLinks';
 
 
 const Project = ({slug, project}) => {
   const ProjectLink = ({ children }) => <a href={project.link} target='_blank'>{children}</a>
+
+  const screen455 = require(`../../../../../images/${project.screenshot}-455x.jpg`);
+  const screen910 = require(`../../../../../images/${project.screenshot}-910x.jpg`);
+  const screen1365 = require(`../../../../../images/${project.screenshot}-1365x.jpg`);
+
   return (
     <article
       className='project'
@@ -71,14 +77,17 @@ const Project = ({slug, project}) => {
             : null }
             </div>
 
-            <div className='body' dangerouslySetInnerHTML={{__html: require(`../../../../../../data/content/development/projects/${slug}.md`)}}/>
+            <CaptureLinks className='body' dangerouslySetInnerHTML={{__html: require(`../../../../../../data/content/development/projects/${slug}.md`)}}/>
 
           </div>
 
           <div className='screenshot'>
             <ProjectLink>
               <Screen url={project.link} color={project.primaryColor}>
-                <img src={require(`../../../../../images/${project.screenshot}`)}/>
+                <img
+                  src={screen455}
+                  srcSet={`${screen455} 455w, ${screen910} 910w, ${screen1365} 1365w`}
+                  sizes='(min-width: 1200px) 452px, (min-width: 992px) 369px, (min-width: 768px) 277px, calc(100vw - 40px)'/>
               </Screen>
             </ProjectLink>
           </div>

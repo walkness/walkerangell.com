@@ -6,3 +6,7 @@
 @import 'lazy_img';
 @import 'screen';
 @import 'background_image';
+
+.body {
+  margin-bottom: $line-height-computed * 2;
+}

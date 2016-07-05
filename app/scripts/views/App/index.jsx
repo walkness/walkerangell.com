@@ -17,7 +17,7 @@ class App extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      typekitLoaded: window.Typekit && true,
+      typekitLoaded: typeof window !== 'undefined' && window.Typekit,
     };
   }
 

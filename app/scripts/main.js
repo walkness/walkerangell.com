@@ -13,7 +13,7 @@ import routes from './config/routes';
 
 
 if (typeof document !== 'undefined') {
-  ga.initialize('UA-XXXXXXXX-X');
+  ga.initialize('UA-63799547-1');
 
   const logPageView = () => {
     ga.pageview(window.location.pathname);

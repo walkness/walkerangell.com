@@ -23,11 +23,39 @@
       margin-top: 0;
     }
 
+    a {
+      color: #fff;
+      position: relative;
+
+      &::after {
+        content: ' ';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: #fff;
+        transition: all 100ms ease-in;
+      }
+
+      &:hover {
+        &::after {
+          background-color: $brand-primary;
+          height: 3px;
+        }
+      }
+    }
+
     .btn {
       border: 1px solid #fff;
       background-color: transparent;
       color: #fff;
       transition: all 150ms ease-in;
+      text-decoration: none;
+
+      &::after {
+        content: none;
+      }
 
       &:hover {
         border-color: darken($brand-primary, 5%);
@@ -55,6 +83,10 @@
           width: $line-height-computed + $padding-base-vertical * 2 + 2px;
           height: $line-height-computed + $padding-base-vertical * 2 + 2px;
           transition: all 150ms ease-in;
+
+          &::after {
+            content: none;
+          }
         }
 
         &.facebook > a {
