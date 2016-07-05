@@ -11,6 +11,7 @@ import {
 } from '../views/App/views/Portfolio';
 import Sidebar from '../views/App/components/Sidebar';
 import Contact from '../views/App/views/Contact';
+import Resume from '../views/App/views/Resume';
 
 
 export default () => (
@@ -32,6 +33,8 @@ export default () => (
         </Route>
 
         <Route name='contact' path='contact' components={{main: Contact}} />
+
+        <Route name='resume' path='resume' components={{main: Resume}} />
 
     </Route>
 )

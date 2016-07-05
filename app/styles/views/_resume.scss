@@ -1,0 +1,68 @@
+#app.resume {
+  article.content {
+    > section {
+      margin-bottom: $grid-gutter-width * 2;
+
+      &#experience,
+      &#education {
+        > ul {
+          @include list-unstyled;
+        }
+      }
+
+      &#experience {
+        ul {
+          .location {
+            font-weight: bold;            
+          }
+
+          .period {
+            font-style: italic;
+          }
+
+          @media (min-width: $screen-sm-min) {
+            h3 {
+              float: left;
+              margin-top: 0;
+            }
+
+            .location,
+            .period {
+              float: right;
+            }
+
+            .period {
+              clear: right;
+            }
+
+            .roles > li {
+              clear: both;
+            }
+          }
+
+          &.roles {
+            @include list-unstyled;
+          }
+        }
+
+        > ul {
+          > li {
+            margin-top: $grid-gutter-width;
+          }
+        }
+      }
+    }
+
+    .body {
+      p + ul {
+        margin-bottom: $line-height-computed / 2;
+        margin-top: - ($line-height-computed / 3);
+      }
+
+      .redacted {
+        font-style: italic;
+        color: $text-muted;
+      }
+    }
+  }
+}
