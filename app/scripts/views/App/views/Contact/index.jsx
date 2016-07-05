@@ -122,7 +122,7 @@ class Directions extends Component {
             name='_gotcha'
             style={{display: 'none'}}/>
 
-          <input type='hidden' name='_next' value='http://localhost:3000/contact/#success' />
+          <input type='hidden' name='_next' value='http://walkerangell.com/contact/#success' />
 
           <SubmitButton
             className='pull-right'
