@@ -27,21 +27,23 @@
       color: #fff;
       position: relative;
 
-      &::after {
-        content: ' ';
-        position: absolute;
-        bottom: -3px;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background-color: #fff;
-        transition: all 100ms ease-in;
-      }
-
-      &:hover {
+      @media (min-width: 412px) {
         &::after {
-          background-color: $brand-primary;
-          height: 3px;
+          content: ' ';
+          position: absolute;
+          bottom: -3px;
+          left: 0;
+          right: 0;
+          height: 1px;
+          background-color: #fff;
+          transition: all 100ms ease-in;
+        }
+
+        &:hover {
+          &::after {
+            background-color: $brand-primary;
+            height: 3px;
+          }
         }
       }
     }
