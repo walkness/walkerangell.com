@@ -6,7 +6,13 @@ import Screen from '../../components/Screen';
 const Project = ({slug, project}) => {
   const ProjectLink = ({ children }) => <a href={project.link} target='_blank'>{children}</a>
   return (
-    <article className='project' id={slug} style={{backgroundColor: `rgba(${project.primaryColor.join(', ')}, .05)`}}>
+    <article
+      className='project'
+      id={slug}
+      style={{
+        backgroundColor: `rgba(${project.primaryColor.join(', ')}, .05)`,
+        borderBottomColor: `rgba(${project.primaryColor.join(', ')}, .1)`,
+      }}>
 
       <div className='container'>
 
@@ -19,7 +25,9 @@ const Project = ({slug, project}) => {
             </h3>
 
             <p>
-              <span className='label' style={{backgroundColor: `rgb(${project.primaryColor.join(', ')})`}}>
+              <span
+                className='label'
+                style={{backgroundColor: `rgb(${project.primaryColor.join(', ')})`}}>
                 {project.launchDate ? `${monthNames[project.launchDate.getMonth() - 1]} ${project.launchDate.getFullYear()}` : 'TBA'}
               </span>
               <ProjectLink>{project.link}</ProjectLink>

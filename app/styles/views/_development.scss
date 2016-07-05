@@ -51,7 +51,8 @@
   }
 
   .project {
-    padding: ($line-height-computed * 5) 0;  
+    padding: ($line-height-computed * 5) 0;
+    border-bottom: 1px solid $gray-lighter;
 
     .content {
       @include make-sm-column(7);
