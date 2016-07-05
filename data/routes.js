@@ -5,6 +5,7 @@ var routes = [
   '/development/',
   '/photography/',
   '/contact/',
+  '/resume/',
 ];
 
 var categories = Object.keys(data.photography.portfolio.categories);
