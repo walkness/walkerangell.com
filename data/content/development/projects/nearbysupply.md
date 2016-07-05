@@ -7,7 +7,7 @@ Nearby Supply helps people find products by connecting them with local stores. A
 
 I developed a complete backend and frontend to enable realtime communication between shoppers and shops.
 
-Anticipating an eventual need for robust machine learning and natural language processing capabilities, Python seemed like a natural choice, so I chose Django to power the backend. The incredible [http://www.django-rest-framework.org/](Django REST framework) made it easy to impelement a JSON API to be consumed by the JavaScript or iOS frontend.
+Anticipating an eventual need for robust machine learning and natural language processing capabilities, Python seemed like a natural choice, so I chose Django to power the backend. The incredible [Django REST framework](http://www.django-rest-framework.org/) made it easy to impelement a JSON API to be consumed by the JavaScript or iOS frontend.
 
 The realtime component is implemented using a user's choice of Email, SMS (provided by [Twilio](https://www.twilio.com/)), and iOS push notifications while the user _is not_ using the app, or using Websockets (provided by [PubNub](https://www.pubnub.com/)) while the user _is_ using the app. To keep the responses snappy, I pulled all of the notification processing out of the request/response cycle using [Celery](http://www.celeryproject.org/) and [RabbitMQ](https://www.rabbitmq.com/), which also provides a solid foundation for asynchronous processing of shopper queries.
 
