@@ -30,7 +30,7 @@ module.exports = {
     loaders: [
       {
         test: /.*\.(gif|png|jpe?g|svg)$/i,
-        exclude: path.join(__dirname, 'app/images/portfolio'),
+        exclude: [path.join(__dirname, 'app/images/portfolio'), path.join(__dirname, 'app/images/favicon')],
         loaders: [
           'url?limit=10000?hash=sha512&digest=hex&name=images/[name]-[hash].[ext]',
           'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
@@ -42,6 +42,10 @@ module.exports = {
         loaders: [
           'url?limit=10000?hash=sha512&digest=hex&name=images/[name]-[hash].[ext]',
         ],
+      },
+      {
+        include: path.join(__dirname, 'app/images/favicon'),
+        loader: 'file?name=[name].[ext]',
       },
       {
         test: /\.(woff2?|ttf|eot)$/,

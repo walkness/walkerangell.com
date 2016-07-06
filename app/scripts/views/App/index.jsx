@@ -48,6 +48,14 @@ class App extends Component {
             {charset: 'utf-8'},
             {'http-equiv': 'x-ua-compatible', content: 'ie=edge'},
             {name: 'viewport', content: 'width=device-width, initial-scale=1'},
+            {name: 'theme-color', content: '#ffffff'},
+          ]}
+          link={[
+            {rel: 'apple-touch-icon', sizes: '180x180', href: require('../../../images/favicon/apple-touch-icon.png')},
+            {rel: 'icon', type: 'image/png', href: require('../../../images/favicon/favicon-32x32.png'), sizes: '32x32'},
+            {rel: 'icon', type: 'image/png', href: require('../../../images/favicon/favicon-16x16.png'), sizes: '16x16'},
+            {rel: 'manifest', href: require('../../../images/favicon/manifest.json')},
+            {rel: 'mask-icon', href: require('../../../images/favicon/safari-pinned-tab.svg'), color: '#5bbad5'},
           ]}
           script={[
             {type: 'text/javascript', innerHTML: 'document.getElementsByTagName("html")[0].className+=" js"'},
