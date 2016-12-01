@@ -21,6 +21,14 @@ class App extends Component {
     };
   }
 
+  componentWillMount() {
+    if ('mixBlendMode' in document.body.style) {
+      document.documentElement.className += ' can-blend';
+    } else {
+      document.documentElement.className += ' no-blend';
+    }
+  }
+
   getChildContext() {
     return {
       typekitLoaded: this.state.typekitLoaded,

@@ -6,6 +6,18 @@
   right: 0;
   bottom: 0;
 
+  .background,
+  .background-image {
+    opacity: 0;
+    transition: opacity 300ms ease-in;
+  }
+
+  .background {
+    z-index: -9998;
+    background: linear-gradient(to bottom, #fff 40%, #763609 100%);
+    opacity: 0;
+  }
+
   .background-image,
   .placeholder {
     width: 100%;
@@ -13,17 +25,12 @@
   }
 
   .background-image {
-    z-index: -9998;
+    z-index: -9997;
     background-attachment: fixed;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    opacity: 0;
-    transition: opacity 300ms ease-in;
-
-    &.loaded {
-      opacity: 1;
-    }
+    mix-blend-mode: multiply;
   }
 
   &.fadeIn-enter {
@@ -44,13 +51,28 @@
     }
   }
 
+  .background,
   .placeholder {
-    z-index: -9999;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
+  }
+
+  .placeholder {
+    z-index: -9999;
     background-color: #bfc0c2;
+  }
+
+  &.loaded {
+
+    .background {
+      opacity: 1;
+    }
+
+    .background-image {
+      opacity: 1;
+    }
   }
 }

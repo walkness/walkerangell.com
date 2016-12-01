@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
 
 
 class BackgroundImage extends Component {
@@ -32,10 +33,12 @@ class BackgroundImage extends Component {
     const { image } = this.props;
     const { loaded } = this.state;
     return (
-      <div className='background-image-wrapper'>
+      <div className={classNames('background-image-wrapper', { loaded })}>
+
+        <div className='background' />
 
         <div
-          className={`background-image ${ loaded ? 'loaded' : 'not-loaded' }`}
+          className='background-image'
           style={{
             backgroundImage: loaded ? `url(${this.refs.img.currentSrc || this.refs.img.src})` : 'none',
           }}/>

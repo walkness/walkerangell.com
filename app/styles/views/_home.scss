@@ -1,7 +1,6 @@
 #app.home {
   .jumbotron {
-    background-color: rgba(darken(#a54b0d, 10%), .8);
-    border-top: 1px solid darken(#a54b0d, 10%);
+    background: transparent;
     color: #fff;
     position: fixed;
     bottom: 0;
@@ -11,12 +10,23 @@
     padding-top: 10vh;
     padding-bottom: 10vh;
 
+    html.no-blend & {
+      background: linear-gradient(to bottom, transparent 0%, rgba(darken(#a54b0d, 10%), .8) 75%);
+    }
+
     @media (min-height: 1100px) {
       top: 62%;
     }
 
     > .container {
-      width: 600px;
+      width: 700px;
+      margin-left: 0;
+      margin-right: 0;
+
+      @media (min-width: $screen-sm-min) {
+        padding-left: 10vh;
+        padding-right: 10vh;        
+      }
     }
 
     h1 {
