@@ -16,6 +16,7 @@
     z-index: -9998;
     background: linear-gradient(to bottom, #fff 40%, darken(#763609, 15%) 100%);
     opacity: 0;
+    transition: opacity 200ms ease-in 100ms;
   }
 
   .background-image,
@@ -31,6 +32,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     mix-blend-mode: multiply;
+    will-change: transform;
   }
 
   &.fadeIn-enter {
@@ -62,7 +64,7 @@
 
   .placeholder {
     z-index: -9999;
-    background-color: #bfc0c2;
+    background-color: #444;
   }
 
   &.loaded {
@@ -73,6 +75,13 @@
 
     .background-image {
       opacity: 1;
+    }
+  }
+
+  &.no-transition {
+    .background,
+    .background-image {
+      transition: none;
     }
   }
 }
