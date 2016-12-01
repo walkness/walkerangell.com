@@ -14,7 +14,7 @@
 
   .background {
     z-index: -9998;
-    background: linear-gradient(to bottom, #fff 40%, #763609 100%);
+    background: linear-gradient(to bottom, #fff 40%, darken(#763609, 15%) 100%);
     opacity: 0;
   }
 

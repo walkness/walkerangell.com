@@ -19,13 +19,13 @@
     }
 
     > .container {
-      width: 700px;
+      width: 800px;
       margin-left: 0;
       margin-right: 0;
 
       @media (min-width: $screen-sm-min) {
-        padding-left: 10vh;
-        padding-right: 10vh;        
+        padding-left: 11.5vh;
+        padding-right: 11.5vh;
       }
     }
 
