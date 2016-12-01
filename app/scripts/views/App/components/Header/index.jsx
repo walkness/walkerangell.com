@@ -1,10 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Link, IndexLink } from 'react-router';
-
-import NavLink from '../NavLink';
+import { locationShape } from 'react-router/lib/PropTypes';
 
 
 class Header extends Component {
+
+  static propTypes = {
+    location: locationShape,
+  };
 
   constructor(props, context) {
     super(props, context);
@@ -14,12 +17,12 @@ class Header extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.location !== this.props.location)
-      this.setState({collapsed: true});
+    if (nextProps.location !== this.props.location) {
+      this.setState({ collapsed: true });
+    }
   }
 
   render() {
-    const { collapsed } = this.state;
     return (
       <header>
 
@@ -48,7 +51,7 @@ class Header extends Component {
         </div>
 
       </header>
-    )
+    );
   }
 }
 

@@ -1,16 +1,22 @@
-var path = require("path");
-var webpack = require('webpack');
-var autoprefixer = require('autoprefixer');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var marked = require('marked');
-var renderer = new marked.Renderer();
+/* eslint-disable import/no-extraneous-dependencies */
 
-renderer.link = function(href, title, text) {
-  var attrs = 'href="' + href + '"';
-  if (title) attrs += 'title="' + title + '"';
-  if (/^https?:\/\/.+$/.test(href)) attrs += 'target="_blank"';
-  return '<a '+ attrs +'>' + text + '</a>';
-}
+import path from 'path';
+import autoprefixer from 'autoprefixer';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import marked from 'marked';
+
+const renderer = new marked.Renderer();
+
+renderer.link = function (href, title, text) {
+  let attrs = `href="${href}"`;
+  if (title) {
+    attrs += ` title="${title}"`;
+  }
+  if (/^https?:\/\/.+$/.test(href)) {
+    attrs += ' target="_blank"';
+  }
+  return `<a ${attrs}>${text}</a>`;
+};
 
 
 module.exports = {
@@ -22,7 +28,7 @@ module.exports = {
 
   output: {
     path: path.resolve('./app/bundles/'),
-    filename: "bundle.js",
+    filename: 'bundle.js',
     libraryTarget: 'umd',
   },
 
@@ -30,10 +36,13 @@ module.exports = {
     loaders: [
       {
         test: /.*\.(gif|png|jpe?g|svg)$/i,
-        exclude: [path.join(__dirname, 'app/images/portfolio'), path.join(__dirname, 'app/images/favicon')],
+        exclude: [
+          path.join(__dirname, 'app/images/portfolio'),
+          path.join(__dirname, 'app/images/favicon'),
+        ],
         loaders: [
           'url?limit=10000?hash=sha512&digest=hex&name=images/[name]-[hash].[ext]',
-          'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}',
+          'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}', // eslint-disable-line max-len
         ],
       },
       {
@@ -58,9 +67,7 @@ module.exports = {
     ],
   },
 
-  markdownLoader: {
-    renderer: renderer,
-  },
+  markdownLoader: { renderer },
 
   postcss: [autoprefixer],
 
@@ -69,6 +76,6 @@ module.exports = {
   ],
 
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx'],
   },
-}
+};

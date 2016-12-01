@@ -1,10 +1,14 @@
-import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import React, { Component } from 'react';
+import { locationShape } from 'react-router/lib/PropTypes';
 import NavLink from '../NavLink';
 
 import data from '../../../../../../data';
 
 class Sidebar extends Component {
+
+  static propTypes = {
+    location: locationShape.isRequired,
+  };
 
   constructor(props, context) {
     super(props, context);
@@ -14,8 +18,9 @@ class Sidebar extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.location !== this.props.location)
-      this.setState({collapsed: true});
+    if (nextProps.location !== this.props.location) {
+      this.setState({ collapsed: true });
+    }
   }
 
   render() {
@@ -36,26 +41,32 @@ class Sidebar extends Component {
                     { Object.keys(gallery1.galleries).map(slug2 => {
                       const gallery2 = gallery1.galleries[slug2];
                       j++;
-                      return <NavLink key={j} to={`/photography/${slug1}/${slug2}/`}>{gallery2.title}</NavLink>
+                      return (
+                        <NavLink key={j} to={`/photography/${slug1}/${slug2}/`}>
+                          {gallery2.title}
+                        </NavLink>
+                      );
                     }) }
                   </ul>
                 );
-              }
+              };
               return (
                 <NavLink
                   key={i}
                   liClassName='menu-item menu-item-has-children'
                   to={`/photography/${slug1}/`}
                   dropdown={subMenu()}
-                  indexOnly={true}>
+                  indexOnly
+                >
                   {gallery1.title}
-                </NavLink>)
+                </NavLink>
+              );
             })}
           </ul>
         </nav>
 
       </aside>
-    )
+    );
   }
 }
 

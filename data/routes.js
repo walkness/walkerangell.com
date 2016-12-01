@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var data = require('./index.js');
 
 var routes = [

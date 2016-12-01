@@ -1,44 +1,45 @@
-import React, { Component, PropTypes } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 
-import data from '../../../../../../data';
 import SocialLinks from '../../components/SocialLinks';
-import DevelopmentProject from './DevelopmentProject';
 import CaptureLinks from '../../components/CaptureLinks';
 
 
-class Home extends Component {
-  render() {
-    return (
-      <div className='home'>
+const Home = () => (
+  <div className='home'>
 
-        <Helmet
-          title='Walker Angell'
-          titleTemplate='%s'/>
+    <Helmet
+      title='Walker Angell'
+      titleTemplate='%s'
+    />
 
-        <section className='intro'>
+    <section className='intro'>
 
-            <div className='jumbotron'>
+      <div className='jumbotron'>
 
-              <div className='container'>
-                
-                <h1>Hello!</h1>
+        <div className='container'>
 
-                <CaptureLinks className='body' dangerouslySetInnerHTML={{__html: require('../../../../../../data/content/index.md')}}/>
+          <h1>Hello!</h1>
 
-                <Link to='/contact/' className='btn'>Say Hello</Link>
+          <CaptureLinks
+            className='body'
+            dangerouslySetInnerHTML={{
+              __html: require('../../../../../../data/content/index.md'), // eslint-disable-line global-require, max-len
+            }}
+          />
 
-                <SocialLinks/>
+          <Link to='/contact/' className='btn'>Say Hello</Link>
 
-              </div>
+          <SocialLinks />
 
-            </div>
-        </section>
+        </div>
 
       </div>
-    )
-  }
-}
+
+    </section>
+
+  </div>
+);
 
 export default Home;

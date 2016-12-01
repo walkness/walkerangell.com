@@ -1,3 +1,5 @@
+/* globals window document */
+
 import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -20,21 +22,46 @@ if (typeof document !== 'undefined') {
   };
 
   const shouldScroll = (prevRouterProps, nextRouterProps) => {
-    if (nextRouterProps.location.pathname === '/development/' && (nextRouterProps.location.hash || (nextRouterProps.location.state && nextRouterProps.location.state.userScroll)))
+    if (
+      nextRouterProps.location.pathname === '/development/' && (
+        nextRouterProps.location.hash ||
+        (nextRouterProps.location.state && nextRouterProps.location.state.userScroll)
+      )
+    ) {
       return false;
-    if (prevRouterProps && nextRouterProps.location.pathname === prevRouterProps.location.pathname && nextRouterProps.location.hash !== prevRouterProps.location.hash)
+    }
+
+    if (
+      prevRouterProps &&
+      nextRouterProps.location.pathname === prevRouterProps.location.pathname &&
+      nextRouterProps.location.hash !== prevRouterProps.location.hash
+    ) {
       return false;
-    if (prevRouterProps && nextRouterProps.params.category && nextRouterProps.params.gallery && prevRouterProps.params.category && prevRouterProps.params.gallery)
+    }
+
+    if (
+      prevRouterProps &&
+      nextRouterProps.params.category &&
+      nextRouterProps.params.gallery &&
+      prevRouterProps.params.category &&
+      prevRouterProps.params.gallery
+    ) {
       return false;
+    }
 
     return true;
-  }
+  };
 
   ReactDOM.render(
-    <Router history={browserHistory} onUpdate={logPageView} render={applyRouterMiddleware(useScroll(shouldScroll))}>
+    <Router
+      history={browserHistory}
+      onUpdate={logPageView}
+      render={applyRouterMiddleware(useScroll(shouldScroll))}
+    >
       { routes() }
     </Router>,
-    document.getElementById('root'));
+    document.getElementById('root')
+  );
 }
 
 export default (locals, callback) => {
@@ -52,6 +79,7 @@ export default (locals, callback) => {
   const head = Helmet.rewind();
 
   const html = ReactDOMServer.renderToStaticMarkup(
-    <Html reactApp={reactApp} assets={assets} publicPath={publicPath} head={head}/>);
-  callback(null, '<!DOCTYPE html>' + html);
-}
+    <Html reactApp={reactApp} assets={assets} publicPath={publicPath} head={head} />
+  );
+  callback(null, `<!DOCTYPE html>${html}`);
+};

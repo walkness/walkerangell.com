@@ -1,16 +1,11 @@
+/* eslint-disable jsx-a11y/html-has-lang */
+
 import React, { PropTypes } from 'react';
 
 
-const Html = ({reactApp, head, publicPath, assets}) => {
-  
-  const css = assets.filter(filename => {
-    return filename.endsWith('.css');
-  });
-
-  const js = assets.filter(filename => {
-    return filename.endsWith('.js');
-  });
-
+const Html = ({ reactApp, head, publicPath, assets }) => {
+  const css = assets.filter(filename => filename.endsWith('.css'));
+  const js = assets.filter(filename => filename.endsWith('.js'));
   return (
     <html {...head.htmlAttributes.toComponent()}>
 
@@ -22,30 +17,32 @@ const Html = ({reactApp, head, publicPath, assets}) => {
 
         {head.style.toComponent()}
 
-        { css.map(filename => {
-          return <link type='text/css' rel='stylesheet' href={publicPath + filename}/>
-        }) }
+        { css.map(filename => (
+          <link type='text/css' rel='stylesheet' href={publicPath + filename} />
+        )) }
 
         {head.script.toComponent()}
 
       </head>
 
       <body>
-        <div id='root' dangerouslySetInnerHTML={{__html: reactApp}}/>
+        <div id='root' dangerouslySetInnerHTML={{ __html: reactApp }} />
 
-        { js.map(filename => {
-          return <script defer type='text/javascript' src={publicPath + filename}></script>
-        }) }
+        { js.map(filename => (
+          <script defer type='text/javascript' src={publicPath + filename} />
+        )) }
 
       </body>
 
     </html>
-  )
-}
+  );
+};
 
 Html.propTypes = {
   reactApp: PropTypes.string.isRequired,
   assets: PropTypes.array.isRequired,
+  head: PropTypes.object.isRequired,
+  publicPath: PropTypes.string.isRequired,
 };
 
 export default Html;

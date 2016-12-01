@@ -1,46 +1,47 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
+import { locationShape } from 'react-router/lib/PropTypes';
 
 import LazyImg from '../../components/LazyImg';
 import { photography } from '../../../../../../data';
 
 
-class Galleries extends Component {
-  render() {
-    const isGallery = this.props.params && this.props.params.category && true;
-    const title = isGallery ? photography.portfolio.categories[this.props.params.category].title : photography.portfolio.title;
-    const galleries = isGallery ? photography.portfolio.categories[this.props.params.category].galleries : photography.portfolio.categories;
+const Galleries = ({ location, params }) => {
+  const isGallery = params && params.category && true;
+  const title = isGallery ? photography.portfolio.categories[params.category].title : photography.portfolio.title; // eslint-disable-line max-len
+  const galleries = isGallery ? photography.portfolio.categories[params.category].galleries : photography.portfolio.categories; // eslint-disable-line max-len
 
-    let i = 0;
+  return (
+    <div>
 
-    return (
-      <div>
+      <Helmet title={title} />
 
-        <Helmet title={title}/>
+      <ul className='galleries'>
 
-        <ul className='galleries'>
+        { Object.keys(galleries).map((slug, i) => {
+          const gallery = galleries[slug];
+          const src350 = require(`../../../../../images/${photography.portfolio.images[gallery.featured].filename}-350x350.jpg`); // eslint-disable-line global-require, max-len
+          const src700 = require(`../../../../../images/${photography.portfolio.images[gallery.featured].filename}-700x700.jpg`); // eslint-disable-line global-require, max-len
+          return (
+            <li key={i}>
+              <Link to={`${location.pathname}${slug}/`}>
+                <LazyImg src={src350} srcSet={`${src350} 1x, ${src700} 2x`} />
+                <span className='name'>{gallery.title}</span>
+              </Link>
+            </li>
+          );
+        }) }
 
-          { Object.keys(galleries).map(slug => {
-            const gallery = galleries[slug];
-            const src350 = require(`../../../../../images/${photography.portfolio.images[gallery.featured].filename}-350x350.jpg`);
-            const src700 = require(`../../../../../images/${photography.portfolio.images[gallery.featured].filename}-700x700.jpg`);
-            i++;
-            return (
-              <li key={i}>
-                <Link to={this.props.location.pathname + slug + '/'}>
-                  <LazyImg src={src350} srcSet={`${src350} 1x, ${src700} 2x`}/>
-                  <span className='name'>{gallery.title}</span>
-                </Link>
-              </li>
-            )
-          }) }
+      </ul>
 
-        </ul>
+    </div>
+  );
+};
 
-      </div>
-    );
-  }
-}
+Galleries.propTypes = {
+  location: locationShape.isRequired,
+  params: PropTypes.object.isRequired,
+};
 
 export default Galleries;

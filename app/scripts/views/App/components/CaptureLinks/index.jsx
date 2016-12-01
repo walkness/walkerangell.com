@@ -1,3 +1,5 @@
+/* globals window */
+
 import React, { Component } from 'react';
 import { routerShape } from 'react-router/lib/PropTypes';
 
@@ -9,10 +11,12 @@ class CaptureLinks extends Component {
   };
 
   componentDidMount() {
-    const container = this.refs.content;
+    const container = this.content;
     const links = container.getElementsByTagName('a');
-    for (const link of links) {
-      link.addEventListener('click', this.handleLinkClick.bind(this))
+    if (links) {
+      Array.from(links).forEach(link => {
+        link.addEventListener('click', this.handleLinkClick.bind(this));
+      });
     }
   }
 
@@ -24,7 +28,7 @@ class CaptureLinks extends Component {
   }
 
   render() {
-    return <div ref='content' {...this.props}/>
+    return <div ref={c => { this.content = c; }} {...this.props} />;
   }
 }
 

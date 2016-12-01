@@ -1,6 +1,9 @@
-var webpack = require('webpack')
-var WebpackDevServer = require('webpack-dev-server')
-var config = require('./webpack.dev.config')
+/* eslint-disable */
+
+require('babel-core/register');
+var webpack = require('webpack');
+var WebpackDevServer = require('webpack-dev-server');
+var config = require('./webpack.dev.config.babel');
 
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,

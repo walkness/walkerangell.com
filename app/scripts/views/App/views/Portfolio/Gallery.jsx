@@ -1,7 +1,9 @@
+/* globals document requestAnimationFrame */
+
 import React, { Component, PropTypes } from 'react';
 import Helmet from 'react-helmet';
-import { Link } from 'react-router';
-import { routerShape } from 'react-router/lib/PropTypes';
+import { routerShape, locationShape } from 'react-router/lib/PropTypes';
+import classNames from 'classnames';
 
 import NavLink from '../../components/NavLink';
 import LazyImg from '../../components/LazyImg';
@@ -9,6 +11,11 @@ import { photography } from '../../../../../../data';
 
 
 class Gallery extends Component {
+
+  static propTypes = {
+    location: locationShape.isRequired,
+    params: PropTypes.object.isRequired,
+  };
 
   static contextTypes = {
     router: routerShape.isRequired,
@@ -19,40 +26,51 @@ class Gallery extends Component {
     this.state = {
       loaded: [],
     };
+    this.advanceImage = this.advanceImage.bind(this);
   }
 
   componentWillMount() {
-    const hash = this.props.location.hash.substring(1);
-    const gallery = photography.portfolio.categories[this.props.params.category].galleries[this.props.params.gallery];
-    if (!hash || gallery.images.indexOf(hash) === -1)
-      this.context.router.replace(Object.assign({}, this.props.location, {hash: `#${gallery.images[0]}`}));
+    const { location, params } = this.props;
+    const hash = location.hash.substring(1);
+    const gallery = photography.portfolio.categories[params.category].galleries[params.gallery];
+    if (!hash || gallery.images.indexOf(hash) === -1) {
+      this.context.router.replace(Object.assign({}, this.props.location, {
+        hash: `#${gallery.images[0]}`,
+      }));
+    }
   }
 
   componentDidMount() {
     this.boundKeyPressHandler = this.handleKeyPress.bind(this);
     document.addEventListener('keydown', this.boundKeyPressHandler);
     const loaded = this.state.loaded;
-    for (const img of this.refs.panel.getElementsByTagName('img')) {
+    Array.from(this.panel.getElementsByTagName('img')).forEach(img => {
       const key = img.dataset.imagekey;
-      if (img.complete && this.state.loaded.indexOf(key) === -1)
+      if (img.complete && this.state.loaded.indexOf(key) === -1) {
         loaded.push(key);
-    }
+      }
+    });
     this.scrollFilmstrip();
-    this.setState({loaded: loaded});
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.location.hash !== this.props.location.hash)
-      this.scrollFilmstrip();
+    this.setState({ loaded }); // eslint-disable-line react/no-did-mount-set-state
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.params.category !== this.props.params.category || nextProps.params.gallery !== this.props.params.gallery) {
-      this.setState({loaded: []});
-      if (!nextProps.location.hash) {
-        const gallery = photography.portfolio.categories[nextProps.params.category].galleries[nextProps.params.gallery];
-        this.context.router.push(Object.assign({}, nextProps.location, {hash: `#${gallery.images[0]}`}));
+    if (
+      nextProps.params.category !== this.props.params.category ||
+      nextProps.params.gallery !== this.props.params.gallery
+    ) {
+      this.setState({ loaded: [] });
+      const { location, params } = nextProps;
+      if (!location.hash) {
+        const gallery = photography.portfolio.categories[params.category].galleries[params.gallery];
+        this.context.router.push(Object.assign({}, location, { hash: `#${gallery.images[0]}` }));
       }
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.hash !== this.props.location.hash) {
+      this.scrollFilmstrip();
     }
   }
 
@@ -61,11 +79,13 @@ class Gallery extends Component {
   }
 
   advanceImage(i) {
-    const images = photography.portfolio.categories[this.props.params.category].galleries[this.props.params.gallery].images;
-    const current = this.props.location.hash.substring(1);
+    const { location } = this.props;
+    const { category, gallery } = this.props.params;
+    const images = photography.portfolio.categories[category].galleries[gallery].images;
+    const current = location.hash.substring(1);
     const currentIndex = images.indexOf(current);
-    let nextIndex = (((currentIndex + i) % images.length) + images.length) % images.length;
-    this.context.router.push(Object.assign({}, this.props.location, {hash: `#${images[nextIndex]}`}));
+    const nextIndex = (((currentIndex + i) % images.length) + images.length) % images.length;
+    this.context.router.push(Object.assign({}, location, { hash: `#${images[nextIndex]}` }));
   }
 
   handleKeyPress(e) {
@@ -77,42 +97,43 @@ class Gallery extends Component {
   }
 
   scrollFilmstrip() {
-    const filmstripWidth = this.refs.filmstrip.getBoundingClientRect().width;
-    const currentImage = this.refs.filmstrip.getElementsByClassName('current')[0];
-    const currentImageRect = currentImage.getBoundingClientRect();
+    const filmstripWidth = this.filmstrip.getBoundingClientRect().width;
+    const currentImage = this.filmstrip.getElementsByClassName('current')[0];
     const left = currentImage.offsetLeft;
     const currentImageWidth = currentImage.offsetWidth;
-    const center = left + currentImageWidth / 2;
+    const center = left + (currentImageWidth / 2);
     const filmstripCenter = filmstripWidth / 2;
     const scroll = Math.max(Math.round(center - filmstripCenter), 0);
-    if (scroll !== this.refs.filmstrip.scrollLeft)
+    if (scroll !== this.filmstrip.scrollLeft) {
       this.scrollFilmstripWithOffset(scroll);
+    }
   }
 
-  scrollFilmstripWithOffset(offset, scrollDuration=200, finished=()=>{}) {
-    const element = this.refs.filmstrip;
+  scrollFilmstripWithOffset(offset, scrollDuration = 200, finished = () => {}) {
+    const element = this.filmstrip;
     const scrollWidth = element.scrollLeft;
     const scrollStep = Math.PI / (scrollDuration / 15);
     const cosParameter = (offset - scrollWidth) / 2;
     const numIterations = Math.ceil(scrollDuration / 15, 1);
     let scrollCount = 0;
     let scrollMargin;
-    requestAnimationFrame(step);
     function step() {
-      setTimeout(function() {
+      setTimeout(function () { // eslint-disable-line prefer-arrow-callback
         if (scrollCount < numIterations) {
           requestAnimationFrame(step);
           scrollCount++;
-          if (scrollCount === numIterations)
+          if (scrollCount === numIterations) {
             scrollMargin = cosParameter * 2;
-          else
-            scrollMargin = cosParameter - cosParameter * Math.cos(scrollCount * scrollStep);
+          } else {
+            scrollMargin = cosParameter - (cosParameter * Math.cos(scrollCount * scrollStep));
+          }
           element.scrollLeft = scrollMargin + scrollWidth;
         } else {
           finished();
         }
       }, 15);
     }
+    requestAnimationFrame(step);
   }
 
   render() {
@@ -124,70 +145,89 @@ class Gallery extends Component {
     return (
       <div className='gallery centered-vertically centered-horizontally'>
 
-        <Helmet title={`${gallery.title} | ${category.title}`}/>
+        <Helmet title={`${gallery.title} | ${category.title}`} />
 
         <div className='container'>
           <ol className='breadcrumb'>
-            <NavLink to={`/photography/${this.props.params.category}/`} indexOnly={true}>
+
+            <NavLink to={`/photography/${this.props.params.category}/`} indexOnly>
               {category.title}
             </NavLink>
-            <NavLink to={`/photography/${this.props.params.category}/${this.props.params.gallery}/`} noLinkActive={true}>
+
+            <NavLink
+              to={`/photography/${this.props.params.category}/${this.props.params.gallery}/`}
+              noLinkActive
+            >
               {gallery.title}
             </NavLink>
+
           </ol>
         </div>
 
-        <ul ref='panel' className='panel'>
+        <ul ref={c => { this.panel = c; }} className='panel'>
 
           { gallery.images.map(key => {
             const image = photography.portfolio.images[key];
+
+            /* eslint-disable global-require */
             const src830 = require(`../../../../../images/${image.filename}-830x830.jpg`);
             const src1640 = require(`../../../../../images/${image.filename}-1640x1640.jpg`);
             const src3280 = require(`../../../../../images/${image.filename}-3280x3280.jpg`);
-            const size = require(`image-size?name=images/[name].[ext]!../../../../../images/${image.filename}-1640x1640.jpg`)
+            const size = require(`image-size?name=images/[name].[ext]!../../../../../images/${image.filename}-1640x1640.jpg`); // eslint-disable-line max-len
+            /* eslint-enable global-require */
             return (
-              <li key={key} className={`gallery-image${ current === key ? ' current' : '' }`}>
+              <li
+                key={key}
+                className={classNames('gallery-image', { current: current === key })}
+              >
                 <LazyImg
-                  onLoad={(e) => this.setState({loaded: [...loaded, key]})}
+                  onLoad={() => this.setState({ loaded: [...loaded, key] })}
                   width={size.width}
                   height={size.height}
                   src={src1640}
                   srcSet={`${src830} 830w, ${src1640} 1640w, ${src3280} 3280w`}
                   sizes='(min-width: 769px) calc(100vw - 291px), 100vw'
                   alt={key}
-                  data-imagekey={key}/>
+                  data-imagekey={key}
+                />
               </li>
-            )
+            );
           }) }
 
-          <button className='next' onClick={this.advanceImage.bind(this, 1)}>Next</button>
-          <button className='previous' onClick={this.advanceImage.bind(this, -1)}>Previous</button>
+          <button className='next' onClick={() => this.advanceImage(1)}>Next</button>
+          <button className='previous' onClick={() => this.advanceImage(-1)}>Previous</button>
 
         </ul>
 
-        <ul className='filmstrip' ref='filmstrip'>
+        <ul className='filmstrip' ref={c => { this.filmstrip = c; }}>
 
           { gallery.images.map(key => {
             const image = photography.portfolio.images[key];
+            /* eslint-disable global-require */
             const src50 = require(`../../../../../images/${image.filename}-x50.jpg`);
             const src830 = require(`../../../../../images/${image.filename}-830x830.jpg`);
             const src1640 = require(`../../../../../images/${image.filename}-1640x1640.jpg`);
             const src3280 = require(`../../../../../images/${image.filename}-3280x3280.jpg`);
+            /* eslint-enable global-require */
             return (
               <li
                 key={key}
-                className={`gallery-image${ current === key ? ' current' : '' }`}
-                onClick={(e) => this.context.router.push(Object.assign({}, this.props.location, {hash: `#${key}`}))}>
+                className={classNames('gallery-image', { current: current === key })}
+                onClick={() => this.context.router.push(Object.assign({}, this.props.location, {
+                  hash: `#${key}`,
+                }))}
+              >
                 { loaded.indexOf(key) === -1 ?
-                  <LazyImg src={src50} className='placeholder'/>
+                  <LazyImg src={src50} className='placeholder' />
                 :
                   <LazyImg
                     src={src1640}
                     srcSet={`${src830} 830w, ${src1640} 1640w, ${src3280} 3280w`}
-                    sizes='(min-width: 769px) calc(100vw - 291px), 100vw'/>
+                    sizes='(min-width: 769px) calc(100vw - 291px), 100vw'
+                  />
                 }
               </li>
-            )
+            );
           }) }
 
         </ul>

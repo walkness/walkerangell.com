@@ -1,4 +1,7 @@
-import React, { Component, PropTypes } from 'react';
+/* globals XMLHttpRequest */
+
+import React, { Component } from 'react';
+import { locationShape } from 'react-router/lib/PropTypes';
 import Helmet from 'react-helmet';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Formsy from 'formsy-react';
@@ -7,7 +10,11 @@ import PageHeader from '../../components/PageHeader';
 import { Input, TextArea, SubmitButton } from '../../components/Forms';
 
 
-class Directions extends Component {
+class Contact extends Component {
+
+  static propTypes = {
+    location: locationShape.isRequired,
+  };
 
   constructor(props, context) {
     super(props, context);
@@ -18,25 +25,34 @@ class Directions extends Component {
       success: props.location && props.location.hash === '#success',
     };
     this.submitUrl = 'https://formspree.io/hello@walkerangell.com';
+    this.onValidSubmit = this.onValidSubmit.bind(this);
   }
 
-  onValidSubmit(data, resetForm, invalidateForm) {
-    this.setState({isSubmitting: true}, () => {
+  onValidSubmit(data, resetForm) {
+    this.setState({ isSubmitting: true }, () => {
       const oReq = new XMLHttpRequest();
 
       oReq.onreadystatechange = (e) => {
         if (oReq.readyState === 4) {
           if (oReq.status === 200) {
             resetForm();
-            this.setState({success: true, error: false, isSubmitting: false});
+            this.setState({
+              success: true,
+              error: false,
+              isSubmitting: false,
+            });
           } else {
             console.warn(e.target.response);
-            this.setState({error: true, success: false, isSubmitting: false})
+            this.setState({
+              error: true,
+              success: false,
+              isSubmitting: false,
+            });
           }
         }
-      }
+      };
 
-      oReq.open('POST', this.submitUrl)
+      oReq.open('POST', this.submitUrl);
 
       oReq.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
       oReq.setRequestHeader('Accept', 'application/json');
@@ -51,23 +67,27 @@ class Directions extends Component {
     return (
       <div className='container'>
 
-        <Helmet title='Contact'/>
+        <Helmet title='Contact' />
 
-        <PageHeader title='Contact'/>
+        <PageHeader title='Contact' />
 
         <div
           className='body'
-          dangerouslySetInnerHTML={{__html: require('../../../../../../data/content/contact/index.md')}}/>
+          dangerouslySetInnerHTML={{ __html: require('../../../../../../data/content/contact/index.md') }}  // eslint-disable-line global-require, max-len
+        />
 
         <ReactCSSTransitionGroup
           transitionName='slide-down'
           transitionEnterTimeout={300}
-          transitionLeaveTimeout={300}>
+          transitionLeaveTimeout={300}
+        >
           { error ?
             <div key='error' className='alert alert-danger'>
               <strong>Error: </strong>An unknown error occurred. Please try again.
             </div>
-          : success ?
+          : null }
+
+          { !error && success ?
             <div key='success' className='alert alert-success'>
               <strong>Thanks for your message!</strong> I'll get back to you soon.
             </div>
@@ -78,17 +98,19 @@ class Directions extends Component {
           className='contact-form form'
           action={this.submitUrl}
           method='POST'
-          onValid={() => this.setState({formValid: true})}
-          onInvalid={() => this.setState({formValid: false})}
-          onValidSubmit={this.onValidSubmit.bind(this)}
-          noValidate>
+          onValid={() => this.setState({ formValid: true })}
+          onInvalid={() => this.setState({ formValid: false })}
+          onValidSubmit={this.onValidSubmit}
+          noValidate
+        >
 
           <div className='row'>
 
             <fieldset className='details'>
               <Input
                 name='name'
-                label='Name'/>
+                label='Name'
+              />
 
               <Input
                 type='email'
@@ -98,15 +120,17 @@ class Directions extends Component {
                 validationErrors={{
                   isEmail: 'Must be a valid email.',
                 }}
-                required/>
+                required
+              />
 
               <Input
                 name='tel'
                 label='Phone'
                 validations={{
-                  matchRegexp: /^\+?[\d\(\)\s\.\-]{10,20}$/
+                  matchRegexp: /^\+?[\d()\s.-]{10,20}$/,
                 }}
-                validationError='Must be a valid phone number.'/>
+                validationError='Must be a valid phone number.'
+              />
             </fieldset>
 
             <TextArea
@@ -114,20 +138,23 @@ class Directions extends Component {
               name='message'
               label='Message'
               rows={8}
-              required/>
+              required
+            />
 
           </div>
 
           <Input
             name='_gotcha'
-            style={{display: 'none'}}/>
+            style={{ display: 'none' }}
+          />
 
           <input type='hidden' name='_next' value='http://walkerangell.com/contact/#success' />
 
           <SubmitButton
             className='pull-right'
             enabled={formValid}
-            isSubmitting={isSubmitting}/>
+            isSubmitting={isSubmitting}
+          />
 
         </Formsy.Form>
 
@@ -136,4 +163,4 @@ class Directions extends Component {
   }
 }
 
-export default Directions;
+export default Contact;

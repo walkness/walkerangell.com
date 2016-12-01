@@ -77,9 +77,9 @@ module.exports = {
     },
 
     products: {
-      website: {title: 'Website'},
-      webapp: {title: 'Web Application'},
-      ios: {title: 'iOS Application'},
+      website: { title: 'Website' },
+      webapp: { title: 'Web Application' },
+      ios: { title: 'iOS Application' },
     },
 
     technologies: {
@@ -114,10 +114,10 @@ module.exports = {
     },
 
     languages: {
-      js: {title: 'JavaScript'},
-      swift: {title: 'Swift 2'},
-      php: {title: 'PHP'},
-      python: {title: 'Python'},
+      js: { title: 'JavaScript' },
+      swift: { title: 'Swift 2' },
+      php: { title: 'PHP' },
+      python: { title: 'Python' },
     },
 
     hosting: {
@@ -140,9 +140,22 @@ module.exports = {
 
     sectionTitle: 'Photography',
 
-    portfolio: require('./portfolio'),
+    portfolio: require('./portfolio'), // eslint-disable-line global-require
   },
 
-  monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+  monthNames: [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ],
 
-}
+};

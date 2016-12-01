@@ -1,21 +1,18 @@
-import React, { PropTypes } from 'react';
-import data from '../../../../../../data';
+import React from 'react';
 
 
-const Footer = ({}) => {
-  return (
-    <footer id='colophon' className='site-footer' role='contentinfo'>
+const Footer = () => (
+  <footer id='colophon' className='site-footer' role='contentinfo'>
 
-      <div id='supplementary'>
+    <div id='supplementary'>
 
-        <div id='footer-content' className='footer-content widget-area' role='complementary'>
-          All site content and images copyright &copy;{ new Date().getFullYear() } by Walker Angell.
-        </div>
-
+      <div id='footer-content' className='footer-content widget-area' role='complementary'>
+        All site content and images copyright &copy;{ new Date().getFullYear() } by Walker Angell.
       </div>
 
-    </footer>
-  )
-}
+    </div>
+
+  </footer>
+);
 
 export default Footer;
