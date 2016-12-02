@@ -118,6 +118,15 @@
             border-color: darken($hover-color, 5%);
           }
         }
+
+        &.github > a {
+          background-image: icon(github, $color);
+
+          &:hover {
+            background-color: $hover-color;
+            border-color: darken($hover-color, 5%);
+          }
+        }
       }
     }
   }

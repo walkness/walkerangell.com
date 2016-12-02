@@ -13,6 +13,10 @@ module.exports = {
       title: 'LinkedIn',
       link: 'https://www.linkedin.com/in/wangell',
     },
+    github: {
+      title: 'GitHub',
+      link: 'https://github.com/walkness',
+    },
   },
 
   development: {
