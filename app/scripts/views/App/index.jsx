@@ -33,16 +33,13 @@ class App extends Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
+    window.typekitLoaded = this.typekitLoaded.bind(this);
     if ('mixBlendMode' in document.body.style) {
       document.documentElement.className += ' can-blend';
     } else {
       document.documentElement.className += ' no-blend';
     }
-  }
-
-  componentDidMount() {
-    window.typekitLoaded = this.typekitLoaded.bind(this);
   }
 
   typekitLoaded() {
