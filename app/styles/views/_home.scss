@@ -36,24 +36,23 @@
     a {
       color: #fff;
       position: relative;
+      white-space: nowrap;
 
-      @media (min-width: 412px) {
+      &::after {
+        content: ' ';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: #fff;
+        transition: all 100ms ease-in;
+      }
+
+      &:hover {
         &::after {
-          content: ' ';
-          position: absolute;
-          bottom: -3px;
-          left: 0;
-          right: 0;
-          height: 1px;
-          background-color: #fff;
-          transition: all 100ms ease-in;
-        }
-
-        &:hover {
-          &::after {
-            background-color: $brand-primary;
-            height: 3px;
-          }
+          background-color: $brand-primary;
+          height: 3px;
         }
       }
     }
