@@ -126,6 +126,15 @@
             border-color: darken($hover-color, 5%);
           }
         }
+
+        &.instagram > a {
+          background-image: icon(instagram, $color);
+
+          &:hover {
+            background-color: $hover-color;
+            border-color: darken($hover-color, 5%);
+          }
+        }
       }
     }
   }

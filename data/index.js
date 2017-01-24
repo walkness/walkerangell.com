@@ -17,6 +17,10 @@ module.exports = {
       title: 'GitHub',
       link: 'https://github.com/walkness',
     },
+    instagram: {
+      title: 'Instagram',
+      link: 'https://www.instagram.com/walkandalie/',
+    },
   },
 
   development: {
@@ -24,6 +28,16 @@ module.exports = {
     sectionTitle: 'Development',
 
     projects: {
+      intranet: {
+        name: 'Corporate Intranet',
+        shortName: 'Intranet',
+        link: null,
+        screenshot: 'development/intranet',
+        launchDate: new Date(2016, 11, 1),
+        primaryColor: [190, 28, 45],
+        technologies: ['react', 'django', 'sass'],
+        hosting: ['webfaction', 'aws'],
+      },
       nearbysupply: {
         name: 'Nearby Supply',
         link: 'http://nearby.supply/',
@@ -35,6 +49,7 @@ module.exports = {
       },
       idj: {
         name: 'Ivone, Devine & Jensen',
+        shortName: 'IDJ',
         link: 'http://www.idjllp.com/',
         screenshot: 'development/idj',
         launchDate: new Date(2016, 7, 1),
@@ -53,6 +68,7 @@ module.exports = {
       },
       nbngroup: {
         name: 'The NBN Group',
+        shortName: 'NBN',
         link: 'http://nothingbutnav.com/',
         screenshot: 'development/nbngroup',
         launchDate: new Date(2015, 11, 24),
@@ -62,6 +78,7 @@ module.exports = {
       },
       personal: {
         name: 'Personal Site',
+        shortName: 'Personal',
         link: 'http://walkerangell.com/',
         screenshot: 'development/personal',
         launchDate: new Date(2014, 10, 30),
@@ -75,7 +92,7 @@ module.exports = {
         screenshot: 'development/forinstants',
         launchDate: new Date(2010, 9, 27),
         primaryColor: [52, 60, 39],
-        technologies: ['wordpress', 'jquery', 'sass'],
+        technologies: ['react', 'wordpress', 'sass'],
         hosting: ['linode', 'aws'],
       },
     },

@@ -76,6 +76,7 @@ class Development extends Component {
 
   componentDidMount() {
     this.setProjectOffsets();
+    setTimeout(() => this.setProjectOffsets(), 500);
     this.handleScroll();
     this.boundScrollHandler = this.handleScroll.bind(this);
     this.boundResizeHandler = this.handleResize.bind(this);
@@ -212,7 +213,7 @@ class Development extends Component {
                           state: { userScroll: false },
                         })}
                       >
-                        {project.name}
+                        {project.shortName || project.name}
                       </Link>
                     </li>
                   );

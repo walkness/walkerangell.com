@@ -1,0 +1,3 @@
+[submodule "app/scripts/views/App/components/NavLink"]
+	path = app/scripts/views/App/components/NavLink
+	url = https://github.com/walkness/react-nav-link.git
