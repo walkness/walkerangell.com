@@ -14,16 +14,16 @@
       background: linear-gradient(to bottom, transparent 0%, rgba(darken(#a54b0d, 10%), .8) 75%);
     }
 
-    @media (min-height: 1100px) {
+    @media (min-height: (1100px/16px * 1rem)) {
       top: 62%;
     }
 
     > .container {
-      width: 800px;
       margin-left: 0;
       margin-right: 0;
 
-      @media (min-width: $screen-sm-min) {
+      @include media-breakpoint-up(sm) {
+        width: (800px/16px * 1rem);
         padding-left: 11.5vh;
         padding-right: 11.5vh;
       }
@@ -34,6 +34,7 @@
     }
 
     a {
+      $underline-height: (3px/16px) * 1em;
       color: #fff;
       position: relative;
       white-space: nowrap;
@@ -41,7 +42,7 @@
       &::after {
         content: ' ';
         position: absolute;
-        bottom: -3px;
+        bottom: -$underline-height;
         left: 0;
         right: 0;
         height: 1px;
@@ -52,7 +53,7 @@
       &:hover {
         &::after {
           background-color: $brand-primary;
-          height: 3px;
+          height: $underline-height;
         }
       }
     }
@@ -78,21 +79,21 @@
       display: inline-block;
       margin-bottom: 0;
       vertical-align: middle;
-      margin-left: 10px;
-      margin-bottom: -5px;
+      margin-left: (10px/16px * 1rem);
+      margin-bottom: (-5px/16px * 1rem);
 
       > .social-link {
         $color: #fff;
         $hover-color: $brand-primary;
-        margin-left: 5px;
-        margin-right: 5px;
+        margin-left: (5px/16px * 1rem);
+        margin-right: (5px/16px * 1rem);
 
         > a {
           background-color: transparent;
           border-radius: 50%;
           border: 1px transparent solid;
-          width: $line-height-computed + $padding-base-vertical * 2 + 2px;
-          height: $line-height-computed + $padding-base-vertical * 2 + 2px;
+          width: ($line-height-base * $font-size-base) + (14px/16px) * 1rem;
+          height: ($line-height-base * $font-size-base) + (14px/16px) * 1rem;
           transition: all 150ms ease-in;
 
           &::after {
@@ -147,10 +148,14 @@ section {
       @include list-unstyled;
 
       > .project {
-        @include make-md-column(4);
+        @include make-col-ready;
         position: relative;
-        padding-top: $grid-gutter-width / 2;
-        padding-bottom: $grid-gutter-width / 2;
+        padding-top: $grid-gutter-width-base / 2;
+        padding-bottom: $grid-gutter-width-base / 2;
+
+        @include media-breakpoint-up(md) {
+          @include make-col(4);
+        }
 
         > a {
 

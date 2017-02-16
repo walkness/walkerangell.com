@@ -150,11 +150,16 @@ class Gallery extends Component {
         <div className='container'>
           <ol className='breadcrumb'>
 
-            <NavLink to={`/photography/${this.props.params.category}/`} indexOnly>
+            <NavLink
+              liClassName='breadcrumb-item'
+              to={`/photography/${this.props.params.category}/`}
+              indexOnly
+            >
               {category.title}
             </NavLink>
 
             <NavLink
+              liClassName='breadcrumb-item'
               to={`/photography/${this.props.params.category}/${this.props.params.gallery}/`}
               noLinkActive
             >

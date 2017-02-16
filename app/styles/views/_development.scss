@@ -2,33 +2,34 @@
 
   .projects-header,
   .projects-header-spacer {
-    height: 50px;
+    height: (50px/16px * 1rem);
     // margin-bottom: $grid-gutter-width / 2;
   }
 
   .projects-header {
+    @include clearfix;
     border-bottom: 1px solid $gray-lighter;
 
     h2,
     .nav {
-      display: inline-block;
+      float: left;
       vertical-align: bottom;
     }
 
     h2 {
       line-height: 1;
-      margin-top: 5px;
+      margin-top: (5px/16px * 1rem);
     }
 
     .nav {
       display: none;
-      margin-bottom: 4.5px;
-      margin-left: 30px;
+      margin-top: (4px/16px * 1rem);
+      margin-left: (30px/16px * 1rem);
     }
 
-    @media (min-width: $screen-md-min) {
+    @include media-breakpoint-up(lg) {
       .nav {
-        display: inline-block;
+        display: flex;
       }
 
       &.fixed {
@@ -37,7 +38,7 @@
         left: 0;
         background-color: #fff;
         width: 100%;
-        z-index: $zindex-navbar-fixed;
+        z-index: $zindex-fixed;
 
         & + .projects-header-spacer {
           display: block;
@@ -51,51 +52,62 @@
   }
 
   .project {
-    padding: ($line-height-computed * 5) 0;
+    padding: 7rem 0;
     border-bottom: 1px solid $gray-lighter;
 
+    .content,
+    .screenshot {
+      @include make-col-ready;
+    }
+
     .content {
-      @include make-sm-column(7);
+      @include media-breakpoint-up(sm) {
+        @include make-col(7);
+      }
 
       h3 {
         text-transform: uppercase;
         margin-top: 0;
       }
 
-      .label {
+      .badge {
         font-size: 85%;
         font-weight: normal;
-        padding: 2px 7px 1px;
-        margin-right: 10px;
-        margin-bottom: 1px;
+        margin-right: (10px/16px) * 1rem;
+        margin-bottom: (1px/16px) * 1rem;
       }
 
       .technologies,
       .hosting {
-        @include make-md-column(6);
-        margin-top: $grid-gutter-width / 2;
-        margin-bottom: $grid-gutter-width / 2;
+        @include make-col-ready;
+        margin-top: $grid-gutter-width-base / 2;
+        margin-bottom: $grid-gutter-width-base / 2;
+
+        @include media-breakpoint-up(md) {
+          @include make-col(6);
+        }
 
         > p {
           background-size: auto 100%;
           background-repeat: no-repeat;
           background-position: left center;
-          padding-left: $line-height-computed + 5px;
+          padding-left: ($line-height-base * $font-size-base) + ((5px/16px) * 1rem);
         }
 
         > ul {
+          $spacing-x: (2px/16px) * 1em;
+          $spacing-y: (6px/16px) * 1em;
           @include list-unstyled;
-          margin-left: -2px;
-          margin-right: -2px;
+          margin: (-$spacing-y) (-$spacing-x);
 
           > li {
             display: inline-block;
-            margin: 0 2px;
+            margin: $spacing-y $spacing-x;
 
             > a {
-              padding: ($padding-small-vertical / 2) $padding-small-horizontal;
+              padding: (((5px / 2) / 16px) * 1rem) (10px/16px) * 1rem;
               border: 1px solid $gray-lighter;
-              border-radius: $border-radius-base;
+              border-radius: $border-radius;
               transition: all 150ms ease-in;
 
               &:hover {
@@ -108,16 +120,18 @@
       }
 
       .technologies > p {
-        background-image: icon(code, $text-color);
+        background-image: icon(code, $body-color);
       }
 
       .hosting > p {
-        background-image: icon(server, $text-color);
+        background-image: icon(server, $body-color);
       }
     }
 
     .screenshot {
-      @include make-sm-column(5);
+      @include media-breakpoint-up(sm) {
+        @include make-col(5);
+      }
 
       img {
         width: 100%;

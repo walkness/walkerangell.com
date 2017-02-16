@@ -8,7 +8,8 @@ import { Router, browserHistory, createMemoryHistory, applyRouterMiddleware } fr
 import useScroll from 'react-router-scroll';
 import Helmet from 'react-helmet';
 import ga from 'react-ga';
-import 'bootstrap-loader';
+
+import '../styles/main.scss';
 
 import Html from './views/Html';
 import routes from './config/routes';

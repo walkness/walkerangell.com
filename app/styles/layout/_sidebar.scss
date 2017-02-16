@@ -1,5 +1,5 @@
 #sidebar {
-  padding: 0 $grid-gutter-width / 2;
+  padding: 0 $grid-gutter-width-base / 2;
 
   a {
     color: $sidebar-link-color;
@@ -12,7 +12,7 @@
   @media (min-width: $sidebar-breakpoint) {
     width: $sidebar-width;
     float: left;
-    padding-top: 15px;
+    padding-top: (15px/16px * 1rem);
     border-bottom: 0;
 
     &.sidebar-enter {
@@ -23,16 +23,16 @@
 
       &.sidebar-enter-active {
         width: $sidebar-width;
-        padding-left: $grid-gutter-width / 2;
-        padding-right: $grid-gutter-width / 2;
+        padding-left: $grid-gutter-width-base / 2;
+        padding-right: $grid-gutter-width-base / 2;
         transition: all 150ms ease-in;
       }
     }
 
     &.sidebar-leave {
       width: $sidebar-width;
-      padding-left: $grid-gutter-width / 2;
-      padding-right: $grid-gutter-width / 2;
+      padding-left: $grid-gutter-width-base / 2;
+      padding-right: $grid-gutter-width-base / 2;
       white-space: nowrap !important;
 
       &.sidebar-leave-active {
@@ -54,7 +54,7 @@
 
   &.not-collapsed {
     visibility: visible;
-    max-height: 300px;
+    max-height: (300px/16px * 1rem);
     transition-delay: 0ms;
   }
 
@@ -71,7 +71,7 @@
 ul {
 
   &.menu {
-    $link-spacing: 8px;
+    $link-spacing: (8px/16px * 1rem);
     font-weight: 300;
 
     &,
@@ -83,7 +83,7 @@ ul {
 
     ul {
       font-size: 0.85em;
-      padding-top: 15px;
+      padding-top: (15px/16px * 1rem);
       padding-bottom: $link-spacing;
     }
 

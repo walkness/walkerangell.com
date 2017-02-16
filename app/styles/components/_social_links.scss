@@ -2,7 +2,7 @@
   @include list-unstyled;
 
   > .social-link {
-    $size: 40px;
+    $size: (40px/16px) * 1rem;
     $color: #fff;
     $hover-color: darken(#fff, 25%);
     display: inline-block;

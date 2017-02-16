@@ -30,7 +30,7 @@ class Header extends Component {
 
           <nav>
 
-            <IndexLink to='/' className='site-title visible-xs' activeClassName='active'>
+            <IndexLink to='/' className='site-title hidden-sm-up' activeClassName='active'>
               Walker Angell
             </IndexLink>
 
@@ -38,7 +38,7 @@ class Header extends Component {
               Development
             </Link>
 
-            <IndexLink to='/' className='site-title hidden-xs' activeClassName='active'>
+            <IndexLink to='/' className='site-title hidden-xs-down' activeClassName='active'>
               Walker Angell
             </IndexLink>
 

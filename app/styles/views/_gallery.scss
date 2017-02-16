@@ -1,15 +1,15 @@
 $filmstrip-spacing: 1px;
-$filmstrip-height: 100px;
-$arrow-padding: 10px;
+$filmstrip-height: (100px/16px * 1rem);
+$arrow-padding: (10px/16px * 1rem);
 
 .gallery {
-  max-width: 2000px;
+  max-width: (2000px/16px * 1rem);
 
   @media (min-width: $sidebar-breakpoint) {
     max-width: calc(155vh - #{$sidebar-width});
     margin-left: auto;
     margin-right: auto;
-    padding-right: $grid-gutter-width / 2;
+    padding-right: $grid-gutter-width-base / 2;
 
     .breadcrumb {
       display: none;
@@ -71,7 +71,7 @@ $arrow-padding: 10px;
         z-index: 1010;
         cursor: pointer;
         background-repeat: no-repeat;
-        background-size: 25px;
+        background-size: (25px/16px * 1rem);
         background-color: transparent;
         border: none;
         opacity: 0;
@@ -111,7 +111,7 @@ $arrow-padding: 10px;
 
     &.filmstrip {
       @include list-unstyled;
-      height: $filmstrip-height + 15px;
+      height: $filmstrip-height + (15px/16px * 1rem);
       margin: $filmstrip-spacing 0 0;
       max-width: 100%;
       white-space: nowrap;
@@ -172,6 +172,16 @@ $arrow-padding: 10px;
           right: 0;
         }
       }
+    }
+  }
+}
+
+#photo-nav {
+  .nav-item {
+    padding: 0;
+    .nav-link {
+      padding-left: 0;
+      padding-right: 0;
     }
   }
 }

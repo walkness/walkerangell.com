@@ -1,3 +1,6 @@
 [submodule "app/scripts/views/App/components/NavLink"]
 	path = app/scripts/views/App/components/NavLink
 	url = https://github.com/walkness/react-nav-link.git
+[submodule "app/scripts/views/App/components/Forms"]
+	path = app/scripts/views/App/components/Forms
+	url = https://github.com/walkness/react-formsy-bootstrap-components.git

@@ -1,4 +1,4 @@
-$image-spacing: 15px;
+$image-spacing: (15px/16px * 1rem);
 
 ul {
   &.categories, 
@@ -6,25 +6,29 @@ ul {
     @include make-row;
     @include list-unstyled;
 
-    @media (max-width: $grid-float-breakpoint - 1px) {
+    @include media-breakpoint-down(sm) {
       margin-left: 0;
       margin-right: 0;
     }
 
-    @media (min-width: $grid-float-breakpoint) {
+    @include media-breakpoint-up(sm) {
       margin-right: 0;
     }
 
     > li {
-      @include make-sm-column(4);
-      @include make-lg-column(3);
-      margin-top: $grid-gutter-width / 2;
-      margin-bottom: $grid-gutter-width / 2;
-      height: 200px;
+      @include make-col-ready;
+      margin-top: $grid-gutter-width-base / 2;
+      margin-bottom: $grid-gutter-width-base / 2;
+      height: (200px/16px * 1rem);
       overflow: hidden;
 
-      @media (min-width: $grid-float-breakpoint) {
+      @include media-breakpoint-up(sm) {
+        @include make-col(4);
         height: auto;
+      }
+
+      @include media-breakpoint-up(lg) {
+        @include make-col(3);
       }
 
       > a {
@@ -33,7 +37,7 @@ ul {
         height: 100%;
 
         > .name {
-          padding: 10px;
+          padding: (10px/16px * 1rem);
           position: absolute;
           left: 50%;
           top: 50%;

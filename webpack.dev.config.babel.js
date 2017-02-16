@@ -44,10 +44,7 @@ config.module.loaders.push(
   {
     test: /\.scss$/,
     include: path.join(__dirname, 'app'),
-    loader: ExtractTextPlugin.extract(
-      'style-loader',
-      'css-loader!postcss-loader!sass-loader!sass-resources-loader'
-    ),
+    loader: 'style-loader!css-loader!postcss-loader!sass-loader',
   }
 );
 

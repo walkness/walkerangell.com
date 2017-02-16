@@ -16,14 +16,14 @@ const Home = () => (
 
     <section className='intro'>
 
-      <div className='jumbotron'>
+      <div className='jumbotron jumbotron-fluid'>
 
         <div className='container'>
 
-          <h1>Hello!</h1>
+          <h1 className='display-3'>Hello!</h1>
 
           <CaptureLinks
-            className='body'
+            className='body lead'
             dangerouslySetInnerHTML={{
               __html: require('../../../../../../data/content/index.md'), // eslint-disable-line global-require, max-len
             }}

@@ -29,11 +29,6 @@ main {
     // border-left: $sidebar-border;
   }
 
-  @media (min-width: $screen-sm-min) {
-    // padding-left: $grid-gutter-width / 2;
-    // padding-right: $grid-gutter-width / 2;
-  }
-
   #app.home & {
     background: none;
     box-shadow: none;

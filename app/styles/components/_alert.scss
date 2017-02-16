@@ -10,17 +10,17 @@
 
     &.slide-down-enter-active {
       transition: $transition;
-      max-height: 100px;
-      padding-top: $alert-padding;
-      padding-bottom: $alert-padding;
+      max-height: 6.25rem;
+      padding-top: $alert-padding-y;
+      padding-bottom: $alert-padding-y;
       border-width: 1px;
     }
   }
 
   &.slide-down-leave {
-    max-height: 100px;
-    padding-top: $alert-padding;
-    padding-bottom: $alert-padding;
+    max-height: 6.25rem;
+    padding-top: $alert-padding-y;
+    padding-bottom: $alert-padding-y;
     border-width: 1px;
 
     &.slide-down-leave-active {

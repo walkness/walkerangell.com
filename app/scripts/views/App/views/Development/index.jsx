@@ -203,11 +203,14 @@ class Development extends Component {
                   return (
                     <li
                       key={slug}
-                      className={classNames({
+                      className={classNames('nav-item', {
                         active: slug === this.props.location.hash.substring(1),
                       })}
                     >
                       <Link
+                        className={classNames('nav-link', {
+                          active: slug === this.props.location.hash.substring(1),
+                        })}
                         to={Object.assign({}, this.props.location, {
                           hash: `#${slug}`,
                           state: { userScroll: false },

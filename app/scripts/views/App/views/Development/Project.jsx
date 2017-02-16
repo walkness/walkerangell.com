@@ -43,7 +43,7 @@ const Project = ({ slug, project }) => {
 
             <p>
               <span
-                className='label'
+                className='badge'
                 style={{ backgroundColor: `rgb(${project.primaryColor.join(', ')})` }}
               >
                 {project.launchDate ?

@@ -124,6 +124,7 @@ class Contact extends Component {
               />
 
               <Input
+                type='tel'
                 name='tel'
                 label='Phone'
                 validations={{
@@ -137,21 +138,21 @@ class Contact extends Component {
               wrapperClasses='message'
               name='message'
               label='Message'
-              rows={8}
+              rows={10}
               required
             />
 
           </div>
 
           <Input
+            type='hidden'
             name='_gotcha'
             style={{ display: 'none' }}
           />
 
-          <input type='hidden' name='_next' value='http://walkerangell.com/contact/#success' />
+          <Input type='hidden' name='_next' value='http://walkerangell.com/contact/#success' />
 
           <SubmitButton
-            className='pull-right'
             enabled={formValid}
             isSubmitting={isSubmitting}
           />

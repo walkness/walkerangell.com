@@ -1,7 +1,7 @@
 #app.resume {
   article.content {
     > section {
-      margin-bottom: $grid-gutter-width * 2;
+      margin-bottom: $grid-gutter-width-base * 2;
 
       &#experience,
       &#education {
@@ -20,7 +20,7 @@
             font-style: italic;
           }
 
-          @media (min-width: $screen-sm-min) {
+          @include media-breakpoint-up(sm) {
             h3 {
               float: left;
               margin-top: 0;
@@ -47,7 +47,7 @@
 
         > ul {
           > li {
-            margin-top: $grid-gutter-width;
+            margin-top: $grid-gutter-width-base;
           }
         }
       }
@@ -55,8 +55,8 @@
 
     .body {
       p + ul {
-        margin-bottom: $line-height-computed / 2;
-        margin-top: - ($line-height-computed / 3);
+        margin-bottom: ($line-height-base * $font-size-base) / 2;
+        margin-top: - (($line-height-base * $font-size-base) / 3);
       }
 
       .redacted {

@@ -18,25 +18,38 @@ form {
 
   &.form-horizontal {
     .form-group {
+      .control-label,
+      .control-wrapper {
+        @include make-col-ready;
+      }
       .control-label {
-        @include make-md-column(3);
         text-align: left;
+
+        @include media-breakpoint-up(md) {
+          @include make-col(3);
+        }
       }
 
       .control-wrapper {
-        @include make-md-column(9);
+        @include media-breakpoint-up(md) {
+          @include make-col(9);
+        }
       }
     }
   }
 
   .alert {
-    margin-top: $line-height-computed;
+    margin-top: $line-height-base * $font-size-base;
   }
 }
 
+.form-control {
+  font-family: $font-family-base;
+}
+
 .btn[type=submit] {
-  margin-top: $line-height-computed;
-  padding: $padding-large-vertical $padding-large-horizontal;
+  margin-top: $line-height-base * $font-size-base;
+  padding: $btn-padding-y-lg $btn-padding-x-lg;
 
   .loader-icon {
     @include loader-color(#fff, $brand-primary);
@@ -49,13 +62,13 @@ form {
     opacity: 1;
 
     .loader-icon {
-      @include loader-size(18px);
-      margin-bottom: -4px;
-      margin-right: $padding-base-horizontal;
+      @include loader-size(1.125rem);
+      margin-bottom: -(4px/16px*1rem);
+      margin-right: $btn-padding-x;
     }
   }
 
-  @media (max-width: $screen-xs-max) {
+  @include media-breakpoint-down(xs) {
     width: 100%;
     display: block;
   }
@@ -63,16 +76,16 @@ form {
 
 .errorlist {
   &.nonfield {
-    margin-bottom: $line-height-computed;
-    padding: 0 $grid-gutter-width / 2;
+    margin-bottom: $line-height-base * $font-size-base;
+    padding: 0 $grid-gutter-width-base / 2;
     list-style-type: none;
 
     li {
       @include alert-variant($alert-danger-bg, $alert-danger-border, $alert-danger-text);
-      margin-bottom: 5px;
+      margin-bottom: (5px/16px) * 1rem;
       border: 1px solid transparent;
       border-radius: $alert-border-radius;
-      padding: $alert-padding;
+      padding: $alert-padding-y $alert-padding-x;
     }
   }
 }

@@ -3,26 +3,26 @@
 
   nav {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: (20px/16px * 1rem);
 
-    @media (min-width: $grid-float-breakpoint) {
-      margin-bottom: 50px;
+    @include media-breakpoint-up(sm) {
+      margin-bottom: (50px/16px * 1rem);
     }
 
     > a {
-      $spacing: 20px;
+      $spacing: (20px/16px * 1rem);
       z-index: $zindex-navbar;
       display: inline-block;
       color: $gray-light;
       font-size: 1.25em;
-      padding: 10px ($spacing / 2);
+      padding: (10px/16px * 1rem) ($spacing / 2);
       margin: 0 $spacing / 2;
       text-transform: lowercase;
       vertical-align: middle;
       position: relative;
       transition: color 150ms ease-in;
 
-      @media (min-width: $grid-float-breakpoint) {
+      @include media-breakpoint-up(sm) {
         padding-top: $spacing;
         padding-bottom: $spacing;
       }
@@ -37,6 +37,10 @@
         font-weight: bold;
         text-transform: none;
 
+        &.hidden-sm-up {
+          display: block;
+        }
+
         &::after {
           display: none;
         }
@@ -44,7 +48,7 @@
 
       &::after {
         content: ' ';
-        height: 3px;
+        height: (3px/16px * 1rem);
         width: 0;
         background-color: $brand-primary;
         position: absolute;
