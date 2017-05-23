@@ -5,17 +5,18 @@ import webpack from 'webpack';
 import Clean from 'clean-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import StaticSiteGeneratorPlugin from 'static-site-generator-webpack-plugin';
-import routes from './data/routes.js';
 
-import config from './webpack.base.config.babel';
+import routes from '../data/routes';
 
-config.output.path = path.resolve('./build');
+import config from './base.config.babel';
+
+config.output.path = path.resolve(__dirname, '../build');
 config.output.filename = 'scripts/[name]-[hash].js';
 config.output.publicPath = '//d2hsdu90o9mztm.cloudfront.net/';
 
 // Add HotModuleReplacementPlugin and BundleTracker plugins
 config.plugins = config.plugins.concat([
-  new Clean(['build']),
+  new Clean([path.resolve(__dirname, '../build')]),
 
   // removes a lot of debugging code in React
   new webpack.DefinePlugin({
@@ -25,11 +26,13 @@ config.plugins = config.plugins.concat([
     },
   }),
 
-  // keeps hashes consistent between compilations
-  new webpack.optimize.OccurenceOrderPlugin(),
-
+  new ExtractTextPlugin({
+    filename: 'styles/[name]-[hash].css',
+    allChunks: true,
+  }),
   // minifies code
   new webpack.optimize.UglifyJsPlugin({
+    sourceMap: true,
     output: {
       comments: false,
     },
@@ -42,23 +45,33 @@ config.plugins = config.plugins.concat([
 ]);
 
 const cssNano = {
-  discardComments: { removeAll: true },
+  autoprefixer: false,
+  discardComments: {
+    removeAll: true,
+  },
 };
 
-config.module.loaders.push(
-  {
-    test: /app\/scripts\/.*\.(js|jsx)$/,
-    exclude: /node_modules|\.tmp|vendor/,
-    loaders: ['babel'],
-  },
+config.module.rules.push(
   {
     test: /\.scss$/,
     exclude: /node_modules|\.tmp|vendor/,
-    loader: ExtractTextPlugin.extract(
-      'style-loader',
-      `css-loader?${JSON.stringify(cssNano)}!postcss-loader!sass-loader!sass-resources-loader`,
-    ),
-  }
+    loader: ExtractTextPlugin.extract({
+      use: [
+        {
+          loader: 'css-loader',
+          options: {
+            minimize: cssNano,
+            importLoaders: 2,
+          },
+        },
+        'postcss-loader',
+        'sass-loader',
+      ],
+      fallback: 'style-loader',
+    }),
+  },
 );
 
-module.exports = config;
+config.devtool = 'source-map';
+
+export default config;

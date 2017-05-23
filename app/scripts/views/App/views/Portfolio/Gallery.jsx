@@ -174,12 +174,11 @@ class Gallery extends Component {
           { gallery.images.map(key => {
             const image = photography.portfolio.images[key];
 
-            /* eslint-disable global-require */
+            /* eslint-disable global-require, import/no-dynamic-require */
             const src830 = require(`../../../../../images/${image.filename}-830x830.jpg`);
             const src1640 = require(`../../../../../images/${image.filename}-1640x1640.jpg`);
             const src3280 = require(`../../../../../images/${image.filename}-3280x3280.jpg`);
-            const size = require(`image-size?name=images/[name].[ext]!../../../../../images/${image.filename}-1640x1640.jpg`); // eslint-disable-line max-len
-            /* eslint-enable global-require */
+            /* eslint-enable global-require, import/no-dynamic-require */
             return (
               <li
                 key={key}
@@ -187,8 +186,6 @@ class Gallery extends Component {
               >
                 <LazyImg
                   onLoad={() => this.setState({ loaded: [...loaded, key] })}
-                  width={size.width}
-                  height={size.height}
                   src={src1640}
                   srcSet={`${src830} 830w, ${src1640} 1640w, ${src3280} 3280w`}
                   sizes='(min-width: 769px) calc(100vw - 291px), 100vw'
