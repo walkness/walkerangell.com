@@ -4,8 +4,11 @@ import os from 'os';
 import path from 'path';
 import webpack from 'webpack';
 import Clean from 'clean-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin';
 
 import config from './base.config.babel';
+import { name as projectName } from '../package.json';
 
 // Use webpack dev server
 config.entry.main = [
@@ -17,7 +20,7 @@ config.entry.main = [
 ];
 
 // Tell django to use this URL to load packages and not use STATIC_URL + bundle_name
-config.output.publicPath = `//${os.hostname()}:3000/app/bundles/`;
+config.output.publicPath = '/';
 
 // Add HotModuleReplacementPlugin and BundleTracker plugins
 config.plugins = config.plugins.concat([
@@ -33,6 +36,15 @@ config.plugins = config.plugins.concat([
       APP_ENV: JSON.stringify('browser'),
     },
   }),
+
+  new HtmlWebpackPlugin({
+    template: 'webpack/index.ejs',
+    inject: true,
+    title: projectName,
+    alwaysWriteToDisk: true,
+  }),
+
+  new HtmlWebpackHarddiskPlugin(),
 ]);
 
 config.module.rules.push(
