@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import { routerShape, locationShape } from 'react-router/lib/PropTypes';
 import Helmet from 'react-helmet';
 import classNames from 'classnames';
+import { throttle } from 'lodash';
 
 import { development } from '../../../../../../data';
 import PageHeader from '../../components/PageHeader';
@@ -78,8 +79,8 @@ class Development extends Component {
     this.setProjectOffsets();
     setTimeout(() => this.setProjectOffsets(), 500);
     this.handleScroll();
-    this.boundScrollHandler = this.handleScroll.bind(this);
-    this.boundResizeHandler = this.handleResize.bind(this);
+    this.boundScrollHandler = throttle(this.handleScroll.bind(this), 100);
+    this.boundResizeHandler = throttle(this.handleResize.bind(this), 500);
     window.addEventListener('scroll', this.boundScrollHandler);
     window.addEventListener('resize', this.boundResizeHandler);
     if (this.props.location.hash && window.scrollY === 0) {
