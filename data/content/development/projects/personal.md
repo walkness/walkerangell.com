@@ -5,7 +5,7 @@ You're currently looking at this site! Initially, I just wanted a simple gallery
 
 #### Development Work
 
-As seems to be the case with many developers, this site has always been a place for me to experiment with different technologies.
+This site has always been a place for me to experiment with different technologies.
 
 Initially, I created a gallery using a custom WordPress theme and custom [NextGEN Gallery](https://wordpress.org/plugins/nextgen-gallery/) plugin. But, that was when I still loved WordPress.
 
