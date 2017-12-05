@@ -7,7 +7,7 @@
     "lint-js": "eslint app/scripts",
     "build": "webpack --config webpack.dev.config.babel.js --progress --colors",
     "build-production": "NODE_ENV=production webpack --config ./webpack/prod.config.babel.js --progress --colors",
-    "watch": "webpack-dev-server --config ./webpack/dev.config.babel.js",
+    "start": "webpack-dev-server --config ./webpack/dev.config.babel.js",
     "deploy": "aws s3 cp build/ s3://walkerangell.com/ --recursive --cache-control \"max-age=94608000\" --expires \"Thu, 31 Dec 2099 20:00:00 GMT\" --exclude \"*.html\" && aws s3 cp build/ s3://walkerangell.com/ --recursive --exclude \"*\" --include \"*.html\"",
     "deploy-no-images": "aws s3 cp build/ s3://walkerangell.com/ --recursive --cache-control \"max-age=94608000\" --expires \"Thu, 31 Dec 2099 20:00:00 GMT\" --exclude \"*.html\" --exclude \"*.jpg\" && aws s3 cp build/ s3://walkerangell.com/ --recursive --exclude \"*\" --include \"*.html\""
   },
