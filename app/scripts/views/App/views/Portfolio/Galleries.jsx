@@ -4,7 +4,10 @@ import { Link } from 'react-router';
 import { locationShape } from 'react-router/lib/PropTypes';
 
 import LazyImg from '../../components/LazyImg';
+import CaptureLinks from '../../components/CaptureLinks';
+
 import { photography } from '../../../../../../data';
+import content from '../../../../../../data/content/photography/index.md';
 
 
 const Galleries = ({ location, params }) => {
@@ -13,9 +16,16 @@ const Galleries = ({ location, params }) => {
   const galleries = isGallery ? photography.portfolio.categories[params.category].galleries : photography.portfolio.categories; // eslint-disable-line max-len
 
   return (
-    <div>
+    <div className='galleries'>
 
       <Helmet title={title} />
+
+      { !isGallery ?
+        <CaptureLinks
+          className='copy'
+          dangerouslySetInnerHTML={{ __html: content }}
+        />
+      : null }
 
       <ul className='galleries'>
 

@@ -176,6 +176,13 @@ $arrow-padding: (10px/16px * 1rem);
   }
 }
 
+.galleries {
+  .copy {
+    padding-right: $grid-gutter-width-base / 2;
+    max-width: 50rem;
+  }
+}
+
 #photo-nav {
   .nav-item {
     padding: 0;
@@ -185,3 +192,5 @@ $arrow-padding: (10px/16px * 1rem);
     }
   }
 }
+
+
