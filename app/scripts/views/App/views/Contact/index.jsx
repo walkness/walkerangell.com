@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { locationShape } from 'react-router/lib/PropTypes';
 import Helmet from 'react-helmet';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { CSSTransitionGroup } from 'react-transition-group';
 import Formsy from 'formsy-react';
 
 import PageHeader from '../../components/PageHeader';
@@ -77,7 +77,7 @@ class Contact extends Component {
           dangerouslySetInnerHTML={{ __html: require('../../../../../../data/content/contact/index.md') }}  // eslint-disable-line global-require, max-len
         />
 
-        <ReactCSSTransitionGroup
+        <CSSTransitionGroup
           transitionName='slide-down'
           transitionEnterTimeout={300}
           transitionLeaveTimeout={300}
@@ -93,9 +93,9 @@ class Contact extends Component {
               <strong>Thanks for your message!</strong> I'll get back to you soon.
             </div>
           : null }
-        </ReactCSSTransitionGroup>
+        </CSSTransitionGroup>
 
-        <Formsy.Form
+        <Formsy
           className='contact-form form'
           action={this.submitUrl}
           method='POST'
@@ -158,7 +158,7 @@ class Contact extends Component {
             isSubmitting={isSubmitting}
           />
 
-        </Formsy.Form>
+        </Formsy>
 
       </div>
     );

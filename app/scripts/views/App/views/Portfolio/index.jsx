@@ -1,4 +1,4 @@
-import { PropTypes } from 'react';
+import { PropTypes } from 'prop-types';
 import Galleries from './Galleries';
 import Gallery from './Gallery';
 

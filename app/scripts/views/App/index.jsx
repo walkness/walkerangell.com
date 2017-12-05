@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { CSSTransitionGroup } from 'react-transition-group';
 import Helmet from 'react-helmet';
 
 import Header from './components/Header';
@@ -93,13 +93,13 @@ class App extends Component {
 
         <main className='site-main'>
 
-          <ReactCSSTransitionGroup
+          <CSSTransitionGroup
             transitionName='sidebar'
             transitionEnterTimeout={150}
             transitionLeaveTimeout={150}
           >
             { this.props.sidebar }
-          </ReactCSSTransitionGroup>
+          </CSSTransitionGroup>
 
           <div id='main-content' className='main-content'>
 
@@ -111,15 +111,15 @@ class App extends Component {
 
         <Footer />
 
-        <ReactCSSTransitionGroup
+        <CSSTransitionGroup
           transitionName='fadeIn'
           transitionEnterTimeout={500}
           transitionLeave={false}
         >
           { routeName === 'home' ?
-            <BackgroundImage image='Iceland-5497' />
+            <BackgroundImage key='bg-img' image='Iceland-5497' />
           : null }
-        </ReactCSSTransitionGroup>
+        </CSSTransitionGroup>
 
       </div>
     );

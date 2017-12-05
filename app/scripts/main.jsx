@@ -5,7 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactDOMServer from 'react-dom/server';
 import { Router, browserHistory, createMemoryHistory, applyRouterMiddleware } from 'react-router';
-import useScroll from 'react-router-scroll';
+import { useScroll } from 'react-router-scroll';
 import Helmet from 'react-helmet';
 import ga from 'react-ga';
 
