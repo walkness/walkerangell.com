@@ -7,7 +7,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Formsy from 'formsy-react';
 
 import PageHeader from '../../components/PageHeader';
-import { Input, TextArea, SubmitButton } from '../../components/Forms';
+import { Input, TextArea } from '../../components/Forms/Formsy';
+import SubmitButton from '../../components/SubmitButton';
 
 
 class Contact extends Component {
@@ -116,7 +117,7 @@ class Contact extends Component {
                 type='email'
                 name='email'
                 label='Email'
-                validations='isEmail'
+                validations={{ isEmail: true }}
                 validationErrors={{
                   isEmail: 'Must be a valid email.',
                 }}
@@ -135,7 +136,7 @@ class Contact extends Component {
             </fieldset>
 
             <TextArea
-              wrapperClasses='message'
+              wrapperClassName='message'
               name='message'
               label='Message'
               rows={10}

@@ -28,6 +28,7 @@
     "formsy-react": "^0.18.0",
     "image-size": "^0.5.0",
     "lodash": "^4.17.4",
+    "prop-types": "^15.6.0",
     "react": "^15.1.0",
     "react-addons-css-transition-group": "^15.1.0",
     "react-dom": "^15.1.0",

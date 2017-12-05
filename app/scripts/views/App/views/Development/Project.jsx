@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { monthNames, development } from '../../../../../../data';
 import Screen from '../../components/Screen';
 import CaptureLinks from '../../components/CaptureLinks';

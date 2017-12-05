@@ -1,6 +1,7 @@
 /* globals window document requestAnimationFrame */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import { routerShape, locationShape } from 'react-router/lib/PropTypes';
 import Helmet from 'react-helmet';

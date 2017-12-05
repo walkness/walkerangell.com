@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/html-has-lang */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 
 const Html = ({ reactApp, head, publicPath, assets }) => {

@@ -89,3 +89,7 @@ form {
     }
   }
 }
+
+.form-control-feedback {
+  @include list-unstyled;
+}
