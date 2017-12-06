@@ -22,7 +22,7 @@ const SubmitButton = (props) => {
       onClick={props.onClick}
     >
 
-      <span styleName='loader-icon' />
+      <span className='loader-icon' styleName='loader-icon' />
 
       { props.children || props.label }
 

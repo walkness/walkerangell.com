@@ -142,10 +142,15 @@ class Contact extends Component {
           <Input
             type='text'
             name='_gotcha'
-            style={{ display: 'none' }}
+            wrapperClassName='d-none'
           />
 
-          <Input type='hidden' name='_next' value='http://walkerangell.com/contact/#success' />
+          <Input
+            type='hidden'
+            name='_next'
+            value='http://walkerangell.com/contact/#success'
+            wrapperClassName='d-none'
+          />
 
           <SubmitButton
             enabled={formValid}
