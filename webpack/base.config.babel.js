@@ -124,6 +124,7 @@ export default {
         ],
       },
       {
+        test: /.*\.(xml|ico|json)$/i,
         include: path.join(__dirname, '../app/images/favicon'),
         loader: 'file-loader',
         options: {
