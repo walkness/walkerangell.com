@@ -4,11 +4,11 @@ import Helmet from 'react-helmet';
 import { Link } from 'react-router';
 import { locationShape } from 'react-router/lib/PropTypes';
 
-import LazyImg from '../../../components/LazyImg';
-import CaptureLinks from '../../../components/CaptureLinks';
+import LazyImg from 'AppComponents/LazyImg';
+import CaptureLinks from 'AppComponents/CaptureLinks';
 
-import { photography } from '../../../../../../../data';
-import content from '../../../../../../../data/content/photography/index.md';
+import { photography } from 'data';
+import content from 'data/content/photography/index.md';
 
 import './styles.scss';
 
@@ -32,12 +32,12 @@ const Galleries = ({ location, params }) => {
 
       <ul styleName='galleries'>
 
-        { Object.keys(galleries).map((slug, i) => {
+        { Object.keys(galleries).map((slug) => {
           const gallery = galleries[slug];
-          const src350 = require(`../../../../../../images/${photography.portfolio.images[gallery.featured].filename}-350x350.jpg`); // eslint-disable-line global-require, max-len
-          const src700 = require(`../../../../../../images/${photography.portfolio.images[gallery.featured].filename}-700x700.jpg`); // eslint-disable-line global-require, max-len
+          const src350 = require(`images/${photography.portfolio.images[gallery.featured].filename}-350x350.jpg`); // eslint-disable-line import/no-dynamic-require, global-require, max-len
+          const src700 = require(`images/${photography.portfolio.images[gallery.featured].filename}-700x700.jpg`); // eslint-disable-line import/no-dynamic-require, global-require, max-len
           return (
-            <li key={i}>
+            <li key={slug}>
               <Link to={`${location.pathname}${slug}/`}>
                 <LazyImg src={src350} srcSet={`${src350} 1x, ${src700} 2x`} />
                 <span styleName='name'>{gallery.title}</span>

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 
-import Screen from '../../components/Screen';
+import Screen from 'AppComponents/Screen';
 
 
 const DevelopmentProject = ({ slug, project }) => (
@@ -16,7 +16,7 @@ const DevelopmentProject = ({ slug, project }) => (
         <Screen url={project.link} color={project.primaryColor}>
 
           <img
-            src={require(`../../../../../images/${project.screenshot}`)} // eslint-disable-line global-require, max-len
+            src={require(`images/${project.screenshot}`)} // eslint-disable-line import/no-dynamic-require, global-require, max-len
             alt={project.title}
           />
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { monthNames, development } from '../../../../../../data';
-import Screen from '../../components/Screen';
-import CaptureLinks from '../../components/CaptureLinks';
+
+import { monthNames, development } from 'data';
+import Screen from 'AppComponents/Screen';
+import CaptureLinks from 'AppComponents/CaptureLinks';
 
 import './styles.scss';
 
@@ -18,10 +19,14 @@ const Project = ({ slug, project }) => {
     children: PropTypes.node,
   };
 
-  /* eslint-disable global-require */
-  const screen455 = require(`../../../../../images/${project.screenshot}-455x.jpg`);
-  const screen910 = require(`../../../../../images/${project.screenshot}-910x.jpg`);
-  const screen1365 = require(`../../../../../images/${project.screenshot}-1365x.jpg`);
+  ProjectLink.defaultProps = {
+    children: null,
+  };
+
+  /* eslint-disable global-require, import/no-dynamic-require */
+  const screen455 = require(`images/${project.screenshot}-455x.jpg`);
+  const screen910 = require(`images/${project.screenshot}-910x.jpg`);
+  const screen1365 = require(`images/${project.screenshot}-1365x.jpg`);
   /* eslint-enable global-require */
 
   return (
@@ -62,7 +67,7 @@ const Project = ({ slug, project }) => {
                 <div styleName='technologies'>
                   <p><strong>Technologies</strong></p>
                   <ul>
-                    { project.technologies.map(key => {
+                    { project.technologies.map((key) => {
                       const tech = development.technologies[key];
                       return (
                         <li key={key}>
@@ -85,7 +90,7 @@ const Project = ({ slug, project }) => {
                 <div styleName='hosting'>
                   <p><strong>Hosting</strong></p>
                   <ul>
-                    { project.hosting.map(key => {
+                    { project.hosting.map((key) => {
                       const item = development.hosting[key];
                       return (
                         <li key={key}>
@@ -108,7 +113,7 @@ const Project = ({ slug, project }) => {
             <CaptureLinks
               className='body'
               dangerouslySetInnerHTML={{
-                __html: require(`../../../../../../data/content/development/projects/${slug}.md`),  // eslint-disable-line global-require, max-len
+                __html: require(`data/content/development/projects/${slug}.md`), // eslint-disable-line global-require, max-len
               }}
             />
 
@@ -120,7 +125,7 @@ const Project = ({ slug, project }) => {
                 <img
                   src={screen455}
                   srcSet={`${screen455} 455w, ${screen910} 910w, ${screen1365} 1365w`}
-                  sizes='(min-width: 1200px) 452px, (min-width: 992px) 369px, (min-width: 768px) 277px, calc(100vw - 40px)'  // eslint-disable-line max-len
+                  sizes='(min-width: 1200px) 452px, (min-width: 992px) 369px, (min-width: 768px) 277px, calc(100vw - 40px)' // eslint-disable-line max-len
                   alt={project.title}
                 />
               </Screen>

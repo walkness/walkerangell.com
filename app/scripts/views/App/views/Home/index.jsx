@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 
-import SocialLinks from '../../components/SocialLinks';
-import CaptureLinks from '../../components/CaptureLinks';
+import SocialLinks from 'AppComponents/SocialLinks';
+import CaptureLinks from 'AppComponents/CaptureLinks';
 
 import './styles.scss';
 
 
 const Home = () => (
-  <div className='home'>
+  <div styleName='home'>
 
     <Helmet
       title='Walker Angell'
@@ -27,7 +27,7 @@ const Home = () => (
           <CaptureLinks
             className='body lead'
             dangerouslySetInnerHTML={{
-              __html: require('../../../../../../data/content/index.md'), // eslint-disable-line global-require, max-len
+              __html: require('data/content/index.md'), // eslint-disable-line global-require, max-len
             }}
           />
 

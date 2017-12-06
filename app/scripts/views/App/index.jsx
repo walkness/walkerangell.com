@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 import Helmet from 'react-helmet';
 
-import Header from './components/Header';
-import Footer from './components/Footer';
-import BackgroundImage from './components/BackgroundImage';
+import Header from 'AppComponents/Header';
+import Footer from 'AppComponents/Footer';
+import BackgroundImage from 'AppComponents/BackgroundImage';
 
 import './styles.scss';
 
@@ -66,11 +66,11 @@ class App extends Component {
           ]}
           /* eslint-disable global-require, max-len */
           link={[
-            { rel: 'apple-touch-icon', sizes: '180x180', href: require('../../../images/favicon/apple-touch-icon.png') },
-            { rel: 'icon', type: 'image/png', href: require('../../../images/favicon/favicon-32x32.png'), sizes: '32x32' },
-            { rel: 'icon', type: 'image/png', href: require('../../../images/favicon/favicon-16x16.png'), sizes: '16x16' },
-            { rel: 'manifest', href: require('../../../images/favicon/manifest.json') },
-            { rel: 'mask-icon', href: require('../../../images/favicon/safari-pinned-tab.svg'), color: '#5bbad5' },
+            { rel: 'apple-touch-icon', sizes: '180x180', href: require('images/favicon/apple-touch-icon.png') },
+            { rel: 'icon', type: 'image/png', href: require('images/favicon/favicon-32x32.png'), sizes: '32x32' },
+            { rel: 'icon', type: 'image/png', href: require('images/favicon/favicon-16x16.png'), sizes: '16x16' },
+            { rel: 'manifest', href: require('images/favicon/manifest.json') },
+            { rel: 'mask-icon', href: require('images/favicon/safari-pinned-tab.svg'), color: '#5bbad5' },
           ]}
           /* eslint-enable global-require, max-len */
           script={[
@@ -126,7 +126,6 @@ class App extends Component {
       </div>
     );
   }
-
 }
 
 export default App;

@@ -9,10 +9,10 @@ import { useScroll } from 'react-router-scroll';
 import Helmet from 'react-helmet';
 import ga from 'react-ga';
 
-import '../styles/main.scss';
+import Html from 'views/Html';
+import routes from 'config/routes';
 
-import Html from './views/Html';
-import routes from './config/routes';
+import '../styles/main.scss';
 
 
 if (typeof document !== 'undefined') {
@@ -61,26 +61,32 @@ if (typeof document !== 'undefined') {
     >
       { routes() }
     </Router>,
-    document.getElementById('root')
+    document.getElementById('root'),
   );
 }
 
 export default (locals, callback) => {
   const history = createMemoryHistory(locals.path);
 
-  const publicPath = locals.webpackStats.compilation.outputOptions.publicPath;
+  const { publicPath } = locals.webpackStats.compilation.outputOptions;
 
   const assets = Object.keys(locals.webpackStats.compilation.assets);
 
   const reactApp = ReactDOMServer.renderToString(
     <Router history={history}>
       { routes() }
-    </Router>);
+    </Router>,
+  );
 
   const head = Helmet.rewind();
 
   const html = ReactDOMServer.renderToStaticMarkup(
-    <Html reactApp={reactApp} assets={assets} publicPath={publicPath} head={head} />
+    <Html
+      reactApp={reactApp}
+      assets={assets}
+      publicPath={publicPath}
+      head={head}
+    />,
   );
   callback(null, `<!DOCTYPE html>${html}`);
 };

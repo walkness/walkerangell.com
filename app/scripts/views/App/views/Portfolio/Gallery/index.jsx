@@ -6,15 +6,14 @@ import Helmet from 'react-helmet';
 import { routerShape, locationShape } from 'react-router/lib/PropTypes';
 import classNames from 'classnames';
 
-import NavLink from '../../../components/NavLink';
-import LazyImg from '../../../components/LazyImg';
-import { photography } from '../../../../../../../data';
+import NavLink from 'AppComponents/NavLink';
+import LazyImg from 'AppComponents/LazyImg';
+import { photography } from 'data';
 
 import './styles.scss';
 
 
 class Gallery extends Component {
-
   static propTypes = {
     location: locationShape.isRequired,
     params: PropTypes.object.isRequired,
@@ -46,8 +45,8 @@ class Gallery extends Component {
   componentDidMount() {
     this.boundKeyPressHandler = this.handleKeyPress.bind(this);
     document.addEventListener('keydown', this.boundKeyPressHandler);
-    const loaded = this.state.loaded;
-    Array.from(this.panel.getElementsByTagName('img')).forEach(img => {
+    const { loaded } = this.state;
+    Array.from(this.panel.getElementsByTagName('img')).forEach((img) => {
       const key = img.dataset.imagekey;
       if (img.complete && this.state.loaded.indexOf(key) === -1) {
         loaded.push(key);
@@ -84,7 +83,7 @@ class Gallery extends Component {
   advanceImage(i) {
     const { location } = this.props;
     const { category, gallery } = this.props.params;
-    const images = photography.portfolio.categories[category].galleries[gallery].images;
+    const { images } = photography.portfolio.categories[category].galleries[gallery];
     const current = location.hash.substring(1);
     const currentIndex = images.indexOf(current);
     const nextIndex = (((currentIndex + i) % images.length) + images.length) % images.length;
@@ -172,15 +171,15 @@ class Gallery extends Component {
           </ol>
         </div>
 
-        <ul ref={c => { this.panel = c; }} styleName='panel'>
+        <ul ref={(c) => { this.panel = c; }} styleName='panel'>
 
-          { gallery.images.map(key => {
+          { gallery.images.map((key) => {
             const image = photography.portfolio.images[key];
 
             /* eslint-disable global-require, import/no-dynamic-require */
-            const src830 = require(`../../../../../../images/${image.filename}-830x830.jpg`);
-            const src1640 = require(`../../../../../../images/${image.filename}-1640x1640.jpg`);
-            const src3280 = require(`../../../../../../images/${image.filename}-3280x3280.jpg`);
+            const src830 = require(`images/${image.filename}-830x830.jpg`);
+            const src1640 = require(`images/${image.filename}-1640x1640.jpg`);
+            const src3280 = require(`images/${image.filename}-3280x3280.jpg`);
             /* eslint-enable global-require, import/no-dynamic-require */
             return (
               <li
@@ -205,15 +204,15 @@ class Gallery extends Component {
 
         </ul>
 
-        <ul styleName='filmstrip' ref={c => { this.filmstrip = c; }}>
+        <ul styleName='filmstrip' ref={(c) => { this.filmstrip = c; }}>
 
-          { gallery.images.map(key => {
+          { gallery.images.map((key) => {
             const image = photography.portfolio.images[key];
-            /* eslint-disable global-require */
-            const src50 = require(`../../../../../../images/${image.filename}-x50.jpg`);
-            const src830 = require(`../../../../../../images/${image.filename}-830x830.jpg`);
-            const src1640 = require(`../../../../../../images/${image.filename}-1640x1640.jpg`);
-            const src3280 = require(`../../../../../../images/${image.filename}-3280x3280.jpg`);
+            /* eslint-disable global-require, import/no-dynamic-require */
+            const src50 = require(`images/${image.filename}-x50.jpg`);
+            const src830 = require(`images/${image.filename}-830x830.jpg`);
+            const src1640 = require(`images/${image.filename}-1640x1640.jpg`);
+            const src3280 = require(`images/${image.filename}-3280x3280.jpg`);
             /* eslint-enable global-require */
             return (
               <li

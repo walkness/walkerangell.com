@@ -9,10 +9,15 @@ const PageHeader = ({ title, children }) => (
     <h1>{ title }</h1>
     { children }
   </div>
-)
+);
 
 PageHeader.propTypes = {
-    title: PropTypes.string.isRequired
-}
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node,
+};
 
-export default PageHeader
+PageHeader.defaultProps = {
+  children: null,
+};
+
+export default PageHeader;

@@ -1,11 +1,13 @@
+/* eslint-disable react/no-danger */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
 import Helmet from 'react-helmet';
 
-import { monthNames } from '../../../../../../data';
+import { monthNames } from 'data';
 
-import PageHeader from '../../components/PageHeader';
+import PageHeader from 'AppComponents/PageHeader';
 
 import './styles.scss';
 

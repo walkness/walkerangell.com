@@ -8,23 +8,22 @@ import Helmet from 'react-helmet';
 import classNames from 'classnames';
 import { throttle } from 'lodash';
 
-import { development } from '../../../../../../data';
-import PageHeader from '../../components/PageHeader';
-import CaptureLinks from '../../components/CaptureLinks';
+import { development } from 'data';
+import PageHeader from 'AppComponents/PageHeader';
+import CaptureLinks from 'AppComponents/CaptureLinks';
 import Project from './Project';
 
 import './styles.scss';
 
 
 const documentHeight = () => {
-  const body = document.body;
-  const html = document.documentElement;
+  const { body, documentElement: html } = document;
   return Math.max(
     body.scrollHeight,
     body.offsetHeight,
     html.clientHeight,
     html.scrollHeight,
-    html.offsetHeight
+    html.offsetHeight,
   );
 };
 
@@ -39,7 +38,7 @@ const scrollToPosition = (position, scrollDuration = 200, finished = () => {}) =
   let scrollCount = 0;
   let scrollMargin;
   function step() {
-    setTimeout(function () {  // eslint-disable-line prefer-arrow-callback
+    setTimeout(function () { // eslint-disable-line prefer-arrow-callback
       if (scrollCount < numIterations) {
         requestAnimationFrame(step);
         scrollCount++;
@@ -59,7 +58,6 @@ const scrollToPosition = (position, scrollDuration = 200, finished = () => {}) =
 
 
 class Development extends Component {
-
   static propTypes = {
     location: locationShape.isRequired,
   };
@@ -116,7 +114,7 @@ class Development extends Component {
     const projectsHeaderRect = this.projectsHeader.getBoundingClientRect();
     this.projectsHeaderHeight = projectsHeaderRect.height;
     this.projectOffsets = [];
-    Array.from(this.projects.getElementsByTagName('article')).forEach(el => {
+    Array.from(this.projects.getElementsByTagName('article')).forEach((el) => {
       const rect = el.getBoundingClientRect();
       const start = rect.top + window.scrollY;
       this.projectOffsets.push({
@@ -141,7 +139,7 @@ class Development extends Component {
 
     if (!this.animatingScroll && this.mounted) {
       let hash = '';
-      this.projectOffsets.forEach(el => {
+      this.projectOffsets.forEach((el) => {
         if (scroll >= el.start && scroll < el.end) {
           hash = `#${el.id}`;
         }
@@ -183,17 +181,15 @@ class Development extends Component {
 
           <CaptureLinks
             className='body'
-            dangerouslySetInnerHTML={{ __html: require('../../../../../../data/content/development/index.md') }}  // eslint-disable-line global-require, max-len
+            dangerouslySetInnerHTML={{ __html: require('data/content/development/index.md') }} // eslint-disable-line react/no-danger, global-require, max-len
           />
         </div>
 
-        <section ref={c => { this.projects = c; }} className='projects'>
+        <section ref={(c) => { this.projects = c; }} className='projects'>
 
           <div
-            ref={c => { this.projectsHeader = c; }}
-            className={classNames(
-              { fixed: this.state.inProjects },
-            )}
+            ref={(c) => { this.projectsHeader = c; }}
+            className={classNames({ fixed: this.state.inProjects })}
             styleName='projects-header'
           >
 
@@ -202,7 +198,7 @@ class Development extends Component {
               <h2>Projects</h2>
 
               <ul className='nav nav-pills' styleName='nav'>
-                {Object.keys(development.projects).map(slug => {
+                {Object.keys(development.projects).map((slug) => {
                   const project = development.projects[slug];
                   return (
                     <li

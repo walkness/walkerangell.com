@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 
 class LazyImg extends Component {
-
   static propTypes = {
     onLoad: PropTypes.func,
     className: PropTypes.string,
@@ -23,7 +22,7 @@ class LazyImg extends Component {
 
   componentDidMount() {
     if (this.img && this.img.complete) {
-      this.setState({ loaded: true });  // eslint-disable-line react/no-did-mount-set-state
+      this.setState({ loaded: true }); // eslint-disable-line react/no-did-mount-set-state
     }
   }
 
@@ -37,7 +36,7 @@ class LazyImg extends Component {
       className: [this.props.className, this.state.loaded ? 'loaded' : 'not-loaded'].join(' '),
       onLoad: this.onLoad,
     });
-    return <img ref={c => { this.img = c; }} {...props} />; // eslint-disable-line jsx-a11y/img-has-alt, max-len
+    return <img ref={(c) => { this.img = c; }} {...props} />; // eslint-disable-line jsx-a11y/img-has-alt, max-len
   }
 }
 

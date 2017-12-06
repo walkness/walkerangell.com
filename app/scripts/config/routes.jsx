@@ -1,17 +1,16 @@
 import React from 'react';
 import { IndexRoute, Route } from 'react-router';
 
-import App from '../views/App';
-import Home from '../views/App/views/Home';
-import Development from '../views/App/views/Development';
-import {
-  default as Portfolio,
+import App from 'views/App';
+import Home from 'AppViews/Home';
+import Development from 'AppViews/Development';
+import Portfolio, {
   Galleries,
   Gallery,
-} from '../views/App/views/Portfolio';
-import Sidebar from '../views/App/components/Sidebar';
-import Contact from '../views/App/views/Contact';
-import Resume from '../views/App/views/Resume';
+} from 'AppViews/Portfolio';
+import Sidebar from 'AppComponents/Sidebar';
+import Contact from 'AppViews/Contact';
+import Resume from 'AppViews/Resume';
 
 
 export default () => (

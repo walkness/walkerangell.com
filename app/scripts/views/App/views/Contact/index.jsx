@@ -5,10 +5,10 @@ import { locationShape } from 'react-router/lib/PropTypes';
 import Helmet from 'react-helmet';
 import Formsy from 'formsy-react';
 
-import PageHeader from '../../components/PageHeader';
-import { Input, TextArea } from '../../components/Forms/Formsy';
-import SubmitButton from '../../components/SubmitButton';
-import Alert from '../../components/Alert';
+import PageHeader from 'AppComponents/PageHeader';
+import { Input, TextArea } from 'AppComponents/Forms/Formsy';
+import SubmitButton from 'AppComponents/SubmitButton';
+import Alert from 'AppComponents/Alert';
 
 import './styles.scss';
 
@@ -76,7 +76,7 @@ class Contact extends Component {
 
         <div
           className='body'
-          dangerouslySetInnerHTML={{ __html: require('../../../../../../data/content/contact/index.md') }}  // eslint-disable-line global-require, max-len
+          dangerouslySetInnerHTML={{ __html: require('data/content/contact/index.md') }} // eslint-disable-line react/no-danger, global-require, max-len
         />
 
         <Alert type='danger' display={!!error}>

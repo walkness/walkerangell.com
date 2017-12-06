@@ -1,79 +1,81 @@
 @import '~Styles/variables';
 
 
-.jumbotron {
-  background: transparent;
-  color: #fff;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin-bottom: 0;
-  padding-top: 10vh;
-  padding-bottom: 10vh;
-
-  html:global(.no-blend) & {
-    background: linear-gradient(to bottom, transparent 0%, rgba(darken(#a54b0d, 10%), .8) 75%);
-  }
-
-  @media (min-height: (1100px/16px * 1rem)) {
-    top: 62%;
-  }
-
-  > :global(.container) {
-    margin-left: 0;
-    margin-right: 0;
-
-    @include media-breakpoint-up(sm) {
-      width: (800px/16px * 1rem);
-      padding-left: 11.5vh;
-      padding-right: 11.5vh;
-    }
-  }
-
-  h1 {
-    margin-top: 0;
-  }
-
-  a {
-    $underline-height: (3px/16px) * 1em;
+.home {
+  .jumbotron {
+    background: transparent;
     color: #fff;
-    position: relative;
-    white-space: nowrap;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 0;
+    padding-top: 10vh;
+    padding-bottom: 10vh;
 
-    &::after {
-      content: ' ';
-      position: absolute;
-      bottom: -$underline-height;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background-color: #fff;
-      transition: all 100ms ease-in;
+    html:global(.no-blend) & {
+      background: linear-gradient(to bottom, transparent 0%, rgba(darken(#a54b0d, 10%), .8) 75%);
     }
 
-    &:hover {
-      &::after {
-        background-color: $brand-primary;
-        height: $underline-height;
+    @media (min-height: (1100px/16px * 1rem)) {
+      top: 62%;
+    }
+
+    > :global(.container) {
+      margin-left: 0;
+      margin-right: 0;
+
+      @include media-breakpoint-up(sm) {
+        width: (800px/16px * 1rem);
+        padding-left: 11.5vh;
+        padding-right: 11.5vh;
       }
     }
-  }
 
-  :global(.btn) {
-    border: 1px solid #fff;
-    background-color: transparent;
-    color: #fff;
-    transition: all 150ms ease-in;
-    text-decoration: none;
-
-    &::after {
-      content: none;
+    h1 {
+      margin-top: 0;
     }
 
-    &:hover {
-      border-color: darken($brand-primary, 5%);
-      background-color: $brand-primary;
+    a {
+      $underline-height: (3px/16px) * 1em;
+      color: #fff;
+      position: relative;
+      white-space: nowrap;
+
+      &::after {
+        content: ' ';
+        position: absolute;
+        bottom: -$underline-height;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: #fff;
+        transition: all 100ms ease-in;
+      }
+
+      &:hover {
+        &::after {
+          background-color: $brand-primary;
+          height: $underline-height;
+        }
+      }
+    }
+
+    :global(.btn) {
+      border: 1px solid #fff;
+      background-color: transparent;
+      color: #fff;
+      transition: all 150ms ease-in;
+      text-decoration: none;
+
+      &::after {
+        content: none;
+      }
+
+      &:hover {
+        border-color: darken($brand-primary, 5%);
+        background-color: $brand-primary;
+      }
     }
   }
 }

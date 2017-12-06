@@ -5,7 +5,6 @@ import { routerShape } from 'react-router/lib/PropTypes';
 
 
 class CaptureLinks extends Component {
-
   static contextTypes = {
     router: routerShape.isRequired,
   };
@@ -14,7 +13,7 @@ class CaptureLinks extends Component {
     const container = this.content;
     const links = container.getElementsByTagName('a');
     if (links) {
-      Array.from(links).forEach(link => {
+      Array.from(links).forEach((link) => {
         link.addEventListener('click', this.handleLinkClick.bind(this));
       });
     }
@@ -28,7 +27,7 @@ class CaptureLinks extends Component {
   }
 
   render() {
-    return <div ref={c => { this.content = c; }} {...this.props} />;
+    return <div ref={(c) => { this.content = c; }} {...this.props} />;
   }
 }
 

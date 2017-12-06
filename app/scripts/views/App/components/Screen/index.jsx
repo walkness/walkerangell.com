@@ -27,13 +27,14 @@ const Screen = ({ url, children, color }) => (
 
 Screen.propTypes = {
   url: PropTypes.string,
-  color: PropTypes.array,
+  color: PropTypes.arrayOf(PropTypes.number),
   children: PropTypes.node,
 };
 
 Screen.defaultProps = {
   url: '',
   color: [0, 0, 0],
+  children: null,
 };
 
 export default Screen;
