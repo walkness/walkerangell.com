@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { locationShape } from 'react-router/lib/PropTypes';
 
-import NavLink from 'AppComponents/NavLink';
+import NavLink from 'react-nav-link';
 
 import data from 'data';
 

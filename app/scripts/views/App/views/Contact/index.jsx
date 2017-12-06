@@ -5,10 +5,11 @@ import { locationShape } from 'react-router/lib/PropTypes';
 import Helmet from 'react-helmet';
 import Formsy from 'formsy-react';
 
+import { Input, TextArea } from 'react-formsy-bootstrap-components/Formsy';
+import Alert from 'react-alert';
+
 import PageHeader from 'AppComponents/PageHeader';
-import { Input, TextArea } from 'AppComponents/Forms/Formsy';
 import SubmitButton from 'AppComponents/SubmitButton';
-import Alert from 'AppComponents/Alert';
 
 import './styles.scss';
 

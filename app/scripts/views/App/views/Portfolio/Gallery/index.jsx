@@ -6,7 +6,8 @@ import Helmet from 'react-helmet';
 import { routerShape, locationShape } from 'react-router/lib/PropTypes';
 import classNames from 'classnames';
 
-import NavLink from 'AppComponents/NavLink';
+import NavLink from 'react-nav-link';
+
 import LazyImg from 'AppComponents/LazyImg';
 import { photography } from 'data';
 

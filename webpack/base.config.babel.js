@@ -152,6 +152,7 @@ export default {
 
   resolve: {
     extensions: ['.js', '.jsx'],
+    modules: ['node_modules', path.resolve(__dirname, '../app/scripts/modules')],
     alias: {
       AppComponents: path.resolve(__dirname, '../app/scripts/views/App/components'),
       AppViews: path.resolve(__dirname, '../app/scripts/views/App/views'),
