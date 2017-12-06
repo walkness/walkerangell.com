@@ -24,7 +24,9 @@ config.output.publicPath = '/';
 
 // Add HotModuleReplacementPlugin and BundleTracker plugins
 config.plugins = config.plugins.concat([
-  new Clean([path.resolve(__dirname, '../app/bundles')]),
+  new Clean([path.resolve(__dirname, '../bundles')], {
+    root: config.context,
+  }),
 
   new webpack.HotModuleReplacementPlugin(),
 

@@ -16,7 +16,9 @@ config.output.publicPath = '//d2hsdu90o9mztm.cloudfront.net/';
 
 // Add HotModuleReplacementPlugin and BundleTracker plugins
 config.plugins = config.plugins.concat([
-  new Clean([path.resolve(__dirname, '../build')]),
+  new Clean([path.resolve(__dirname, '../build')], {
+    root: config.context,
+  }),
 
   // removes a lot of debugging code in React
   new webpack.DefinePlugin({

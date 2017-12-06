@@ -48,7 +48,7 @@ export default {
   },
 
   output: {
-    path: path.resolve(__dirname, '../app/bundles/'),
+    path: path.resolve(__dirname, '../bundles/'),
     filename: 'bundle.js',
     libraryTarget: 'umd',
   },
