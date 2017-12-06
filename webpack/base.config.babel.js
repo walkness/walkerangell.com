@@ -4,6 +4,8 @@ import path from 'path';
 import webpack from 'webpack';
 import marked from 'marked';
 
+export const cssModulesGeneratedScopedName = '[local]__[hash:base64:5]';
+
 const renderer = new marked.Renderer();
 
 renderer.link = function (href, title, text) {
@@ -41,6 +43,20 @@ export default {
         test: /app\/scripts\/.*\.(js|jsx)$/,
         include: path.join(__dirname, '../app'),
         loader: 'babel-loader',
+        query: {
+          plugins: [
+            ['react-css-modules', {
+              context,
+              generateScopedName: cssModulesGeneratedScopedName,
+              filetypes: {
+                '.scss': {
+                  syntax: 'postcss-scss',
+                },
+              },
+              webpackHotModuleReloading: true,
+            }],
+          ],
+        },
       },
       {
         test: /.*\.(gif|png|jpe?g|svg)$/i,
@@ -136,5 +152,15 @@ export default {
 
   resolve: {
     extensions: ['.js', '.jsx'],
+    alias: {
+      AppComponents: path.resolve(__dirname, '../app/scripts/views/App/components'),
+      AppViews: path.resolve(__dirname, '../app/scripts/views/App/views'),
+      Styles: path.resolve(__dirname, '../app/styles'),
+      styles: path.resolve(__dirname, '../app/styles'),
+      images: path.resolve(__dirname, '../app/images'),
+      config: path.resolve(__dirname, '../app/scripts/config'),
+      views: path.resolve(__dirname, '../app/scripts/views'),
+      data: path.resolve(__dirname, '../data'),
+    },
   },
 };

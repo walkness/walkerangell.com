@@ -1,4 +1,7 @@
-#sidebar {
+@import '~Styles/variables';
+
+
+.sidebar {
   padding: 0 $grid-gutter-width-base / 2;
 
   a {
@@ -15,13 +18,13 @@
     padding-top: (15px/16px * 1rem);
     border-bottom: 0;
 
-    &.sidebar-enter {
+    &:global(.sidebar-enter) {
       width: 0;
       padding-left: 0;
       padding-right: 0;
       white-space: nowrap !important;
 
-      &.sidebar-enter-active {
+      &:global(.sidebar-enter-active) {
         width: $sidebar-width;
         padding-left: $grid-gutter-width-base / 2;
         padding-right: $grid-gutter-width-base / 2;
@@ -29,13 +32,13 @@
       }
     }
 
-    &.sidebar-leave {
+    &:global(.sidebar-leave) {
       width: $sidebar-width;
       padding-left: $grid-gutter-width-base / 2;
       padding-right: $grid-gutter-width-base / 2;
       white-space: nowrap !important;
 
-      &.sidebar-leave-active {
+      &:global(.sidebar-leave-active) {
         width: 0;
         padding-left: 0;
         padding-right: 0;
@@ -45,14 +48,23 @@
   }
 }
 
-#photo-nav {
+.photo-nav {
   $duration: 200ms;
   visibility: hidden;
   max-height: 0;
   overflow: hidden;
   transition: visibility 0ms linear $duration, max-height $duration linear;
 
-  &.not-collapsed {
+  :global(.nav-item) {
+    padding: 0;
+
+    :global(.nav-link) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  &:global(.not-collapsed) {
     visibility: visible;
     max-height: (300px/16px * 1rem);
     transition-delay: 0ms;
@@ -90,28 +102,24 @@ ul {
     li {
       padding: $link-spacing 0;
 
-      #sidebar &.active {
+      .sidebar &:global(.active) {
         > a {
           color: $sidebar-hover-color;
           font-weight: 400;
         }
       }
 
-      &.menu-item-has-children {
+      &:global(.menu-item-has-children) {
         > a {
           font-weight: 500;
         }
 
-        #sidebar &.active {
+        .sidebar &:global(.active) {
           > a {
             font-weight: 600;
           }
         }
       }
-    }
-
-    #app.home & {
-      font-weight: 400;
     }
   }
 }

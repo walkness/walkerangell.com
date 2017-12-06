@@ -6,9 +6,11 @@ import Helmet from 'react-helmet';
 import { routerShape, locationShape } from 'react-router/lib/PropTypes';
 import classNames from 'classnames';
 
-import NavLink from '../../components/NavLink';
-import LazyImg from '../../components/LazyImg';
-import { photography } from '../../../../../../data';
+import NavLink from '../../../components/NavLink';
+import LazyImg from '../../../components/LazyImg';
+import { photography } from '../../../../../../../data';
+
+import './styles.scss';
 
 
 class Gallery extends Component {
@@ -144,12 +146,12 @@ class Gallery extends Component {
     if (!current || gallery.images.indexOf(current) === -1) current = gallery.images[0];
     const { loaded } = this.state;
     return (
-      <div className='gallery centered-vertically centered-horizontally'>
+      <div className='gallery centered-vertically centered-horizontally' styleName='gallery'>
 
         <Helmet title={`${gallery.title} | ${category.title}`} />
 
         <div className='container'>
-          <ol className='breadcrumb'>
+          <ol className='breadcrumb' styleName='breadcrumb'>
 
             <NavLink
               liClassName='breadcrumb-item'
@@ -170,20 +172,21 @@ class Gallery extends Component {
           </ol>
         </div>
 
-        <ul ref={c => { this.panel = c; }} className='panel'>
+        <ul ref={c => { this.panel = c; }} styleName='panel'>
 
           { gallery.images.map(key => {
             const image = photography.portfolio.images[key];
 
             /* eslint-disable global-require, import/no-dynamic-require */
-            const src830 = require(`../../../../../images/${image.filename}-830x830.jpg`);
-            const src1640 = require(`../../../../../images/${image.filename}-1640x1640.jpg`);
-            const src3280 = require(`../../../../../images/${image.filename}-3280x3280.jpg`);
+            const src830 = require(`../../../../../../images/${image.filename}-830x830.jpg`);
+            const src1640 = require(`../../../../../../images/${image.filename}-1640x1640.jpg`);
+            const src3280 = require(`../../../../../../images/${image.filename}-3280x3280.jpg`);
             /* eslint-enable global-require, import/no-dynamic-require */
             return (
               <li
                 key={key}
-                className={classNames('gallery-image', { current: current === key })}
+                className={classNames({ current: current === key })}
+                styleName='gallery-image'
               >
                 <LazyImg
                   onLoad={() => this.setState({ loaded: [...loaded, key] })}
@@ -197,25 +200,26 @@ class Gallery extends Component {
             );
           }) }
 
-          <button className='next' onClick={() => this.advanceImage(1)}>Next</button>
-          <button className='previous' onClick={() => this.advanceImage(-1)}>Previous</button>
+          <button styleName='next' onClick={() => this.advanceImage(1)}>Next</button>
+          <button styleName='previous' onClick={() => this.advanceImage(-1)}>Previous</button>
 
         </ul>
 
-        <ul className='filmstrip' ref={c => { this.filmstrip = c; }}>
+        <ul styleName='filmstrip' ref={c => { this.filmstrip = c; }}>
 
           { gallery.images.map(key => {
             const image = photography.portfolio.images[key];
             /* eslint-disable global-require */
-            const src50 = require(`../../../../../images/${image.filename}-x50.jpg`);
-            const src830 = require(`../../../../../images/${image.filename}-830x830.jpg`);
-            const src1640 = require(`../../../../../images/${image.filename}-1640x1640.jpg`);
-            const src3280 = require(`../../../../../images/${image.filename}-3280x3280.jpg`);
+            const src50 = require(`../../../../../../images/${image.filename}-x50.jpg`);
+            const src830 = require(`../../../../../../images/${image.filename}-830x830.jpg`);
+            const src1640 = require(`../../../../../../images/${image.filename}-1640x1640.jpg`);
+            const src3280 = require(`../../../../../../images/${image.filename}-3280x3280.jpg`);
             /* eslint-enable global-require */
             return (
               <li
                 key={key}
-                className={classNames('gallery-image', { current: current === key })}
+                className={classNames({ current: current === key })}
+                styleName='gallery-image'
                 onClick={() => this.context.router.push(Object.assign({}, this.props.location, {
                   hash: `#${key}`,
                 }))}

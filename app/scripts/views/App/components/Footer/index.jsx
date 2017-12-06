@@ -1,8 +1,10 @@
 import React from 'react';
 
+import './styles.scss';
+
 
 const Footer = () => (
-  <footer id='colophon' className='site-footer' role='contentinfo'>
+  <footer id='colophon' className='site-footer' styleName='footer' role='contentinfo'>
 
     <div id='supplementary'>
 

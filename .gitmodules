@@ -4,3 +4,6 @@
 [submodule "app/scripts/views/App/components/Forms"]
 	path = app/scripts/views/App/components/Forms
 	url = https://github.com/walkness/react-formsy-bootstrap-components.git
+[submodule "app/scripts/views/App/components/Alert"]
+	path = app/scripts/views/App/components/Alert
+	url = https://github.com/walkness/react-alert.git

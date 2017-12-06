@@ -3,12 +3,14 @@
 import React, { Component } from 'react';
 import { locationShape } from 'react-router/lib/PropTypes';
 import Helmet from 'react-helmet';
-import { CSSTransitionGroup } from 'react-transition-group';
 import Formsy from 'formsy-react';
 
 import PageHeader from '../../components/PageHeader';
 import { Input, TextArea } from '../../components/Forms/Formsy';
 import SubmitButton from '../../components/SubmitButton';
+import Alert from '../../components/Alert';
+
+import './styles.scss';
 
 
 class Contact extends Component {
@@ -36,7 +38,7 @@ class Contact extends Component {
       oReq.onreadystatechange = (e) => {
         if (oReq.readyState === 4) {
           if (oReq.status === 200) {
-            resetForm();
+            // resetForm();
             this.setState({
               success: true,
               error: false,
@@ -77,26 +79,17 @@ class Contact extends Component {
           dangerouslySetInnerHTML={{ __html: require('../../../../../../data/content/contact/index.md') }}  // eslint-disable-line global-require, max-len
         />
 
-        <CSSTransitionGroup
-          transitionName='slide-down'
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={300}
-        >
-          { error ?
-            <div key='error' className='alert alert-danger'>
-              <strong>Error: </strong>An unknown error occurred. Please try again.
-            </div>
-          : null }
+        <Alert type='danger' display={!!error}>
+          <strong>Error: </strong>An unknown error occurred. Please try again.
+        </Alert>
 
-          { !error && success ?
-            <div key='success' className='alert alert-success'>
-              <strong>Thanks for your message!</strong> I'll get back to you soon.
-            </div>
-          : null }
-        </CSSTransitionGroup>
+        <Alert type='success' display={!error && success}>
+          <strong>Thanks for your message!</strong> I&#039;ll get back to you soon.
+        </Alert>
 
         <Formsy
-          className='contact-form form'
+          className='form'
+          styleName='contact-form'
           action={this.submitUrl}
           method='POST'
           onValid={() => this.setState({ formValid: true })}
@@ -107,7 +100,7 @@ class Contact extends Component {
 
           <div className='row'>
 
-            <fieldset className='details'>
+            <fieldset styleName='details'>
               <Input
                 name='name'
                 label='Name'
@@ -146,7 +139,7 @@ class Contact extends Component {
           </div>
 
           <Input
-            type='hidden'
+            type='text'
             name='_gotcha'
             style={{ display: 'none' }}
           />
@@ -156,6 +149,7 @@ class Contact extends Component {
           <SubmitButton
             enabled={formValid}
             isSubmitting={isSubmitting}
+            styleName='btn'
           />
 
         </Formsy>

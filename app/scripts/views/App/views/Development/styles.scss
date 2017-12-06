@@ -1,4 +1,6 @@
-#development-list {
+@import '~Styles/variables';
+
+.development-list {
 
   .projects-header,
   .projects-header-spacer {
@@ -32,7 +34,7 @@
         display: flex;
       }
 
-      &.fixed {
+      &:global(.fixed) {
         position: fixed;
         top: 0;
         left: 0;

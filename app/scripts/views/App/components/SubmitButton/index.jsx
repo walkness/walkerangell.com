@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import './styles.scss';
+
 
 const SubmitButton = (props) => {
   const { isSubmitting, size } = props;
@@ -20,7 +22,7 @@ const SubmitButton = (props) => {
       onClick={props.onClick}
     >
 
-      <span className='loader-icon' />
+      <span styleName='loader-icon' />
 
       { props.children || props.label }
 

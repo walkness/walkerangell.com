@@ -13,6 +13,8 @@ import PageHeader from '../../components/PageHeader';
 import CaptureLinks from '../../components/CaptureLinks';
 import Project from './Project';
 
+import './styles.scss';
+
 
 const documentHeight = () => {
   const body = document.body;
@@ -171,7 +173,7 @@ class Development extends Component {
 
   render() {
     return (
-      <div id='development-list'>
+      <div styleName='development-list' id='development-list'>
 
         <Helmet title={development.sectionTitle} />
 
@@ -190,16 +192,16 @@ class Development extends Component {
           <div
             ref={c => { this.projectsHeader = c; }}
             className={classNames(
-              'projects-header',
               { fixed: this.state.inProjects },
             )}
+            styleName='projects-header'
           >
 
             <div className='container'>
 
               <h2>Projects</h2>
 
-              <ul className='nav nav-pills'>
+              <ul className='nav nav-pills' styleName='nav'>
                 {Object.keys(development.projects).map(slug => {
                   const project = development.projects[slug];
                   return (
@@ -229,7 +231,7 @@ class Development extends Component {
 
           </div>
 
-          <div className='projects-header-spacer'>&nbsp;</div>
+          <div styleName='projects-header-spacer'>&nbsp;</div>
 
           { Object.keys(development.projects).map(slug => (
             <Project key={slug} slug={slug} project={development.projects[slug]} />

@@ -35,19 +35,19 @@
     will-change: transform;
   }
 
-  &.fadeIn-enter {
+  &:global(.fadeIn-enter) {
     opacity: 0;
 
-    &.fadeIn-enter-active {
+    &:global(.fadeIn-enter-active) {
       opacity: 1;
       transition: opacity 300ms ease-in;
     }
   }
 
-  &.fadeIn-leave {
+  &:global(.fadeIn-leave) {
     opacity: 1;
 
-    &.fadeIn-leave-active {
+    &:global(.fadeIn-leave-active) {
       opacity: 0;
       transition: opacity 300ms ease-out;
     }
@@ -67,7 +67,7 @@
     background-color: #444;
   }
 
-  &.loaded {
+  &:global(.loaded) {
 
     .background {
       opacity: 1;
@@ -78,7 +78,7 @@
     }
   }
 
-  &.no-transition {
+  &:global(.no-transition) {
     .background,
     .background-image {
       transition: none;

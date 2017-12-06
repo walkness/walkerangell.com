@@ -4,6 +4,8 @@ import { monthNames, development } from '../../../../../../data';
 import Screen from '../../components/Screen';
 import CaptureLinks from '../../components/CaptureLinks';
 
+import './styles.scss';
+
 
 const Project = ({ slug, project }) => {
   const ProjectLink = ({ children }) => (
@@ -24,7 +26,7 @@ const Project = ({ slug, project }) => {
 
   return (
     <article
-      className='project'
+      styleName='project'
       id={slug}
       style={{
         backgroundColor: `rgba(${project.primaryColor.join(', ')}, .05)`,
@@ -36,7 +38,7 @@ const Project = ({ slug, project }) => {
 
         <div className='row'>
 
-          <div className='content'>
+          <div styleName='content'>
 
             <h3>
               { project.name }
@@ -45,6 +47,7 @@ const Project = ({ slug, project }) => {
             <p>
               <span
                 className='badge'
+                styleName='badge'
                 style={{ backgroundColor: `rgb(${project.primaryColor.join(', ')})` }}
               >
                 {project.launchDate ?
@@ -56,7 +59,7 @@ const Project = ({ slug, project }) => {
 
             <div className='row'>
               { project.technologies && project.technologies.length > 0 ?
-                <div className='technologies'>
+                <div styleName='technologies'>
                   <p><strong>Technologies</strong></p>
                   <ul>
                     { project.technologies.map(key => {
@@ -79,7 +82,7 @@ const Project = ({ slug, project }) => {
               : null }
 
               { project.hosting && project.hosting.length > 0 ?
-                <div className='hosting'>
+                <div styleName='hosting'>
                   <p><strong>Hosting</strong></p>
                   <ul>
                     { project.hosting.map(key => {
@@ -111,7 +114,7 @@ const Project = ({ slug, project }) => {
 
           </div>
 
-          <div className='screenshot'>
+          <div styleName='screenshot'>
             <ProjectLink>
               <Screen url={project.link} color={project.primaryColor}>
                 <img

@@ -4,6 +4,9 @@ import NavLink from '../NavLink';
 
 import data from '../../../../../../data';
 
+import './styles.scss';
+
+
 class Sidebar extends Component {
 
   static propTypes = {
@@ -27,10 +30,10 @@ class Sidebar extends Component {
     const { collapsed } = this.state;
     let i = 0;
     return (
-      <aside id='sidebar'>
+      <aside styleName='sidebar'>
 
-        <nav id='photo-nav' className={collapsed ? 'collapsed' : 'not-collapsed'}>
-          <ul className='menu'>
+        <nav id='photo-nav' styleName='photo-nav' className={collapsed ? 'collapsed' : 'not-collapsed'}>
+          <ul styleName='menu'>
             { Object.keys(data.photography.portfolio.categories).map(slug1 => {
               const gallery1 = data.photography.portfolio.categories[slug1];
               i++;

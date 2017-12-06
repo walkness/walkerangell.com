@@ -1,7 +1,9 @@
+@import '~Styles/variables';
+
 $image-spacing: (15px/16px * 1rem);
 
 ul {
-  &.categories, 
+  &.categories,
   &.galleries {
     @include make-row;
     @include list-unstyled;
@@ -55,21 +57,26 @@ ul {
           transition: opacity 0.5s ease;
           backface-visibility: hidden;
 
-          html.js &.not-loaded {
+          html:global(.js) &:global(.not-loaded) {
             opacity: 0;
           }
 
-          &.loaded {
+          &:global(.loaded) {
             opacity: .8;
           }
         }
 
         &:hover {
-          > img.loaded {
+          > img:global(.loaded) {
             opacity: 1;
           }
         }
       }
     }
   }
+}
+
+.copy {
+  padding-right: $grid-gutter-width-base / 2;
+  max-width: 50rem;
 }

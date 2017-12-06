@@ -8,7 +8,7 @@ import StaticSiteGeneratorPlugin from 'static-site-generator-webpack-plugin';
 
 import routes from '../data/routes';
 
-import config from './base.config.babel';
+import config, { cssModulesGeneratedScopedName } from './base.config.babel';
 
 config.output.path = path.resolve(__dirname, '../build');
 config.output.filename = 'scripts/[name]-[hash].js';
@@ -54,18 +54,82 @@ const cssNano = {
 config.module.rules.push(
   {
     test: /\.scss$/,
-    exclude: /node_modules|\.tmp|vendor/,
-    loader: ExtractTextPlugin.extract({
+    include: /app\/scripts\//,
+    use: ExtractTextPlugin.extract({
+      use: [
+        {
+          loader: 'css-loader',
+          options: {
+            minimize: cssNano,
+            modules: true,
+            importLoaders: 2,
+            localIdentName: cssModulesGeneratedScopedName,
+            sourceMap: true,
+          },
+        },
+        {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true,
+          },
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true,
+          },
+        },
+      ],
+      fallback: 'style-loader',
+    }),
+  },
+  {
+    test: /\.scss$/,
+    exclude: /app\/scripts\//,
+    use: ExtractTextPlugin.extract({
       use: [
         {
           loader: 'css-loader',
           options: {
             minimize: cssNano,
             importLoaders: 2,
+            sourceMap: true,
           },
         },
-        'postcss-loader',
-        'sass-loader',
+        {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true,
+          },
+        },
+        {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true,
+          },
+        },
+      ],
+      fallback: 'style-loader',
+    }),
+  },
+  {
+    test: /\.css$/,
+    use: ExtractTextPlugin.extract({
+      use: [
+        {
+          loader: 'css-loader',
+          options: {
+            minimize: cssNano,
+            importLoaders: 1,
+            sourceMap: true,
+          },
+        },
+        {
+          loader: 'postcss-loader',
+          options: {
+            sourceMap: true,
+          },
+        },
       ],
       fallback: 'style-loader',
     }),

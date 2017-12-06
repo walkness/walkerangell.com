@@ -1,22 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './styles.scss';
+
 
 const Screen = ({ url, children, color }) => (
-  <div className='screen'>
+  <div styleName='screen'>
 
-    <div className='top-bar'><div className='url'>{url}</div></div>
+    <div styleName='top-bar'><div styleName='url'>{url}</div></div>
 
-    <div className='viewport'>
+    <div styleName='viewport'>
       { children }
       <div
-        className='overlay'
+        styleName='overlay'
         style={{ backgroundColor: `rgb(${color.join(', ')})` }}
       />
     </div>
 
     <div
-      className='overlay'
+      styleName='overlay'
       style={{ backgroundColor: `rgb(${color.join(', ')})` }}
     />
 

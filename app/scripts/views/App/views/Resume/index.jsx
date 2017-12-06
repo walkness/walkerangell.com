@@ -7,6 +7,8 @@ import { monthNames } from '../../../../../../data';
 
 import PageHeader from '../../components/PageHeader';
 
+import './styles.scss';
+
 
 const Company = ({ title, link }) => {
   let inner = title;
@@ -154,9 +156,9 @@ const Resume = () => (
 
     <PageHeader title='Résumé' />
 
-    <article className='content'>
+    <article styleName='content'>
 
-      <section id='experience'>
+      <section id='experience' styleName='experience'>
         <h2>Experience</h2>
 
         <ul>
@@ -164,30 +166,30 @@ const Resume = () => (
             <li key={i}>
               <Company title={item.company} link={item.link} />
 
-              <div className='location'>{item.location}</div>
+              <div styleName='location'>{item.location}</div>
 
               { item.periodDisplay ?
-                <div className='period'>{item.periodDisplay}</div>
+                <div styleName='period'>{item.periodDisplay}</div>
               :
-                <div className='period'>
+                <div styleName='period'>
 
-                  <span className='start-date'>
+                  <span styleName='start-date'>
                     {formattedDate(item.startDate)}
                   </span>&nbsp;&mdash;&nbsp;
 
-                  <span className='end-date'>
+                  <span styleName='end-date'>
                     {item.endDate ? formattedDate(item.endDate) : 'Present'}
                   </span>
 
                 </div>
               }
 
-              <ul className='roles'>
+              <ul styleName='roles'>
                 { item.roles.map((role, j) => (
                   <li key={j}>
-                    <h4 className='title' dangerouslySetInnerHTML={{ __html: role.title }} />
+                    <h4 styleName='title' dangerouslySetInnerHTML={{ __html: role.title }} />
                     { role.body ?
-                      <div className='body' dangerouslySetInnerHTML={{ __html: role.body }} />
+                      <div styleName='body' dangerouslySetInnerHTML={{ __html: role.body }} />
                     : null }
                   </li>
                 )) }
@@ -197,7 +199,7 @@ const Resume = () => (
         </ul>
       </section>
 
-      <section id='education'>
+      <section id='education' styleName='education'>
         <h2>Education</h2>
         <ul>
           { education.map((institution, i) => (
@@ -207,13 +209,13 @@ const Resume = () => (
                   {institution.name}
                 </a>
               </h3>
-              <div className='degree' dangerouslySetInnerHTML={{ __html: institution.degree }} />
+              <div styleName='degree' dangerouslySetInnerHTML={{ __html: institution.degree }} />
             </li>
           )) }
         </ul>
       </section>
 
-      <section id='skills'>
+      <section id='skills' styleName='skills'>
         <h2>Technical Skills</h2>
         <ul>
           { skills.map((skill, i) => (
@@ -222,7 +224,7 @@ const Resume = () => (
         </ul>
       </section>
 
-      <section id='other'>
+      <section id='other' styleName='other'>
         <h2>Other</h2>
         <ul>
           { other.map((item, i) => (

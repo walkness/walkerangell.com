@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link, IndexLink } from 'react-router';
 import { locationShape } from 'react-router/lib/PropTypes';
 
+import './styles.scss';
+
 
 class Header extends Component {
 
@@ -24,13 +26,13 @@ class Header extends Component {
 
   render() {
     return (
-      <header>
+      <header styleName='header'>
 
         <div className='container'>
 
           <nav>
 
-            <IndexLink to='/' className='site-title hidden-sm-up' activeClassName='active'>
+            <IndexLink to='/' className='hidden-sm-up' styleName='site-title' activeClassName='active'>
               Walker Angell
             </IndexLink>
 
@@ -38,7 +40,7 @@ class Header extends Component {
               Development
             </Link>
 
-            <IndexLink to='/' className='site-title hidden-xs-down' activeClassName='active'>
+            <IndexLink to='/' className='hidden-xs-down' styleName='site-title' activeClassName='active'>
               Walker Angell
             </IndexLink>
 

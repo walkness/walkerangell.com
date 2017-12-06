@@ -1,8 +1,8 @@
-@import "header";
-@import "sidebar";
-@import "footer";
+@import '~Styles/variables';
 
-body, html {
+
+body,
+html {
   height: 100%;
 }
 
@@ -11,11 +11,11 @@ main {
   z-index: 1;
 }
 
-#app {
+.app {
   position: relative;
 }
 
-#main-content {
+.main-content {
   width: auto;
   overflow: auto;
   // padding: 0 $grid-gutter-width / 2;
@@ -29,7 +29,7 @@ main {
     // border-left: $sidebar-border;
   }
 
-  #app.home & {
+  .app:global(.home) & {
     background: none;
     box-shadow: none;
     border: none;

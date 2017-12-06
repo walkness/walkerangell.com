@@ -9,6 +9,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import BackgroundImage from './components/BackgroundImage';
 
+import './styles.scss';
+
 
 class App extends Component {
 
@@ -50,7 +52,7 @@ class App extends Component {
   render() {
     const routeName = this.props.main.props.route.name;
     return (
-      <div id='app' className={routeName}>
+      <div id='app' className={routeName} styleName='app'>
 
         <Helmet
           htmlAttributes={{ lang: 'en' }}
@@ -101,7 +103,7 @@ class App extends Component {
             { this.props.sidebar }
           </CSSTransitionGroup>
 
-          <div id='main-content' className='main-content'>
+          <div id='main-content' styleName='main-content'>
 
             { this.props.main }
 

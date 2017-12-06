@@ -1,18 +1,5 @@
-@import 'svg';
-@import 'loader';
 @import 'forms';
-@import 'alert';
-@import 'social_links';
-@import 'lazy_img';
-@import 'screen';
-@import 'background_image';
 @import 'browserupgrade';
-
-.page-header {
-  border-bottom: 1px solid $gray-lighter;
-  padding-bottom: .625rem;
-  margin: 2.75rem 0 1.375rem;
-}
 
 .body {
   margin-bottom: 2.75rem;

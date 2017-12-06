@@ -1,0 +1,78 @@
+@import '~Styles/variables';
+
+
+.social-links {
+  @include list-unstyled;
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+  margin-left: (10px/16px * 1rem);
+  margin-bottom: (-5px/16px * 1rem);
+
+  > .social-link {
+    $size: (40px/16px) * 1rem;
+    $color: #fff;
+    $hover-color: $brand-primary;
+    display: inline-block;
+    margin-left: (5px/16px * 1rem);
+    margin-right: (5px/16px * 1rem);
+
+    > a {
+      display: block;
+      overflow: hidden;
+      text-indent: -10000px;
+      width: $size;
+      height: $size;
+      background-position: center;
+      background-size: auto 50%;
+      background-repeat: no-repeat;
+      transition: background-image 150ms ease-in-out;
+      background-color: transparent;
+      border-radius: 50%;
+      border: 1px transparent solid;
+      width: ($line-height-base * $font-size-base) + (14px/16px) * 1rem;
+      height: ($line-height-base * $font-size-base) + (14px/16px) * 1rem;
+      transition: all 150ms ease-in;
+
+      &::after {
+        content: none;
+      }
+    }
+
+    &:global(.facebook) > a {
+      background-image: icon(facebook, $color);
+
+      &:hover {
+        background-color: $hover-color;
+        border-color: darken($hover-color, 5%);
+      }
+    }
+
+    &:global(.linkedin) > a {
+      background-image: icon(linkedin, $color);
+
+      &:hover {
+        background-color: $hover-color;
+        border-color: darken($hover-color, 5%);
+      }
+    }
+
+    &:global(.github) > a {
+      background-image: icon(github, $color);
+
+      &:hover {
+        background-color: $hover-color;
+        border-color: darken($hover-color, 5%);
+      }
+    }
+
+    &:global(.instagram) > a {
+      background-image: icon(instagram, $color);
+
+      &:hover {
+        background-color: $hover-color;
+        border-color: darken($hover-color, 5%);
+      }
+    }
+  }
+}

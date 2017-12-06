@@ -7,7 +7,7 @@ import Clean from 'clean-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import HtmlWebpackHarddiskPlugin from 'html-webpack-harddisk-plugin';
 
-import config from './base.config.babel';
+import config, { cssModulesGeneratedScopedName } from './base.config.babel';
 import { name as projectName } from '../package.json';
 
 // Use webpack dev server
@@ -50,12 +50,75 @@ config.plugins = config.plugins.concat([
 config.module.rules.push(
   {
     test: /\.scss$/,
-    include: path.join(__dirname, '../app'),
+    include: /app\/scripts\//,
     use: [
       'style-loader',
-      'css-loader',
-      'postcss-loader',
-      'sass-loader',
+      {
+        loader: 'css-loader',
+        options: {
+          sourceMap: true,
+          modules: true,
+          importLoaders: 2,
+          localIdentName: cssModulesGeneratedScopedName,
+        },
+      },
+      {
+        loader: 'postcss-loader',
+        options: {
+          sourceMap: true,
+        },
+      },
+      {
+        loader: 'sass-loader',
+        options: {
+          sourceMap: true,
+        },
+      },
+    ],
+  },
+  {
+    test: /\.scss$/,
+    exclude: /app\/scripts\//,
+    use: [
+      'style-loader',
+      {
+        loader: 'css-loader',
+        options: {
+          sourceMap: true,
+          importLoaders: 2,
+        },
+      },
+      {
+        loader: 'postcss-loader',
+        options: {
+          sourceMap: true,
+        },
+      },
+      {
+        loader: 'sass-loader',
+        options: {
+          sourceMap: true,
+        },
+      },
+    ],
+  },
+  {
+    test: /\.css$/,
+    use: [
+      'style-loader',
+      {
+        loader: 'css-loader',
+        options: {
+          sourceMap: true,
+          importLoaders: 1,
+        },
+      },
+      {
+        loader: 'postcss-loader',
+        options: {
+          sourceMap: true,
+        },
+      },
     ],
   },
 );

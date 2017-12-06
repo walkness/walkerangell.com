@@ -5,6 +5,8 @@ import Helmet from 'react-helmet';
 import SocialLinks from '../../components/SocialLinks';
 import CaptureLinks from '../../components/CaptureLinks';
 
+import './styles.scss';
+
 
 const Home = () => (
   <div className='home'>
@@ -16,7 +18,7 @@ const Home = () => (
 
     <section className='intro'>
 
-      <div className='jumbotron jumbotron-fluid'>
+      <div className='jumbotron jumbotron-fluid' styleName='jumbotron'>
 
         <div className='container'>
 

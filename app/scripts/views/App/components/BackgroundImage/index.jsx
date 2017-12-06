@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import './styles.scss';
+
 
 class BackgroundImage extends Component {
 
@@ -38,12 +40,12 @@ class BackgroundImage extends Component {
     const { loaded } = this.state;
     const imgSrc = this.img && (this.img.currentSrc || this.img.src);
     return (
-      <div className={classNames('background-image-wrapper', { loaded })}>
+      <div className={classNames({ loaded })} styleName='background-image-wrapper'>
 
-        <div className='background' />
+        <div styleName='background' />
 
         <div
-          className='background-image'
+          styleName='background-image'
           style={{
             backgroundImage: loaded && this.img ? `url(${imgSrc})` : 'none',
           }}
@@ -113,7 +115,7 @@ class BackgroundImage extends Component {
 
         </picture>
 
-        <div className='placeholder' />
+        <div styleName='placeholder' />
 
       </div>
     );
