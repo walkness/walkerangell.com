@@ -77,6 +77,10 @@ ul {
 }
 
 .copy {
-  padding-right: $grid-gutter-width-base / 2;
+  padding: 0 $grid-gutter-width-base / 2;
   max-width: 50rem;
+
+  @include media-breakpoint-up(sm) {
+    padding-left: 0;
+  }
 }
