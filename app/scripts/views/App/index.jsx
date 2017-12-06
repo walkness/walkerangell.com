@@ -9,6 +9,11 @@ import Header from 'AppComponents/Header';
 import Footer from 'AppComponents/Footer';
 import BackgroundImage from 'AppComponents/BackgroundImage';
 
+import 'images/favicon/android-chrome-192x192.png';
+import 'images/favicon/browserconfig.xml';
+import 'images/favicon/favicon.ico';
+import 'images/favicon/mstile-150x150.png';
+
 import './styles.scss';
 
 
@@ -70,7 +75,7 @@ class App extends Component {
             { rel: 'icon', type: 'image/png', href: require('images/favicon/favicon-32x32.png'), sizes: '32x32' },
             { rel: 'icon', type: 'image/png', href: require('images/favicon/favicon-16x16.png'), sizes: '16x16' },
             { rel: 'manifest', href: require('images/favicon/manifest.json') },
-            { rel: 'mask-icon', href: require('images/favicon/safari-pinned-tab.svg'), color: '#5bbad5' },
+            { rel: 'mask-icon', href: require('images/favicon/safari-pinned-tab.svg'), color: '#337ab7' },
           ]}
           /* eslint-enable global-require, max-len */
           script={[

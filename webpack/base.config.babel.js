@@ -21,6 +21,22 @@ renderer.link = function (href, title, text) {
 
 const context = path.resolve(__dirname, '../');
 
+const imageQuery = {
+  mozjpeg: {
+    progressive: true,
+  },
+  optipng: {
+    optimizationLevel: 7,
+  },
+  gifsicle: {
+    interlaced: false,
+  },
+  pngquant: {
+    quality: '65-90',
+    speed: 4,
+  },
+};
+
 export default {
   context,
 
@@ -76,21 +92,7 @@ export default {
           },
           {
             loader: 'image-webpack-loader',
-            query: {
-              mozjpeg: {
-                progressive: true,
-              },
-              optipng: {
-                optimizationLevel: 7,
-              },
-              gifsicle: {
-                interlaced: false,
-              },
-              pngquant: {
-                quality: '65-90',
-                speed: 4,
-              },
-            },
+            query: imageQuery,
           },
         ],
       },
@@ -104,6 +106,22 @@ export default {
           digest: 'hex',
           name: 'images/[name]-[hash].[ext]',
         },
+      },
+      {
+        test: /.*\.(gif|png|jpe?g|svg)$/i,
+        include: path.join(__dirname, '../app/images/favicon'),
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+            },
+          },
+          {
+            loader: 'image-webpack-loader',
+            query: imageQuery,
+          },
+        ],
       },
       {
         include: path.join(__dirname, '../app/images/favicon'),
