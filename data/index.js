@@ -28,6 +28,16 @@ module.exports = {
     sectionTitle: 'Development',
 
     projects: {
+      gathering: {
+        name: 'The Gathering Shops',
+        shortName: 'Gathering',
+        link: 'http://www.thegatheringshops.com/',
+        screenshot: 'development/gathering',
+        launchDate: new Date(2018, 1, 3),
+        primaryColor: [76, 67, 69],
+        technologies: ['react', 'sass'],
+        hosting: ['aws'],
+      },
       intranet: {
         name: 'Corporate Intranet',
         shortName: 'Intranet',
