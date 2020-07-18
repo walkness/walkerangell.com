@@ -1,0 +1,87 @@
+.background-image-wrapper {
+  z-index: -9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  .background,
+  .background-image {
+    opacity: 0;
+    transition: opacity 300ms ease-in;
+  }
+
+  .background {
+    z-index: -9998;
+    background: linear-gradient(to bottom, #fff 40%, darken(#763609, 15%) 100%);
+    opacity: 0;
+    transition: opacity 200ms ease-in 100ms;
+  }
+
+  .background-image,
+  .placeholder {
+    width: 100%;
+    height: 100%;
+  }
+
+  .background-image {
+    z-index: -9997;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    mix-blend-mode: multiply;
+    will-change: transform;
+  }
+
+  &:global(.fadeIn-enter) {
+    opacity: 0;
+
+    &:global(.fadeIn-enter-active) {
+      opacity: 1;
+      transition: opacity 300ms ease-in;
+    }
+  }
+
+  &:global(.fadeIn-leave) {
+    opacity: 1;
+
+    &:global(.fadeIn-leave-active) {
+      opacity: 0;
+      transition: opacity 300ms ease-out;
+    }
+  }
+
+  .background,
+  .placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .placeholder {
+    z-index: -9999;
+    background-color: #444;
+  }
+
+  &:global(.loaded) {
+
+    .background {
+      opacity: 1;
+    }
+
+    .background-image {
+      opacity: 1;
+    }
+  }
+
+  &:global(.no-transition) {
+    .background,
+    .background-image {
+      transition: none;
+    }
+  }
+}

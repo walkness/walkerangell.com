@@ -1,0 +1,18 @@
+@import 'forms';
+@import 'browserupgrade';
+
+.body {
+  margin-bottom: 2.75rem;
+}
+
+.btn {
+  font-family: $font-family-base;
+}
+
+.breadcrumb {
+  .breadcrumb-item {
+    .nav-link {
+      padding: 0;
+    }
+  }
+}

@@ -1,0 +1,27 @@
+$font-family-sans-serif: 'brandon-grotesque', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+// $body-color:        #ccc;
+// $body-bg:           #2c2c2c;
+
+$link-color: #24890d;
+$link-hover-decoration: none;
+// $text-color: #ccc;
+
+// $font-size-h1:            floor(($font-size-base * 2));
+
+$grid-gutter-width-base: 40px;
+
+$navbar-height:       70px;
+
+$blue: #337ab7;
+$brand-primary: $blue;
+
+$portfolio-body-bg:   #2c2c2c;
+$sidebar-width:       250px;
+$sidebar-color:       #656565;
+$sidebar-color-home:    darken(#fff, 2.5%);
+$sidebar-background:    #191919;
+$sidebar-link-color:    $sidebar-color;
+$sidebar-hover-color:     lighten($sidebar-link-color, 10%);
+$sidebar-border:      1px solid lighten($portfolio-body-bg, 2.5%);
+
+$footer-height:       60px;
