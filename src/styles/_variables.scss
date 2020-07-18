@@ -1,0 +1,33 @@
+@import 'vendor/pre';
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+@import 'vendor/post';
+@import 'components/svg';
+
+
+@mixin loader-color($color, $background) {
+  background: linear-gradient(to right, $color 10%, rgba(#000, 0) 42%);
+
+  &::before {
+    background: $color;
+  }
+
+  &::after {
+    background: $background;
+  }
+}
+
+@mixin loader-size($size, $inside: 60%) {
+  width: $size;
+  height: $size;
+
+  &:after {
+    width: $inside;
+    height: $inside;
+  }
+}
+
+@mixin loader-transition($duration) {
+  transition: $duration ease-in;
+}

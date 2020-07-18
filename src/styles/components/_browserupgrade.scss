@@ -1,0 +1,10 @@
+.browserupgrade {
+  @include alert-variant(theme-color-level('warning', $alert-bg-level), theme-color-level('warning', $alert-border-level), theme-color-level('warning', $alert-color-level));
+  padding: $alert-padding-y * 1.5 $alert-padding-x * 1.5;
+  text-align: center;
+  font-size: 1.25rem;
+
+  a {
+    font-weight: $alert-link-font-weight;
+  }
+}

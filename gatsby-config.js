@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -13,6 +15,16 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data`,
+        path: `${__dirname}/src/data`,
+      },
+    },
+    'gatsby-plugin-layout',
+    'gatsby-transformer-json',
+    'gatsby-transformer-remark',
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
@@ -24,15 +36,32 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
     {
-      resolve: 'gatsby-plugin-react-css-modules-scss-support',
+      resolve: `gatsby-plugin-alias-imports`,
       options: {
-        localIdentName: '[local]__[hash:base64:5]',
+        alias: {
+          '@': path.resolve(__dirname, 'src'),
+        },
+        extensions: [],
       },
     },
+    {
+      resolve: 'gatsby-plugin-typescript',
+      options: {
+        allowSyntheticDefaultImports: true,
+        esModuleInterop: true,
+      },
+    },
+    'gatsby-plugin-sass',
+    // {
+    //   resolve: 'gatsby-plugin-react-css-modules-scss-support',
+    //   options: {
+    //     localIdentName: '[local]__[hash:base64:5]',
+    //   },
+    // },
     'gatsby-plugin-postcss',
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
