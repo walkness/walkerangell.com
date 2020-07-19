@@ -9,6 +9,7 @@ import { PageProps } from 'gatsby';
 
 import Header from '@/components/header';
 import Footer from '@/components/footer';
+import Sidebar from '@/components/sidebar';
 import BackgroundImage from '@/components/background_image';
 
 import '../styles/main.scss';
@@ -62,6 +63,7 @@ class App extends Component<PageProps, State> {
   render(): React.ReactNode {
     const { children, path } = this.props;
     const isHome = path === '/';
+    const isPhotography = path.startsWith('/photography');
     return (
       <div id='app' className={cx(styles.app, { home: isHome })}>
 
@@ -100,7 +102,9 @@ class App extends Component<PageProps, State> {
             transitionName='sidebar'
             transitionEnterTimeout={150}
             transitionLeaveTimeout={150}
-          />
+          >
+            { isPhotography && <Sidebar /> }
+          </CSSTransitionGroup>
 
           <div id='main-content' className={styles.mainContent}>
 
