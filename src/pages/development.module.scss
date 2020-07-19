@@ -1,0 +1,57 @@
+@import '~@/styles/variables';
+
+$gray-lighter: $gray-300;
+
+.development-list {
+
+  .projects-header,
+  .projects-header-spacer {
+    height: (50px/16px * 1rem);
+    // margin-bottom: $grid-gutter-width / 2;
+  }
+
+  .projects-header {
+    @include clearfix;
+    border-bottom: 1px solid $gray-lighter;
+
+    h2,
+    .nav {
+      float: left;
+      vertical-align: bottom;
+    }
+
+    h2 {
+      line-height: 1;
+      margin-top: (5px/16px * 1rem);
+    }
+
+    .nav {
+      display: none;
+      margin-top: (4px/16px * 1rem);
+      margin-left: (30px/16px * 1rem);
+    }
+
+    @include media-breakpoint-up(lg) {
+      .nav {
+        display: flex;
+      }
+
+      &:global(.fixed) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background-color: #fff;
+        width: 100%;
+        z-index: $zindex-fixed;
+
+        & + .projects-header-spacer {
+          display: block;
+        }
+      }
+    }
+  }
+
+  .projects-header-spacer {
+    display: none;
+  }
+}

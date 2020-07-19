@@ -1,3 +1,14 @@
+---
+slug: nearbysupply
+name: Nearby Supply
+link: http://nearby.supply/
+screenshot: ../../../../images/development/nearbysupply.jpg
+launchDate: 2015-10-15
+primaryColor: [240, 85, 69]
+technologies: [ios, react, django, sass]
+hosting: [aws]
+order: 1
+---
 #### Background
 
 Nearby Supply helps people find products by connecting them with local stores. At its simplest, a shopper submits a request for any product, Nearby Supply sends it to local stores that are likely to stock that product, and each store responds in real-time.

@@ -1,3 +1,14 @@
+---
+slug: intranet
+name: Corporate Intranet
+shortName: Intranet
+screenshot: ../../../../images/development/intranet.jpg
+launchDate: 2016-11-01
+primaryColor: [190, 28, 45]
+technologies: [react, django, sass]
+hosting: [webfaction, aws]
+order: 0
+---
 #### Background
 
 My client had been using the same online system to manage their business processes for over 15 years, which meant the system was clunky and slow for users and expensive to maintain. I worked with the group's management and the system's users to develop and implement a new system with a clean, easy-to-use interface that addressed all of the challenges present in the old system.

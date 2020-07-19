@@ -1,3 +1,15 @@
+---
+slug: personal
+name: Personal Site
+shortName: Personal
+link: http://walkerangell.com/
+screenshot: ../../../../images/development/personal.jpg
+launchDate: 2014-10-30
+primaryColor: [118, 54, 9]
+technologies: [react, sass]
+hosting: [aws]
+order: 4
+---
 #### Background
 
 You're currently looking at this site! Initially, I just wanted a simple gallery to display some of my photography, but have since converted it into a portfolio of both photography, and development work.
