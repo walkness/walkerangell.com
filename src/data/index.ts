@@ -175,12 +175,6 @@ export const development = {
   },
 };
 
-export const photography = {
-  sectionTitle: 'Photography',
-
-  portfolio: require('./portfolio'), // eslint-disable-line global-require
-};
-
 export const monthNames = [
   'January',
   'February',
