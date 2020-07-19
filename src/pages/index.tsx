@@ -10,10 +10,12 @@ import styles from './index.module.scss';
 
 interface Props extends PageProps {
   data: {
-    content: {
-      html: string;
-    }
-  }
+    file: {
+      childMarkdownRemark: {
+        html: string;
+      };
+    };
+  };
 }
 
 const Home: React.FC<Props> = ({ data }) => (
@@ -35,7 +37,7 @@ const Home: React.FC<Props> = ({ data }) => (
           <CaptureLinks
             className='body lead'
             dangerouslySetInnerHTML={{
-              __html: data.content.html,
+              __html: data.file.childMarkdownRemark.html,
             }}
           />
 
@@ -53,9 +55,11 @@ const Home: React.FC<Props> = ({ data }) => (
 );
 
 export const pageQuery = graphql`
-  query($path: String!) {
-    content: markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
+  query {
+    file(relativePath: {eq: "content/index.md"}) {
+      childMarkdownRemark {
+        html
+      }
     }
   }
 `;

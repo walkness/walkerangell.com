@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 import Helmet from 'react-helmet';
 import cx from 'classnames';
-import { PageProps } from 'gatsby'
+import { PageProps } from 'gatsby';
 
 import Header from '@/components/header';
 import Footer from '@/components/footer';
@@ -68,15 +68,6 @@ class App extends Component<PageProps, State> {
         <Helmet
           defaultTitle='Walker Angell'
           titleTemplate='%s | Walker Angell'
-          /* eslint-disable global-require, max-len */
-          // link={[
-          //   { rel: 'apple-touch-icon', sizes: '180x180', href: require('images/favicon/apple-touch-icon.png') },
-          //   { rel: 'icon', type: 'image/png', href: require('images/favicon/favicon-32x32.png'), sizes: '32x32' },
-          //   { rel: 'icon', type: 'image/png', href: require('images/favicon/favicon-16x16.png'), sizes: '16x16' },
-          //   { rel: 'manifest', href: require('images/favicon/manifest.json') },
-          //   { rel: 'mask-icon', href: require('images/favicon/safari-pinned-tab.svg'), color: '#337ab7' },
-          // ]}
-          /* eslint-enable global-require, max-len */
           script={[
             {
               type: 'text/javascript',

@@ -15,7 +15,7 @@ const Header: React.FC = () => (
           Walker Angell
         </Link>
 
-        <Link to='/development/' activeClassName='active'>
+        <Link to='/development/' activeClassName='active' partiallyActive>
           Development
         </Link>
 
@@ -23,7 +23,7 @@ const Header: React.FC = () => (
           Walker Angell
         </Link>
 
-        <Link to='/photography/' activeClassName='active'>
+        <Link to='/photography/' activeClassName='active' partiallyActive>
           Photography
         </Link>
 
