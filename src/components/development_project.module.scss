@@ -1,0 +1,92 @@
+@import '~@/styles/variables';
+
+$gray-lighter: $gray-300;
+
+.project {
+  padding: 7rem 0;
+  border-bottom: 1px solid $gray-lighter;
+
+  .content,
+  .screenshot {
+    @include make-col-ready;
+  }
+
+  .content {
+    @include media-breakpoint-up(sm) {
+      @include make-col(7);
+    }
+
+    h3 {
+      text-transform: uppercase;
+      margin-top: 0;
+    }
+
+    .badge {
+      font-size: 85%;
+      font-weight: normal;
+      margin-right: (10px/16px) * 1rem;
+      margin-bottom: (1px/16px) * 1rem;
+    }
+
+    .technologies,
+    .hosting {
+      @include make-col-ready;
+      margin-top: $grid-gutter-width-base / 2;
+      margin-bottom: $grid-gutter-width-base / 2;
+
+      @include media-breakpoint-up(md) {
+        @include make-col(6);
+      }
+
+      > p {
+        background-size: auto 100%;
+        background-repeat: no-repeat;
+        background-position: left center;
+        padding-left: ($line-height-base * $font-size-base) + ((5px/16px) * 1rem);
+      }
+
+      > ul {
+        $spacing-x: (2px/16px) * 1em;
+        $spacing-y: (6px/16px) * 1em;
+        @include list-unstyled;
+        margin: (-$spacing-y) (-$spacing-x);
+
+        > li {
+          display: inline-block;
+          margin: $spacing-y $spacing-x;
+
+          > a {
+            padding: (((5px / 2) / 16px) * 1rem) (10px/16px) * 1rem;
+            border: 1px solid $gray-lighter;
+            border-radius: $border-radius;
+            transition: all 150ms ease-in;
+
+            &:hover {
+              background-color: $gray-lighter;
+              border-color: darken($gray-lighter, 10%);
+            }
+          }
+        }
+      }
+    }
+
+    .technologies > p {
+      background-image: icon(code, $body-color);
+    }
+
+    .hosting > p {
+      background-image: icon(server, $body-color);
+    }
+  }
+
+  .screenshot {
+    @include media-breakpoint-up(sm) {
+      @include make-col(5);
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
