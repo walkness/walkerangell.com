@@ -13,7 +13,6 @@ import { throttle } from 'lodash';
 
 import { TypekitLoadedContext } from '@/context/typekit_loaded_context';
 import PageHeader from '@/components/page_header';
-import CaptureLinks from '@/components/capture_links';
 import Project from '@/components/development_project';
 
 import styles from './development.module.scss';
@@ -254,9 +253,9 @@ class Development extends Component<Props, State, Context> {
 
           <PageHeader title={title} />
 
-          <CaptureLinks
+          <div
             className='body'
-            dangerouslySetInnerHTML={{ __html: content }}
+            dangerouslySetInnerHTML={{ __html: content }} // eslint-disable-line react/no-danger
           />
         </div>
 

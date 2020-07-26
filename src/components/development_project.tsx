@@ -2,7 +2,6 @@ import React from 'react';
 
 import { monthNames, development } from '@/data';
 import Screen from '@/components/screen';
-import CaptureLinks from '@/components/capture_links';
 
 import styles from './development_project.module.scss';
 
@@ -141,9 +140,9 @@ const Project: React.FC<Props> = ({ slug, project, content }) => {
             </div>
 
             { content && (
-              <CaptureLinks
+              <div
                 className='body'
-                dangerouslySetInnerHTML={{ __html: content }}
+                dangerouslySetInnerHTML={{ __html: content }} // eslint-disable-line react/no-danger
               />
             ) }
 

@@ -4,7 +4,6 @@ import Helmet from 'react-helmet';
 import cx from 'classnames';
 
 import SocialLinks from '@/components/social_links';
-import CaptureLinks from '@/components/capture_links';
 
 import styles from './index.module.scss';
 
@@ -34,9 +33,9 @@ const Home: React.FC<Props> = ({ data }) => (
 
           <h1 className='display-3'>Hello!</h1>
 
-          <CaptureLinks
+          <div
             className='body lead'
-            dangerouslySetInnerHTML={{
+            dangerouslySetInnerHTML={{ // eslint-disable-line react/no-danger
               __html: data.file.childMarkdownRemark.html,
             }}
           />

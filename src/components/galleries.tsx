@@ -2,7 +2,6 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'gatsby';
 
-import CaptureLinks from '@/components/capture_links';
 import LazyImg from '@/components/lazy_img';
 
 import styles from './galleries.module.scss';
@@ -35,9 +34,9 @@ const Galleries: React.FC<Props> = ({ title, content, galleries, basePath }) => 
     { title && <Helmet title={title} /> }
 
     { content && (
-      <CaptureLinks
+      <div
         className={styles.copy}
-        dangerouslySetInnerHTML={{ __html: content }}
+        dangerouslySetInnerHTML={{ __html: content }} // eslint-disable-line react/no-danger
       />
     ) }
 
