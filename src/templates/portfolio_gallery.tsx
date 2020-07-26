@@ -75,21 +75,6 @@ class Gallery extends Component<Props, State> {
     this.setState({ loaded }); // eslint-disable-line react/no-did-mount-set-state
   }
 
-  // componentWillReceiveProps(nextProps: Props): void {
-  //   const { pageContext: { category, gallery } } = this.props;
-  //   if (
-  //     nextProps.pageContext.category !== category ||
-  //     nextProps.pageContext.gallery !== gallery
-  //   ) {
-  //     this.setState({ loaded: [] });
-  //     const { location, params } = nextProps;
-  //     if (!location.hash) {
-  //       const gallery = photography.portfolio.categories[params.category].galleries[params.gallery];
-  //       this.context.router.push(Object.assign({}, location, { hash: `#${gallery.images[0]}` }));
-  //     }
-  //   }
-  // }
-
   componentDidUpdate(prevProps: Props): void {
     const { location } = this.props;
     if (prevProps.location.hash !== location.hash) {
@@ -116,6 +101,12 @@ class Gallery extends Component<Props, State> {
     } else if (e.which === 39) {
       this.advanceImage(1);
     }
+  }
+
+  handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>): void => {
+    const name = e.currentTarget.dataset.imagekey;
+    if (!name) return;
+    this.setState((state) => ({ loaded: [...state.loaded, name] }));
   }
 
   scrollFilmstrip(): void {
@@ -164,12 +155,6 @@ class Gallery extends Component<Props, State> {
       }, 15);
     }
     requestAnimationFrame(step);
-  }
-
-  handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>): void => {
-    const name = e.currentTarget.dataset.imagekey;
-    if (!name) return;
-    this.setState((state) => ({ loaded: [...state.loaded, name] }));
   }
 
   render(): React.ReactNode {
