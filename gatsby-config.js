@@ -24,7 +24,12 @@ module.exports = {
     },
     'gatsby-plugin-layout',
     'gatsby-transformer-json',
-    'gatsby-transformer-remark',
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: ['gatsby-remark-external-links'],
+      },
+    },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     'gatsby-plugin-catch-links',
