@@ -24,10 +24,13 @@ interface Props extends PageProps {
       nodes: {
         name: string;
         childImageSharp: {
-          src50: { src: string; };
-          src830: { src: string; };
-          src1640: { src: string; };
-          src3280: { src: string; };
+          thumb: {
+            base64: string;
+          };
+          image: {
+            src: string;
+            srcSet: string;
+          };
         };
       }[];
     };
@@ -196,8 +199,7 @@ class Gallery extends Component<Props, State> {
         <ul ref={this.panel} className={styles.panel}>
 
           { imageFiles.map((imageFile) => {
-            const { name, childImageSharp: imgs } = imageFile;
-            const { src830, src1640, src3280 } = imgs;
+            const { name, childImageSharp: { image } } = imageFile;
             return (
               <li
                 key={name}
@@ -205,8 +207,8 @@ class Gallery extends Component<Props, State> {
               >
                 <LazyImg
                   onLoad={this.handleImageLoad}
-                  src={src1640.src}
-                  srcSet={`${src830.src} 830w, ${src1640.src} 1640w, ${src3280.src} 3280w`}
+                  src={image.src}
+                  srcSet={image.srcSet}
                   sizes='(min-width: 769px) calc(100vw - 291px), 100vw'
                   alt={name}
                   data-imagekey={name}
@@ -223,7 +225,7 @@ class Gallery extends Component<Props, State> {
         <ul className={styles.filmstrip} ref={this.filmstrip}>
 
           { imageFiles.map((imageFile) => {
-            const { name, childImageSharp: { src50, src830, src1640, src3280 } } = imageFile;
+            const { name, childImageSharp: { thumb, image } } = imageFile;
             return (
               <li
                 key={name}
@@ -231,11 +233,11 @@ class Gallery extends Component<Props, State> {
                 onClick={() => navigate(`${location.pathname}#${name}`)}
               >
                 { loaded.indexOf(name) === -1 ?
-                  <LazyImg src={src50.src} className='placeholder' />
+                  <LazyImg src={thumb.base64} className='placeholder' />
                 :
                   <LazyImg
-                    src={src1640.src}
-                    srcSet={`${src830.src} 830w, ${src1640.src} 1640w, ${src3280.src} 3280w`}
+                    src={image.src}
+                    srcSet={image.srcSet}
                     sizes='(min-width: 769px) calc(100vw - 291px), 100vw'
                   />
                 }
@@ -264,10 +266,13 @@ export const pageQuery = graphql`
       nodes {
         name
         childImageSharp {
-          src50: fluid(maxWidth: 50, maxHeight: 50, fit: INSIDE) { src }
-          src830: fluid(maxWidth: 830, maxHeight: 830, fit: INSIDE) { src }
-          src1640: fluid(maxWidth: 1640, maxHeight: 1640, fit: INSIDE) { src }
-          src3280: fluid(maxWidth: 3280, maxHeight: 3280, fit: INSIDE) { src }
+          thumb: fluid(maxWidth: 50, maxHeight: 50, fit: INSIDE, grayscale: true) {
+            base64
+          }
+          image: fluid(maxWidth: 1640, maxHeight: 1640, fit: INSIDE, srcSetBreakpoints: [830, 3280]) {
+            src
+            srcSet
+          }
         }
       }
     }
