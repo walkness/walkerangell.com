@@ -217,8 +217,21 @@ class Gallery extends Component<Props, State> {
             );
           }) }
 
-          <button className={styles.next} onClick={() => this.advanceImage(1)}>Next</button>
-          <button className={styles.previous} onClick={() => this.advanceImage(-1)}>Previous</button>
+          <button
+            type='button'
+            className={styles.next}
+            onClick={() => this.advanceImage(1)}
+          >
+            Next
+          </button>
+
+          <button
+            type='button'
+            className={styles.previous}
+            onClick={() => this.advanceImage(-1)}
+          >
+            Previous
+          </button>
 
         </ul>
 
@@ -232,15 +245,15 @@ class Gallery extends Component<Props, State> {
                 className={classNames(styles.galleryImage, { current: current === name })}
                 onClick={() => navigate(`${location.pathname}#${name}`)}
               >
-                { loaded.indexOf(name) === -1 ?
-                  <LazyImg src={thumb.base64} className='placeholder' />
-                :
-                  <LazyImg
-                    src={image.src}
-                    srcSet={image.srcSet}
-                    sizes='(min-width: 769px) calc(100vw - 291px), 100vw'
-                  />
-                }
+                { loaded.indexOf(name) === -1
+                  ? <LazyImg src={thumb.base64} className='placeholder' />
+                  : (
+                    <LazyImg
+                      src={image.src}
+                      srcSet={image.srcSet}
+                      sizes='(min-width: 769px) calc(100vw - 291px), 100vw'
+                    />
+                  ) }
               </li>
             );
           }) }
