@@ -3,7 +3,7 @@ import cx from 'classnames';
 
 type onLoadHandler = (event: React.SyntheticEvent<HTMLImageElement>) => void;
 
-interface Props extends React.HTMLAttributes<HTMLImageElement> {
+interface Props extends React.ImgHTMLAttributes<HTMLImageElement> {
   onLoad?: onLoadHandler;
 }
 

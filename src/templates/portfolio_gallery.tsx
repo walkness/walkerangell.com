@@ -144,14 +144,14 @@ class Gallery extends Component<Props, State> {
     const scrollWidth = element.scrollLeft;
     const scrollStep = Math.PI / (scrollDuration / 15);
     const cosParameter = (offset - scrollWidth) / 2;
-    const numIterations = Math.ceil(scrollDuration / 15, 1);
+    const numIterations = Math.ceil(scrollDuration / 15);
     let scrollCount = 0;
     let scrollMargin;
     function step() {
       setTimeout(() => {
         if (scrollCount < numIterations) {
           requestAnimationFrame(step);
-          scrollCount++;
+          scrollCount += 1;
           if (scrollCount === numIterations) {
             scrollMargin = cosParameter * 2;
           } else {
