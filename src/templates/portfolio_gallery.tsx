@@ -53,7 +53,7 @@ class Gallery extends Component<Props, State> {
     const { location, data: { imagesEdge: { nodes: images } } } = this.props;
     const hash = location.hash.substring(1);
     if (!hash || !images.some((img) => img.name === hash)) {
-      navigate(`${location.pathname}#${images[0].name}`);
+      navigate(`${location.pathname}#${images[0].name}`, { replace: true });
     }
   }
 
@@ -107,7 +107,7 @@ class Gallery extends Component<Props, State> {
     const current = location.hash.substring(1);
     const currentIndex = imageFiles.findIndex((img) => img.name === current);
     const nextIndex = (((currentIndex + i) % numImages) + numImages) % numImages;
-    navigate(`${location.pathname}#${imageFiles[nextIndex].name}`);
+    navigate(`${location.pathname}#${imageFiles[nextIndex].name}`, { replace: true });
   }
 
   handleKeyPress: React.KeyboardEventHandler = (e) => {
