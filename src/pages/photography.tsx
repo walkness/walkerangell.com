@@ -26,7 +26,6 @@ interface Props extends PageProps {
         html: string;
       };
     };
-    z
   };
 }
 

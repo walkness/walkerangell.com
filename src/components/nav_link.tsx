@@ -4,22 +4,18 @@ import cx from 'classnames';
 import { ClassValue } from 'classnames/types';
 import { useMatch } from '@reach/router';
 
-interface DefaultProps {
-  liClassName: ClassValue;
-  noLinkActive: boolean;
-  dropdown: React.ReactNode;
-}
-
-interface RequiredProps extends GatsbyLinkProps<unknown>, Partial<DefaultProps> {
+interface Props extends GatsbyLinkProps<{ userScroll: boolean; }> {
   to: string;
+  liClassName?: ClassValue;
+  noLinkActive?: boolean;
+  dropdown?: React.ReactNode;
 }
-
-type Props = RequiredProps & DefaultProps
 
 const NavLink: React.FC<Props> = ({
-  liClassName,
-  noLinkActive,
-  dropdown,
+  liClassName = null,
+  noLinkActive = false,
+  dropdown = null,
+  ref, // eslint-disable-line @typescript-eslint/no-unused-vars
   ...rest
 }) => {
   const { children, to } = rest;
@@ -41,12 +37,6 @@ const NavLink: React.FC<Props> = ({
 
     </li>
   );
-};
-
-NavLink.defaultProps = {
-  liClassName: null,
-  noLinkActive: false,
-  dropdown: null,
 };
 
 export default NavLink;
