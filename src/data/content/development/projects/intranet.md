@@ -7,6 +7,7 @@ launchDate: 2016-11-01
 primaryColor: [190, 28, 45]
 technologies: [react, django, sass]
 hosting: [webfaction, aws]
+order: 0
 ---
 #### Background
 

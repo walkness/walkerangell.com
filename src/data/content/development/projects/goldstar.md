@@ -7,6 +7,7 @@ screenshot: ../../../../images/development/goldstar.jpg
 launchDate: 2017-04-18
 primaryColor: [255, 203, 5]
 technologies: [react, sass]
+order: 3
 ---
 #### Background
 

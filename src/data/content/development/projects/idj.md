@@ -8,6 +8,7 @@ launchDate: 2016-07-01
 primaryColor: [42, 75, 94]
 technologies: [react, sass]
 hosting: [aws]
+hidden: true
 ---
 #### Background
 

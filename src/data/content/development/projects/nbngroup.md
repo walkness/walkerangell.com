@@ -8,6 +8,7 @@ launchDate: 2015-11-24
 primaryColor: [28, 154, 212]
 technologies: [craft, jquery, sass]
 hosting: [webfaction, aws]
+order: 6
 ---
 #### Background
 

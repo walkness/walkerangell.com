@@ -5,8 +5,10 @@ link: https://chargerville.com/
 screenshot: ../../../../images/development/chargerville.jpg
 launchDate: 2016-05-13
 primaryColor: [0, 99, 157]
+primaryColorHex: #00639d
 technologies: [react, django, sass]
 hosting: [aws]
+order: 2
 ---
 #### Background
 

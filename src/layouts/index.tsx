@@ -1,7 +1,6 @@
-/* globals document window */
+/* globals document */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { CSSTransitionGroup } from 'react-transition-group';
 import Helmet from 'react-helmet';
 import cx from 'classnames';
@@ -15,49 +14,17 @@ import BackgroundImage from '@/components/background_image';
 import '../styles/main.scss';
 import styles from './index.module.scss';
 
-declare global {
-  /* eslint-disable no-var, vars-on-top */
-  var Typekit: unknown;
-  var onTypekitLoaded: () => void;
-  /* eslint-enable no-var, vars-on-top */
-}
-
-interface State {
-  typekitLoaded: boolean;
-}
-
 interface ChildContext {
   typekitLoaded: boolean;
 }
 
-class App extends Component<PageProps, State> {
-  static childContextTypes = {
-    typekitLoaded: PropTypes.bool,
-  };
-
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      typekitLoaded: typeof window !== 'undefined' && !!window.Typekit,
-    };
-  }
-
-  getChildContext(): ChildContext {
-    const { typekitLoaded } = this.state;
-    return { typekitLoaded };
-  }
-
+class App extends Component<PageProps> {
   componentDidMount(): void {
-    window.onTypekitLoaded = this.handleTypekitLoaded.bind(this);
     if ('mixBlendMode' in document.body.style) {
       document.documentElement.className += ' can-blend';
     } else {
       document.documentElement.className += ' no-blend';
     }
-  }
-
-  handleTypekitLoaded(): void {
-    this.setState({ typekitLoaded: true });
   }
 
   render(): React.ReactNode {
@@ -79,7 +46,7 @@ class App extends Component<PageProps, State> {
               src: '//use.typekit.net/ioi4abv.js',
               type: 'text/javascript',
               async: true,
-              onLoad: 'try{Typekit.load({async:true, active: window.typekitLoaded || function(){}});}catch(e){}', // eslint-disable-line max-len
+              onLoad: 'try{Typekit.load({async:true, active: window.onTypekitLoaded || function(){}});}catch(e){}', // eslint-disable-line max-len
             },
             {
               type: 'text/javascript',

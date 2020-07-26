@@ -7,6 +7,7 @@ launchDate: 2010-09-27
 primaryColor: [52, 60, 39]
 technologies: [react, wordpress, sass]
 hosting: [linode, aws]
+order: 5
 ---
 #### Background
 

@@ -1,12 +1,17 @@
 /* globals window document requestAnimationFrame */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { graphql, Link, PageProps } from 'gatsby';
+import {
+  graphql,
+  Link,
+  PageProps,
+  navigate,
+} from 'gatsby';
 import Helmet from 'react-helmet';
 import classNames from 'classnames';
 import { throttle } from 'lodash';
 
+import { TypekitLoadedContext } from '@/context/typekit_loaded_context';
 import PageHeader from '@/components/page_header';
 import CaptureLinks from '@/components/capture_links';
 import Project from '@/components/development_project';
@@ -24,20 +29,24 @@ const documentHeight = () => {
   );
 };
 
-const scrollToPosition = (position, scrollDuration = 200, finished = () => {}) => {
+const scrollToPosition = (
+  position: number,
+  scrollDuration = 200,
+  finished: () => void = () => undefined,
+) => {
   const docHeight = documentHeight();
   const positionOrBottom = Math.min(position, docHeight - window.innerHeight);
   const scrollHeight = window.scrollY;
   const scrollStep = Math.PI / (scrollDuration / 15);
   const cosParameter = (positionOrBottom - scrollHeight) / 2;
-  const numIterations = Math.ceil(scrollDuration / 15, 1);
+  const numIterations = Math.ceil(scrollDuration / 15);
   let scrollCount = 0;
-  let scrollMargin;
+  let scrollMargin: number;
   function step() {
-    setTimeout(function () { // eslint-disable-line prefer-arrow-callback
+    setTimeout(() => {
       if (scrollCount < numIterations) {
         requestAnimationFrame(step);
-        scrollCount++;
+        scrollCount += 1;
         if (scrollCount === numIterations) {
           scrollMargin = cosParameter * 2;
         } else {
@@ -51,6 +60,12 @@ const scrollToPosition = (position, scrollDuration = 200, finished = () => {}) =
   }
   requestAnimationFrame(step);
 };
+
+type LocationProp = PageProps['location']
+
+interface LocationWithUserScroll extends LocationProp {
+  state: { userScroll: boolean };
+}
 
 interface Props extends PageProps {
   data: {
@@ -76,9 +91,7 @@ interface Props extends PageProps {
             hosting?: string[];
             screenshot?: {
               childImageSharp: {
-                size455: { src: string; };
-                size910: { src: string; };
-                size1365: { src: string; };
+                fluid: { srcSet: string; src: string; };
               };
             };
           };
@@ -87,13 +100,18 @@ interface Props extends PageProps {
       }[];
     };
   };
+  location: LocationWithUserScroll;
 }
 
 interface State {
   inProjects: boolean;
 }
 
-class Development extends Component<Props, State> {
+type Context = React.ContextType<typeof TypekitLoadedContext>
+
+class Development extends Component<Props, State, Context> {
+  static contextType = TypekitLoadedContext;
+
   readonly state: State = { inProjects: false };
 
   private projects = React.createRef<HTMLDivElement>();
@@ -104,102 +122,121 @@ class Development extends Component<Props, State> {
 
   private mounted = false;
 
-  static contextTypes = {
-    typekitLoaded: PropTypes.bool,
-  };
+  private boundScrollHandler?: () => void;
 
-  // componentDidMount() {
-  //   this.setProjectOffsets();
-  //   setTimeout(() => this.setProjectOffsets(), 500);
-  //   this.handleScroll();
-  //   this.boundScrollHandler = throttle(this.handleScroll.bind(this), 100);
-  //   this.boundResizeHandler = throttle(this.handleResize.bind(this), 500);
-  //   window.addEventListener('scroll', this.boundScrollHandler);
-  //   window.addEventListener('resize', this.boundResizeHandler);
-  //   if (this.props.location.hash && window.scrollY === 0) {
-  //     this.scrollToAnchor(this.props.location.hash.substring(1));
-  //   }
-  //   setTimeout(() => { this.mounted = true; }, 5);
-  // }
+  private boundResizeHandler?: () => void;
 
-  // componentWillReceiveProps(nextProps, nextContext) {
-  //   if (nextContext.typekitLoaded && nextContext.typekitLoaded !== this.context.typekitLoaded) {
-  //     this.setProjectOffsets();
-  //     this.handleScroll();
-  //   }
+  private projectsHeaderHeight?: number;
 
-  //   if (
-  //     !(nextProps.location.state && nextProps.location.state.userScroll) &&
-  //     nextProps.location.hash &&
-  //     nextProps.location.hash !== this.props.location.hash
-  //   ) {
-  //     this.scrollToAnchor(nextProps.location.hash.substring(1), true);
-  //   }
-  // }
+  private projectOffsets: { start: number; end: number; id: string; }[] = [];
 
-  // componentWillUnmount() {
-  //   window.removeEventListener('scroll', this.boundScrollHandler);
-  //   window.removeEventListener('resize', this.boundResizeHandler);
-  // }
+  private prevContext?: Context;
 
-  // setProjectOffsets() {
-  //   const projectsHeaderRect = this.projectsHeader.getBoundingClientRect();
-  //   this.projectsHeaderHeight = projectsHeaderRect.height;
-  //   this.projectOffsets = [];
-  //   Array.from(this.projects.getElementsByTagName('article')).forEach((el) => {
-  //     const rect = el.getBoundingClientRect();
-  //     const start = rect.top + window.scrollY;
-  //     this.projectOffsets.push({
-  //       start: start - this.projectsHeaderHeight,
-  //       end: start + rect.height,
-  //       id: el.id,
-  //     });
-  //   });
-  // }
+  componentDidMount(): void {
+    const { location } = this.props;
+    this.setProjectOffsets();
+    setTimeout(() => this.setProjectOffsets(), 500);
+    this.handleScroll();
+    this.boundScrollHandler = throttle(this.handleScroll.bind(this), 100);
+    this.boundResizeHandler = throttle(this.handleResize.bind(this), 500);
+    window.addEventListener('scroll', this.boundScrollHandler);
+    window.addEventListener('resize', this.boundResizeHandler);
+    if (location.hash && window.scrollY === 0) {
+      this.scrollToAnchor(location.hash.substring(1));
+    }
+    setTimeout(() => { this.mounted = true; }, 5);
 
-  // handleResize() {
-  //   this.setProjectOffsets();
-  // }
+    this.prevContext = this.context;
+  }
 
-  // handleScroll() {
-  //   const scroll = window.scrollY;
+  componentDidUpdate(prevProps: Props): void {
+    const { location } = this.props;
 
-  //   const inProjects = scroll >= this.projectOffsets[0].start;
-  //   if (inProjects !== this.state.inProjects) {
-  //     this.setState({ inProjects });
-  //   }
+    if (this.context && this.prevContext !== this.context) {
+      this.setProjectOffsets();
+      this.handleScroll();
+    }
 
-  //   if (!this.animatingScroll && this.mounted) {
-  //     let hash = '';
-  //     this.projectOffsets.forEach((el) => {
-  //       if (scroll >= el.start && scroll < el.end) {
-  //         hash = `#${el.id}`;
-  //       }
-  //     });
-  //     if (hash !== this.props.location.hash) {
-  //       this.context.router.replace(Object.assign({}, this.props.location, {
-  //         hash,
-  //         state: { userScroll: true },
-  //       }));
-  //     }
-  //   }
-  // }
+    if (
+      !(location.state && location.state.userScroll)
+      && location.hash
+      && prevProps.location.hash !== location.hash
+    ) {
+      this.scrollToAnchor(location.hash.substring(1), true);
+    }
 
-  // scrollToAnchor(a, animate = false) {
-  //   const element = document.getElementById(a);
-  //   if (element) {
-  //     const rect = element.getBoundingClientRect();
-  //     const offset = (rect.top + window.scrollY) - this.projectsHeaderHeight;
-  //     if (animate) {
-  //       this.animatingScroll = true;
-  //       scrollToPosition(offset, 200, () => {
-  //         this.animatingScroll = false;
-  //       });
-  //     } else {
-  //       window.scrollTo(0, offset);
-  //     }
-  //   }
-  // }
+    this.prevContext = this.context;
+  }
+
+  componentWillUnmount(): void {
+    if (this.boundScrollHandler) window.removeEventListener('scroll', this.boundScrollHandler);
+    if (this.boundResizeHandler) window.removeEventListener('resize', this.boundResizeHandler);
+  }
+
+  setProjectOffsets(): void {
+    const { current: projectsHeader } = this.projectsHeader;
+    const { current: projects } = this.projects;
+    if (!projectsHeader || !projects) return;
+    const projectsHeaderRect = projectsHeader.getBoundingClientRect();
+    this.projectsHeaderHeight = projectsHeaderRect.height;
+    this.projectOffsets = [];
+    Array.from(projects.getElementsByTagName('article')).forEach((el) => {
+      const rect = el.getBoundingClientRect();
+      const start = rect.top + window.scrollY;
+      this.projectOffsets.push({
+        start: start - (this.projectsHeaderHeight || 0),
+        end: start + rect.height,
+        id: el.id,
+      });
+    });
+  }
+
+  handleResize(): void {
+    this.setProjectOffsets();
+  }
+
+  handleScroll(): void {
+    const { location } = this.props;
+    const { inProjects: currentInProjects } = this.state;
+
+    const scroll = window.scrollY;
+
+    const inProjects = scroll >= this.projectOffsets[0].start;
+    if (inProjects !== currentInProjects) {
+      this.setState({ inProjects });
+    }
+
+    if (!this.animatingScroll && this.mounted) {
+      let hash = '';
+      this.projectOffsets.forEach((el) => {
+        if (scroll >= el.start && scroll < el.end) {
+          hash = `#${el.id}`;
+        }
+      });
+      if (hash !== location.hash) {
+        navigate(location.pathname + hash, {
+          state: { userScroll: true },
+          replace: true,
+        });
+      }
+    }
+  }
+
+  scrollToAnchor(a: string, animate = false): void {
+    const element = document.getElementById(a);
+    if (element) {
+      const rect = element.getBoundingClientRect();
+      const offset = (rect.top + window.scrollY) - (this.projectsHeaderHeight || 0);
+      if (animate) {
+        this.animatingScroll = true;
+        scrollToPosition(offset, 200, () => {
+          this.animatingScroll = false;
+        });
+      } else {
+        window.scrollTo(0, offset);
+      }
+    }
+  }
 
   render(): React.ReactNode {
     const { inProjects } = this.state;
@@ -287,7 +324,13 @@ export const pageQuery = graphql`
         html
       }
     }
-    projectsFiles: allFile(filter: {relativeDirectory: {eq: "content/development/projects"}}) {
+    projectsFiles: allFile(
+      filter: {
+        relativeDirectory: {eq: "content/development/projects"},
+        childMarkdownRemark: {frontmatter: {hidden: {ne: true}}},
+      },
+      sort: {fields: childMarkdownRemark___frontmatter___order},
+    ) {
       nodes {
         childMarkdownRemark {
           frontmatter {
@@ -299,9 +342,10 @@ export const pageQuery = graphql`
             link
             screenshot {
               childImageSharp {
-                size455: fluid(maxWidth: 455) { src }
-                size910: fluid(maxWidth: 910) { src }
-                size1365: fluid(maxWidth: 1365) { src }
+                fluid(maxWidth: 455, srcSetBreakpoints: [455, 910, 1365], jpegQuality: 80) {
+                  srcSet
+                  src
+                }
               }
             }
             launchDate
