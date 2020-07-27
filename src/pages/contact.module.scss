@@ -1,8 +1,6 @@
-@import '~Styles/variables';
-
+@import '~@/styles/variables';
 
 .contact-form {
-
   fieldset {
     &.details {
       @include make-col-ready;
