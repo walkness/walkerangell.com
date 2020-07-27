@@ -51,20 +51,24 @@ form {
   margin-top: $line-height-base * $font-size-base;
   padding: $btn-padding-y-lg $btn-padding-x-lg;
 
-  .loader-icon {
-    @include loader-color(#fff, $brand-primary);
-    @include loader-size(0);
-    margin-bottom: 0;
-    margin-right: 0;
+  .spinner-border {
+    vertical-align: -.1em;
+    transition-property: width, height, border-width, margin;
+    transition-timing-function: ease-in-out;
+    transition-duration: 50ms;
   }
 
-  &.loading {
-    opacity: 1;
+  &.is-loading {
+    .spinner-border {
+      margin-right: .5em;
+    }
+  }
 
-    .loader-icon {
-      @include loader-size(1.125rem);
-      margin-bottom: -(4px/16px*1rem);
-      margin-right: $btn-padding-x;
+  &:not(.is-loading) {
+    .spinner-border {
+      width: 0;
+      height: 0;
+      border-width:0;
     }
   }
 
