@@ -5,9 +5,9 @@ import Helmet from 'react-helmet';
 import Formsy from 'formsy-react';
 import { graphql, PageProps } from 'gatsby';
 import { Input, Textarea } from 'formsy-react-components';
-import Alert from 'react-bootstrap/alert';
-import Button from 'react-bootstrap/button';
-import Spinner from 'react-bootstrap/spinner';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Spinner from 'react-bootstrap/Spinner';
 import cx from 'classnames';
 
 import PageHeader from '@/components/page_header';
