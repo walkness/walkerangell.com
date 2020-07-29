@@ -1,9 +1,0 @@
-[submodule "app/scripts/modules/react-formsy-bootstrap-components"]
-	path = app/scripts/modules/react-formsy-bootstrap-components
-	url = https://github.com/walkness/react-formsy-bootstrap-components.git
-[submodule "app/scripts/modules/react-alert"]
-	path = app/scripts/modules/react-alert
-	url = https://github.com/walkness/react-alert.git
-[submodule "app/scripts/modules/react-nav-link"]
-	path = app/scripts/modules/react-nav-link
-	url = https://github.com/walkness/react-nav-link.git
