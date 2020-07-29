@@ -26,6 +26,7 @@
     "gatsby-plugin-react-helmet": "^3.3.6",
     "gatsby-plugin-sass": "^2.3.12",
     "gatsby-plugin-sharp": "^2.6.14",
+    "gatsby-plugin-sharp-exif": "^1.0.2",
     "gatsby-plugin-typescript": "^2.4.15",
     "gatsby-remark-external-links": "0.0.4",
     "gatsby-source-filesystem": "^2.3.20",

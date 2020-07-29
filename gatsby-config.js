@@ -32,6 +32,7 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    // 'gatsby-plugin-sharp-exif',
     'gatsby-plugin-catch-links',
     {
       resolve: `gatsby-plugin-manifest`,
