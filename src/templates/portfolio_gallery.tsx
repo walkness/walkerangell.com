@@ -52,15 +52,13 @@ class Gallery extends Component<Props, State> {
 
   private filmstrip = React.createRef<HTMLUListElement>();
 
-  componentWillMount(): void {
+  componentDidMount(): void {
     const { location, data: { imagesEdge: { nodes: images } } } = this.props;
     const hash = location.hash.substring(1);
     if (!hash || !images.some((img) => img.name === hash)) {
       navigate(`${location.pathname}#${images[0].name}`, { replace: true });
     }
-  }
 
-  componentDidMount(): void {
     document.addEventListener('keydown', this.handleKeyPress);
     const { loaded } = this.state;
     const { current: panel } = this.panel;
