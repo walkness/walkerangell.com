@@ -28,9 +28,10 @@ class App extends Component<PageProps> {
   }
 
   render(): React.ReactNode {
-    const { children, path } = this.props;
-    const isHome = path === '/';
-    const isPhotography = path.startsWith('/photography');
+    const { children, location } = this.props;
+    const { pathname } = location || {};
+    const isHome = pathname === '/';
+    const isPhotography = pathname.startsWith('/photography');
     return (
       <div id='app' className={cx(styles.app, { home: isHome })}>
 
