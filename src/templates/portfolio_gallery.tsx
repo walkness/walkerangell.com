@@ -273,7 +273,13 @@ export const pageQuery = graphql`
       slug
       title
     }
-    imagesEdge: allFile(filter: {relativeDirectory: {eq: $imagesDir}}, sort: {fields: name}) {
+    imagesEdge: allFile(
+      filter: {
+        relativeDirectory: {eq: $imagesDir},
+        extension: {ne: "json"},
+      },
+      sort: {fields: [fields___order, name]},
+    ) {
       nodes {
         name
         childImageSharp {

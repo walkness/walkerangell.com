@@ -5,6 +5,7 @@
  */
 
 const path = require('path');
+const fs = require('fs');
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -45,4 +46,34 @@ exports.createPages = async ({ graphql, actions }) => {
       },
     });
   });
+};
+
+const readJsonFile = (file) => new Promise((resolve, reject) => {
+  fs.readFile(file, 'utf8', (err, data) => {
+    if (err) return reject(err);
+
+    try {
+      return resolve(JSON.parse(data));
+    } catch (e) {
+      return reject(e);
+    }
+  });
+});
+
+exports.onCreateNode = async ({ node, actions }) => {
+  const { createNodeField } = actions;
+
+  if (node.internal.type !== 'File') return;
+
+  const sortFile = path.resolve(node.dir, 'order.json');
+
+  try {
+    const data = await readJsonFile(sortFile);
+
+    const idx = data.indexOf(node.name);
+
+    createNodeField({ node, name: 'order', value: idx === -1 ? null : idx });
+  } catch (e) {
+    // Ignore
+  }
 };
