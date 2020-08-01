@@ -1,0 +1,99 @@
+form {
+  .form-group,
+  .radio-group {
+    &.required {
+      .control-label {
+        &:after {
+          content: "*";
+        }
+      }
+    }
+  }
+
+  .radio-group {
+    .control-label {
+      font-weight: bold;
+    }
+  }
+
+  &.form-horizontal {
+    .form-group {
+      .control-label,
+      .control-wrapper {
+        @include make-col-ready;
+      }
+      .control-label {
+        text-align: left;
+
+        @include media-breakpoint-up(md) {
+          @include make-col(3);
+        }
+      }
+
+      .control-wrapper {
+        @include media-breakpoint-up(md) {
+          @include make-col(9);
+        }
+      }
+    }
+  }
+
+  .alert {
+    margin-top: $line-height-base * $font-size-base;
+  }
+}
+
+.form-control {
+  font-family: $font-family-base;
+}
+
+.btn[type=submit] {
+  margin-top: $line-height-base * $font-size-base;
+  padding: $btn-padding-y-lg $btn-padding-x-lg;
+
+  .spinner-border {
+    vertical-align: -.1em;
+    transition-property: width, height, border-width, margin;
+    transition-timing-function: ease-in-out;
+    transition-duration: 50ms;
+  }
+
+  &.is-loading {
+    .spinner-border {
+      margin-right: .5em;
+    }
+  }
+
+  &:not(.is-loading) {
+    .spinner-border {
+      width: 0;
+      height: 0;
+      border-width:0;
+    }
+  }
+
+  @include media-breakpoint-down(xs) {
+    width: 100%;
+    display: block;
+  }
+}
+
+.errorlist {
+  &.nonfield {
+    margin-bottom: $line-height-base * $font-size-base;
+    padding: 0 $grid-gutter-width-base / 2;
+    list-style-type: none;
+
+    li {
+      @include alert-variant(theme-color-level('danger', $alert-bg-level), theme-color-level('danger', $alert-border-level), theme-color-level('danger', $alert-color-level));
+      margin-bottom: (5px/16px) * 1rem;
+      border: 1px solid transparent;
+      border-radius: $alert-border-radius;
+      padding: $alert-padding-y $alert-padding-x;
+    }
+  }
+}
+
+.form-control-feedback {
+  @include list-unstyled;
+}

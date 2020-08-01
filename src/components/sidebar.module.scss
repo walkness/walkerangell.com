@@ -1,0 +1,125 @@
+@import '~@/styles/variables';
+
+
+.sidebar {
+  padding: 0 $grid-gutter-width-base / 2;
+
+  a {
+    color: $sidebar-link-color;
+
+    &:hover {
+      color: $sidebar-hover-color;
+    }
+  }
+
+  @media (min-width: $sidebar-breakpoint) {
+    width: $sidebar-width;
+    float: left;
+    padding-top: (15px/16px * 1rem);
+    border-bottom: 0;
+
+    &:global(.sidebar-enter) {
+      width: 0;
+      padding-left: 0;
+      padding-right: 0;
+      white-space: nowrap !important;
+
+      &:global(.sidebar-enter-active) {
+        width: $sidebar-width;
+        padding-left: $grid-gutter-width-base / 2;
+        padding-right: $grid-gutter-width-base / 2;
+        transition: all 150ms ease-in;
+      }
+    }
+
+    &:global(.sidebar-leave) {
+      width: $sidebar-width;
+      padding-left: $grid-gutter-width-base / 2;
+      padding-right: $grid-gutter-width-base / 2;
+      white-space: nowrap !important;
+
+      &:global(.sidebar-leave-active) {
+        width: 0;
+        padding-left: 0;
+        padding-right: 0;
+        transition: all 150ms ease-out;
+      }
+    }
+  }
+}
+
+.photo-nav {
+  $duration: 200ms;
+  visibility: hidden;
+  max-height: 0;
+  overflow: hidden;
+  transition: visibility 0ms linear $duration, max-height $duration linear;
+
+  :global(.nav-item) {
+    padding: 0;
+
+    :global(.nav-link) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  &:global(.not-collapsed) {
+    visibility: visible;
+    max-height: (300px/16px * 1rem);
+    transition-delay: 0ms;
+  }
+
+  @media (min-width: $sidebar-breakpoint) {
+    visibility: visible;
+    max-height: inherit;
+  }
+
+  .menu {
+    font-size: 1.25em;
+  }
+}
+
+ul {
+
+  &.menu {
+    $link-spacing: (8px/16px * 1rem);
+    font-weight: 300;
+
+    &,
+    ul {
+      @include list-unstyled;
+      margin-top: - $link-spacing;
+      margin-bottom: - $link-spacing;
+    }
+
+    ul {
+      font-size: 0.85em;
+      padding-top: (15px/16px * 1rem);
+      padding-bottom: $link-spacing;
+    }
+
+    li {
+      padding: $link-spacing 0;
+
+      .sidebar &:global(.active) {
+        > a {
+          color: $sidebar-hover-color;
+          font-weight: 400;
+        }
+      }
+
+      &:global(.menu-item-has-children) {
+        > a {
+          font-weight: 500;
+        }
+
+        .sidebar &:global(.active) {
+          > a {
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}
