@@ -64,6 +64,14 @@ module.exports = {
     'gatsby-plugin-sass',
     'gatsby-plugin-postcss',
     '@brandedholdings/gatsby-plugin-remove-css-comments',
+    {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: 'UA-63799547-1',
+        head: true,
+        defer: true,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
