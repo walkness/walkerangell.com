@@ -16,3 +16,17 @@ frontend:
     paths:
       - .cache/**/*
       - node_modules/**/*
+  customHeaders:
+    # JS caching
+    - pattern: '**/*.js'
+      headers: [ { key: 'Cache-Control', value: 'public,max-age=31536000,immutable' } ]
+    # CSS caching
+    - pattern: '**/*.css'
+      headers: [ { key: 'Cache-Control', value: 'public,max-age=31536000,immutable' } ]
+    # Images caching
+    - pattern: '**/*.jpg'
+      headers: [ { key: 'Cache-Control', value: 'public,max-age=31536000,immutable' } ]
+    - pattern: '**/*.png'
+      headers: [ { key: 'Cache-Control', value: 'public,max-age=31536000,immutable' } ]
+    - pattern: '**/*.svg'
+      headers: [ { key: 'Cache-Control', value: 'public,max-age=31536000,immutable' } ]
