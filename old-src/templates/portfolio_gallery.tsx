@@ -1,3 +1,4 @@
+'use client';
 /* globals document requestAnimationFrame */
 
 import React, { Component } from 'react';
@@ -70,7 +71,7 @@ class Gallery extends Component<Props, State> {
     if (!panel) return;
 
     const imgs = Array.from(
-      panel.getElementsByTagName('img'),
+      panel.getElementsByTagName('img')
     ) as HTMLImageElement[];
 
     imgs.forEach(img => {
@@ -146,7 +147,7 @@ class Gallery extends Component<Props, State> {
   scrollFilmstripWithOffset(
     offset: number,
     scrollDuration = 200,
-    finished = () => undefined,
+    finished = () => undefined
   ): void {
     const { current: element } = this.filmstrip;
     if (!element) return;

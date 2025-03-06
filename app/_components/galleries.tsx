@@ -1,8 +1,8 @@
 import React from 'react';
-import Helmet from 'react-helmet';
-import { Link } from 'gatsby';
+// import Helmet from 'react-helmet';
+import Link from 'next/link';
 
-import LazyImg from '@/components/lazy_img';
+import LazyImg from './lazy_img';
 
 import styles from './galleries.module.scss';
 
@@ -35,7 +35,7 @@ const Galleries: React.FC<Props> = ({
   basePath,
 }) => (
   <div className={styles.galleries}>
-    {title && <Helmet title={title} />}
+    {/* {title && <Helmet title={title} />} */}
 
     {content && (
       <div
@@ -50,7 +50,7 @@ const Galleries: React.FC<Props> = ({
         const { fixed: img } = image.childImageSharp;
         return (
           <li key={slug}>
-            <Link to={`${basePath}${slug}/`}>
+            <Link href={`${basePath}${slug}/`}>
               <LazyImg {...img} />
               <span className={styles.name}>{galleryTitle}</span>
             </Link>

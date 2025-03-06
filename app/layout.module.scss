@@ -1,14 +1,4 @@
-@import '~@/styles/variables';
-
-body,
-html {
-  height: 100%;
-}
-
-main {
-  position: relative;
-  z-index: 1;
-}
+@import './_styles/variables';
 
 .app {
   position: relative;

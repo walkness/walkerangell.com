@@ -1,8 +1,12 @@
+'use client';
 import React, { Component } from 'react';
 import classNames from 'classnames';
-import { graphql, useStaticQuery } from 'gatsby';
+// import { graphql, useStaticQuery } from 'gatsby';
+
+import bgImg from '../../old-src/images/home/Iceland-5497.jpg';
 
 import styles from './background_image.module.scss';
+import Image from 'next/image';
 
 interface Props {
   onLoad?: (event: React.SyntheticEvent<HTMLImageElement>) => void;
@@ -12,47 +16,47 @@ interface State {
   loaded: boolean;
 }
 
-const imgQuery = graphql`
-  query {
-    file(relativePath: { eq: "home/Iceland-5497.jpg" }) {
-      childImageSharp {
-        original {
-          src
-        }
-        crop750x1334: fixed(width: 750, height: 1334) {
-          src
-        }
-        crop1536x2048: fixed(width: 1536, height: 2048) {
-          src
-        }
-        crop1242x2208: fixed(width: 1242, height: 2208) {
-          src
-        }
-        x800: fluid(maxHeight: 800) {
-          src
-        }
-        x1200: fluid(maxHeight: 1200) {
-          src
-        }
-        x1600: fluid(maxHeight: 1600) {
-          src
-        }
-        x2000: fluid(maxHeight: 2000) {
-          src
-        }
-        x2400: fluid(maxHeight: 2400) {
-          src
-        }
-        x2800: fluid(maxHeight: 2800) {
-          src
-        }
-        x3200: fluid(maxHeight: 3200) {
-          src
-        }
-      }
-    }
-  }
-`;
+// const imgQuery = graphql`
+//   query {
+//     file(relativePath: { eq: "home/Iceland-5497.jpg" }) {
+//       childImageSharp {
+//         original {
+//           src
+//         }
+//         crop750x1334: fixed(width: 750, height: 1334) {
+//           src
+//         }
+//         crop1536x2048: fixed(width: 1536, height: 2048) {
+//           src
+//         }
+//         crop1242x2208: fixed(width: 1242, height: 2208) {
+//           src
+//         }
+//         x800: fluid(maxHeight: 800) {
+//           src
+//         }
+//         x1200: fluid(maxHeight: 1200) {
+//           src
+//         }
+//         x1600: fluid(maxHeight: 1600) {
+//           src
+//         }
+//         x2000: fluid(maxHeight: 2000) {
+//           src
+//         }
+//         x2400: fluid(maxHeight: 2400) {
+//           src
+//         }
+//         x2800: fluid(maxHeight: 2800) {
+//           src
+//         }
+//         x3200: fluid(maxHeight: 3200) {
+//           src
+//         }
+//       }
+//     }
+//   }
+// `;
 
 interface ImageQueryData {
   file: {
@@ -77,7 +81,8 @@ interface PictureProps extends Props {
 }
 
 const Picture: React.FC<PictureProps> = ({ imgRef, onLoad }) => {
-  const data = useStaticQuery(imgQuery);
+  const data = { file: { childImageSharp: {} } };
+  return <Image src={bgImg} alt='Background Image' sizes='100vw' />;
   return (
     <picture style={{ display: 'none' }} className='dummy'>
       <source
@@ -163,17 +168,26 @@ class BackgroundImage extends Component<Props, State> {
     const { current: img } = this.img;
     const imgSrc = img && (img.currentSrc || img.src);
     return (
-      <div className={classNames(styles.backgroundImageWrapper, { loaded })}>
+      <div
+        className={classNames(styles['background-image-wrapper'], { loaded })}
+      >
         <div className={styles.background} />
 
         <div
-          className={styles.backgroundImage}
+          className={styles['background-image']}
           style={{
             backgroundImage: loaded && this.img ? `url(${imgSrc})` : 'none',
           }}
         />
 
-        <Picture imgRef={this.img} onLoad={this.handleLoad} />
+        <Image
+          src={bgImg}
+          alt='Background Image'
+          sizes='100vw'
+          onLoad={this.handleLoad}
+          ref={this.img}
+          style={{ visibility: 'hidden' }}
+        />
 
         <div className={styles.placeholder} />
       </div>

@@ -1,11 +1,12 @@
 import React from 'react';
-import { graphql, Link, PageProps } from 'gatsby';
-import Helmet from 'react-helmet';
+// import { graphql, Link, PageProps } from 'gatsby';
+import Link from 'next/link';
+// import Helmet from 'react-helmet';
 import cx from 'classnames';
 
-import SocialLinks from '@/components/social_links';
+import SocialLinks from './_components/social_links';
 
-import styles from './index.module.scss';
+import styles from './page.module.scss';
 
 interface Props extends PageProps {
   data: {
@@ -19,7 +20,7 @@ interface Props extends PageProps {
 
 const Home: React.FC<Props> = ({ data }) => (
   <div className={styles.home}>
-    <Helmet title='Walker Angell' titleTemplate='%s' />
+    {/* <Helmet title='Walker Angell' titleTemplate='%s' /> */}
 
     <section className='intro'>
       <div className={cx('jumbotron jumbotron-fluid', styles.jumbotron)}>
@@ -28,13 +29,13 @@ const Home: React.FC<Props> = ({ data }) => (
 
           <div
             className='body lead'
-            dangerouslySetInnerHTML={{
-              // eslint-disable-line react/no-danger
-              __html: data.file.childMarkdownRemark.html,
-            }}
+            // dangerouslySetInnerHTML={{
+            //   // eslint-disable-line react/no-danger
+            //   __html: data.file.childMarkdownRemark.html,
+            // }}
           />
 
-          <Link to='/contact/' className='btn'>
+          <Link href='/contact/' className='btn'>
             Say Hello
           </Link>
 
@@ -45,14 +46,14 @@ const Home: React.FC<Props> = ({ data }) => (
   </div>
 );
 
-export const pageQuery = graphql`
-  query {
-    file(relativePath: { eq: "content/index.md" }) {
-      childMarkdownRemark {
-        html
-      }
-    }
-  }
-`;
+// export const pageQuery = graphql`
+//   query {
+//     file(relativePath: { eq: "content/index.md" }) {
+//       childMarkdownRemark {
+//         html
+//       }
+//     }
+//   }
+// `;
 
 export default Home;

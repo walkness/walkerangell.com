@@ -1,12 +1,10 @@
 import React from 'react';
-import { Link, GatsbyLinkProps } from 'gatsby';
-import cx from 'classnames';
-import { ClassValue } from 'classnames/types';
-import { useMatch } from '@reach/router';
+import Link, { LinkProps } from 'next/link';
+import cx, { Argument } from 'classnames';
 
-interface Props extends GatsbyLinkProps<{ userScroll: boolean }> {
+interface Props extends LinkProps {
   to: string;
-  liClassName?: ClassValue;
+  liClassName?: Argument;
   noLinkActive?: boolean;
   dropdown?: React.ReactNode;
 }
@@ -20,7 +18,7 @@ const NavLink: React.FC<Props> = ({
 }) => {
   const { children, to } = rest;
 
-  const active = useMatch(to);
+  const active = false;
 
   return (
     <li className={cx('nav-item', liClassName, { active })}>

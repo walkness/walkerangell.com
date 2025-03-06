@@ -1,27 +1,26 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
 
-import NavLink from '@/components/nav_link';
+import NavLink from './nav_link';
 
 import styles from './sidebar.module.scss';
 
-const query = graphql`
-  query {
-    categories: allPortfolioCategoriesJson {
-      nodes {
-        slug
-        title
-      }
-    }
-    galleries: allPortfolioGalleriesJson {
-      nodes {
-        category
-        slug
-        title
-      }
-    }
-  }
-`;
+// const query = graphql`
+//   query {
+//     categories: allPortfolioCategoriesJson {
+//       nodes {
+//         slug
+//         title
+//       }
+//     }
+//     galleries: allPortfolioGalleriesJson {
+//       nodes {
+//         category
+//         slug
+//         title
+//       }
+//     }
+//   }
+// `;
 
 interface Gallery {
   category: string;
@@ -46,7 +45,7 @@ interface GalleriesByCategory {
 }
 
 const Sidebar: React.FC = () => {
-  const data: Data = useStaticQuery(query);
+  const data = {};
   const {
     categories: { nodes: categories },
     galleries: { nodes: galleries },

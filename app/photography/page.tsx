@@ -1,7 +1,7 @@
 import React from 'react';
-import { graphql, PageProps } from 'gatsby';
+// import { graphql, PageProps } from 'gatsby';
 
-import Galleries from '@/components/galleries';
+import Galleries from '../_components/galleries';
 
 interface Props extends PageProps {
   data: {
@@ -38,30 +38,30 @@ const Photography: React.FC<Props> = ({ data, path }) => (
   />
 );
 
-export const pageQuery = graphql`
-  query {
-    categories: allPortfolioCategoriesJson {
-      nodes {
-        slug
-        title
-        image {
-          childImageSharp {
-            fixed(width: 350, height: 350) {
-              src
-              srcSet
-              width
-              height
-            }
-          }
-        }
-      }
-    }
-    content: file(relativePath: { eq: "content/photography/index.md" }) {
-      childMarkdownRemark {
-        html
-      }
-    }
-  }
-`;
+// export const pageQuery = graphql`
+//   query {
+//     categories: allPortfolioCategoriesJson {
+//       nodes {
+//         slug
+//         title
+//         image {
+//           childImageSharp {
+//             fixed(width: 350, height: 350) {
+//               src
+//               srcSet
+//               width
+//               height
+//             }
+//           }
+//         }
+//       }
+//     }
+//     content: file(relativePath: { eq: "content/photography/index.md" }) {
+//       childMarkdownRemark {
+//         html
+//       }
+//     }
+//   }
+// `;
 
 export default Photography;

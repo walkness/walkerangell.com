@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { monthNames, development } from '@/data';
-import Screen from '@/components/screen';
+import Screen from './screen';
 
 import styles from './development_project.module.scss';
 
@@ -87,7 +87,9 @@ const Project: React.FC<Props> = ({ slug, project, content }) => {
                 }
               >
                 {launchDate
-                  ? `${monthNames[launchDate.getMonth() - 1]} ${launchDate.getFullYear()}` // eslint-disable-line max-len
+                  ? `${
+                      monthNames[launchDate.getMonth() - 1]
+                    } ${launchDate.getFullYear()}` // eslint-disable-line max-len
                   : 'TBA'}
               </span>
               <ExternalLink href={project.link}>{project.link}</ExternalLink>

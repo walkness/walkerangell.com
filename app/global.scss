@@ -1,0 +1,13 @@
+@import './_styles/variables';
+@import './_styles/vendor/bootstrap';
+@import './_styles/components/base';
+
+body,
+html {
+  height: 100%;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}

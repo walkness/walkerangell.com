@@ -1,5 +1,5 @@
 import React from 'react';
-import { social } from '@/data';
+import { social } from '../../old-src/data';
 
 import styles from './social_links.module.scss';
 

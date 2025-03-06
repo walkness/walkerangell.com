@@ -1,3 +1,4 @@
+'use client';
 /* globals window */
 
 import React, { Component } from 'react';

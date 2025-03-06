@@ -1,3 +1,4 @@
+'use client';
 /* globals window document requestAnimationFrame */
 
 import React, { Component } from 'react';
@@ -19,14 +20,14 @@ const documentHeight = () => {
     body.offsetHeight,
     html.clientHeight,
     html.scrollHeight,
-    html.offsetHeight,
+    html.offsetHeight
   );
 };
 
 const scrollToPosition = (
   position: number,
   scrollDuration = 200,
-  finished: () => void = () => undefined,
+  finished: () => void = () => undefined
 ) => {
   const docHeight = documentHeight();
   const positionOrBottom = Math.min(position, docHeight - window.innerHeight);

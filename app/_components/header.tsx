@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import Link from 'next/link';
 import cx from 'classnames';
 
 import styles from './header.module.scss';
@@ -9,26 +9,34 @@ const Header: React.FC = () => (
     <div className='container'>
       <nav>
         <Link
-          to='/'
+          href='/'
           className={cx('d-sm-none', styles.siteTitle)}
-          activeClassName='active'
+          // activeClassName='active'
         >
           Walker Angell
         </Link>
 
-        <Link to='/development/' activeClassName='active' partiallyActive>
+        <Link
+          href='/development/'
+          // activeClassName='active'
+          // partiallyActive
+        >
           Development
         </Link>
 
         <Link
-          to='/'
+          href='/'
           className={cx('d-none d-sm-inline-block', styles.siteTitle)}
-          activeClassName='active'
+          // activeClassName='active'
         >
           Walker Angell
         </Link>
 
-        <Link to='/photography/' activeClassName='active' partiallyActive>
+        <Link
+          href='/photography/'
+          // activeClassName='active'
+          // partiallyActive
+        >
           Photography
         </Link>
       </nav>

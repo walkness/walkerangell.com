@@ -1,3 +1,4 @@
+'use client';
 /* globals XMLHttpRequest */
 
 import React, { Component } from 'react';

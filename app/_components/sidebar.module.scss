@@ -1,4 +1,4 @@
-@import '~@/styles/variables';
+@import '../_styles/variables';
 
 .sidebar {
   padding: 0 $grid-gutter-width-base / 2;
@@ -52,9 +52,7 @@
   visibility: hidden;
   max-height: 0;
   overflow: hidden;
-  transition:
-    visibility 0ms linear $duration,
-    max-height $duration linear;
+  transition: visibility 0ms linear $duration, max-height $duration linear;
 
   :global(.nav-item) {
     padding: 0;
