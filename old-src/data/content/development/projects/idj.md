@@ -10,6 +10,7 @@ technologies: [react, sass]
 hosting: [aws]
 hidden: true
 ---
+
 #### Background
 
 In conjunction with this law firm's transition to a new firm, they were ending their subscription to the service that provided their website. However, the client wanted to keep their site's content accessible for search purposes, and direct visitors to their new firm.

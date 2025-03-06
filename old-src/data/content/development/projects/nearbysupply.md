@@ -9,10 +9,10 @@ technologies: [ios, react, django, sass]
 hosting: [aws]
 order: 1
 ---
+
 #### Background
 
 Nearby Supply helps people find products by connecting them with local stores. At its simplest, a shopper submits a request for any product, Nearby Supply sends it to local stores that are likely to stock that product, and each store responds in real-time.
-
 
 #### Development Work
 

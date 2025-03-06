@@ -37,12 +37,14 @@ const Photography: React.FC<Props> = ({ data, path }) => (
 );
 
 export const pageQuery = graphql`
-  query($category: String!) {
-    category: portfolioCategoriesJson(slug: {eq: $category}) {
+  query ($category: String!) {
+    category: portfolioCategoriesJson(slug: { eq: $category }) {
       slug
       title
     }
-    galleries: allPortfolioGalleriesJson(filter: {category: {eq: $category}}) {
+    galleries: allPortfolioGalleriesJson(
+      filter: { category: { eq: $category } }
+    ) {
       nodes {
         slug
         title

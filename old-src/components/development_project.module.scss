@@ -43,7 +43,8 @@ $gray-lighter: $gray-300;
         background-size: auto 100%;
         background-repeat: no-repeat;
         background-position: left center;
-        padding-left: ($line-height-base * $font-size-base) + ((5px/16px) * 1rem);
+        padding-left: ($line-height-base * $font-size-base) +
+          ((5px/16px) * 1rem);
       }
 
       > ul {

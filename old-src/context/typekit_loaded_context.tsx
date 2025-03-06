@@ -36,7 +36,7 @@ class TypekitLoadedProvider extends Component<unknown, State> {
     const { typekitLoaded } = this.state;
     return (
       <TypekitLoadedContext.Provider value={typekitLoaded}>
-        { children }
+        {children}
       </TypekitLoadedContext.Provider>
     );
   }

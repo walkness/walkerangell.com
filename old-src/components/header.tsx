@@ -6,12 +6,13 @@ import styles from './header.module.scss';
 
 const Header: React.FC = () => (
   <header className={styles.header}>
-
     <div className='container'>
-
       <nav>
-
-        <Link to='/' className={cx('d-sm-none', styles.siteTitle)} activeClassName='active'>
+        <Link
+          to='/'
+          className={cx('d-sm-none', styles.siteTitle)}
+          activeClassName='active'
+        >
           Walker Angell
         </Link>
 
@@ -19,18 +20,19 @@ const Header: React.FC = () => (
           Development
         </Link>
 
-        <Link to='/' className={cx('d-none d-sm-inline-block', styles.siteTitle)} activeClassName='active'>
+        <Link
+          to='/'
+          className={cx('d-none d-sm-inline-block', styles.siteTitle)}
+          activeClassName='active'
+        >
           Walker Angell
         </Link>
 
         <Link to='/photography/' activeClassName='active' partiallyActive>
           Photography
         </Link>
-
       </nav>
-
     </div>
-
   </header>
 );
 

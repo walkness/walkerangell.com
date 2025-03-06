@@ -10,6 +10,7 @@ technologies: [craft, jquery, sass]
 hosting: [webfaction, aws]
 order: 6
 ---
+
 #### Background
 
 I worked with [Elisign Design](http://elisigndesign.com/) to develop a new site for a group of business software consultants. The NBN Group was looking for a platform that would just provide a simple informational site and blog at first, but that could easily handle additions of more complex features, like stores, as they grow. Additionally, the client wanted to be able to make many changes to the site themselves, requiring a clean CMS implementation making virtually all of the site easily editable and re-arrangeable.

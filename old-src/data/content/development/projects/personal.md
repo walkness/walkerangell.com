@@ -10,10 +10,10 @@ technologies: [react, sass]
 hosting: [aws]
 order: 4
 ---
+
 #### Background
 
 You're currently looking at this site! Initially, I just wanted a simple gallery to display some of my photography, but have since converted it into a portfolio of both photography, and development work.
-
 
 #### Development Work
 

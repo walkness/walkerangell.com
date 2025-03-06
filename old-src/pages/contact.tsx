@@ -61,7 +61,7 @@ class Contact extends Component<Props, State> {
     this.setState({ isSubmitting: true }, () => {
       const oReq = new XMLHttpRequest();
 
-      oReq.onreadystatechange = (e) => {
+      oReq.onreadystatechange = e => {
         if (oReq.readyState === 4) {
           if (oReq.status === 200) {
             this.setState({
@@ -99,16 +99,10 @@ class Contact extends Component<Props, State> {
         },
       },
     } = this.props;
-    const {
-      formValid,
-      isSubmitting,
-      error,
-      success,
-    } = this.state;
+    const { formValid, isSubmitting, error, success } = this.state;
 
     return (
       <div className='container'>
-
         <Helmet title={title} />
 
         <PageHeader title={title} />
@@ -137,9 +131,7 @@ class Contact extends Component<Props, State> {
           onValidSubmit={this.onValidSubmit}
           noValidate
         >
-
           <div className='row'>
-
             <fieldset className={styles.details}>
               <Input
                 name='name'
@@ -183,14 +175,9 @@ class Contact extends Component<Props, State> {
               rows={9}
               required
             />
-
           </div>
 
-          <Input
-            type='text'
-            name='_gotcha'
-            rowClassName='d-none'
-          />
+          <Input type='text' name='_gotcha' rowClassName='d-none' />
 
           <Input
             type='hidden'
@@ -216,9 +203,7 @@ class Contact extends Component<Props, State> {
               Submit
             </Button>
           </div>
-
         </Formsy>
-
       </div>
     );
   }
@@ -226,7 +211,7 @@ class Contact extends Component<Props, State> {
 
 export const pageQuery = graphql`
   query {
-    file(relativePath: {eq: "content/contact/index.md"}) {
+    file(relativePath: { eq: "content/contact/index.md" }) {
       childMarkdownRemark {
         frontmatter {
           title

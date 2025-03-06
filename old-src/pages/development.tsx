@@ -1,12 +1,7 @@
 /* globals window document requestAnimationFrame */
 
 import React, { Component } from 'react';
-import {
-  graphql,
-  Link,
-  PageProps,
-  navigate,
-} from 'gatsby';
+import { graphql, Link, PageProps, navigate } from 'gatsby';
 import Helmet from 'react-helmet';
 import classNames from 'classnames';
 import { throttle } from 'lodash';
@@ -49,9 +44,10 @@ const scrollToPosition = (
         if (scrollCount === numIterations) {
           scrollMargin = cosParameter * 2;
         } else {
-          scrollMargin = cosParameter - (cosParameter * Math.cos(scrollCount * scrollStep));
+          scrollMargin =
+            cosParameter - cosParameter * Math.cos(scrollCount * scrollStep);
         }
-        window.scrollTo(0, (scrollMargin + scrollHeight));
+        window.scrollTo(0, scrollMargin + scrollHeight);
       } else {
         finished();
       }
@@ -60,7 +56,7 @@ const scrollToPosition = (
   requestAnimationFrame(step);
 };
 
-type LocationProp = PageProps['location']
+type LocationProp = PageProps['location'];
 
 interface LocationWithUserScroll extends LocationProp {
   state: { userScroll: boolean };
@@ -90,7 +86,7 @@ interface Props extends PageProps {
             hosting?: string[];
             screenshot?: {
               childImageSharp: {
-                fluid: { srcSet: string; src: string; };
+                fluid: { srcSet: string; src: string };
               };
             };
           };
@@ -106,7 +102,7 @@ interface State {
   inProjects: boolean;
 }
 
-type Context = React.ContextType<typeof TypekitLoadedContext>
+type Context = React.ContextType<typeof TypekitLoadedContext>;
 
 class Development extends Component<Props, State, Context> {
   static contextType = TypekitLoadedContext;
@@ -127,7 +123,7 @@ class Development extends Component<Props, State, Context> {
 
   private projectsHeaderHeight?: number;
 
-  private projectOffsets: { start: number; end: number; id: string; }[] = [];
+  private projectOffsets: { start: number; end: number; id: string }[] = [];
 
   private prevContext?: Context;
 
@@ -143,7 +139,9 @@ class Development extends Component<Props, State, Context> {
     if (location.hash && window.scrollY === 0) {
       this.scrollToAnchor(location.hash.substring(1));
     }
-    setTimeout(() => { this.mounted = true; }, 5);
+    setTimeout(() => {
+      this.mounted = true;
+    }, 5);
 
     this.prevContext = this.context;
   }
@@ -157,9 +155,9 @@ class Development extends Component<Props, State, Context> {
     }
 
     if (
-      !(location.state && location.state.userScroll)
-      && location.hash
-      && prevProps.location.hash !== location.hash
+      !(location.state && location.state.userScroll) &&
+      location.hash &&
+      prevProps.location.hash !== location.hash
     ) {
       this.scrollToAnchor(location.hash.substring(1), true);
     }
@@ -168,8 +166,10 @@ class Development extends Component<Props, State, Context> {
   }
 
   componentWillUnmount(): void {
-    if (this.boundScrollHandler) window.removeEventListener('scroll', this.boundScrollHandler);
-    if (this.boundResizeHandler) window.removeEventListener('resize', this.boundResizeHandler);
+    if (this.boundScrollHandler)
+      window.removeEventListener('scroll', this.boundScrollHandler);
+    if (this.boundResizeHandler)
+      window.removeEventListener('resize', this.boundResizeHandler);
   }
 
   setProjectOffsets(): void {
@@ -179,7 +179,7 @@ class Development extends Component<Props, State, Context> {
     const projectsHeaderRect = projectsHeader.getBoundingClientRect();
     this.projectsHeaderHeight = projectsHeaderRect.height;
     this.projectOffsets = [];
-    Array.from(projects.getElementsByTagName('article')).forEach((el) => {
+    Array.from(projects.getElementsByTagName('article')).forEach(el => {
       const rect = el.getBoundingClientRect();
       const start = rect.top + window.scrollY;
       this.projectOffsets.push({
@@ -207,7 +207,7 @@ class Development extends Component<Props, State, Context> {
 
     if (!this.animatingScroll && this.mounted) {
       let hash = '';
-      this.projectOffsets.forEach((el) => {
+      this.projectOffsets.forEach(el => {
         if (scroll >= el.start && scroll < el.end) {
           hash = `#${el.id}`;
         }
@@ -225,7 +225,8 @@ class Development extends Component<Props, State, Context> {
     const element = document.getElementById(a);
     if (element) {
       const rect = element.getBoundingClientRect();
-      const offset = (rect.top + window.scrollY) - (this.projectsHeaderHeight || 0);
+      const offset =
+        rect.top + window.scrollY - (this.projectsHeaderHeight || 0);
       if (animate) {
         this.animatingScroll = true;
         scrollToPosition(offset, 200, () => {
@@ -241,16 +242,19 @@ class Development extends Component<Props, State, Context> {
     const { inProjects } = this.state;
     const { location, data } = this.props;
     const {
-      file: { childMarkdownRemark: { frontmatter: { title }, html: content } },
+      file: {
+        childMarkdownRemark: {
+          frontmatter: { title },
+          html: content,
+        },
+      },
       projectsFiles: { nodes: projectFiles },
     } = data;
     return (
       <div className={styles.developmentList} id='development-list'>
-
         <Helmet title={title} />
 
         <div className='container'>
-
           <PageHeader title={title} />
 
           <div
@@ -260,19 +264,18 @@ class Development extends Component<Props, State, Context> {
         </div>
 
         <section ref={this.projects} className='projects'>
-
           <div
             ref={this.projectsHeader}
             className={classNames(styles.projectsHeader, { fixed: inProjects })}
           >
-
             <div className='container'>
-
               <h2>Projects</h2>
 
               <ul className={`nav nav-pills ${styles.nav}`}>
-                {projectFiles.map((projectFile) => {
-                  const { childMarkdownRemark: { frontmatter: project } } = projectFile;
+                {projectFiles.map(projectFile => {
+                  const {
+                    childMarkdownRemark: { frontmatter: project },
+                  } = projectFile;
                   const { slug } = project;
                   return (
                     <li
@@ -293,21 +296,26 @@ class Development extends Component<Props, State, Context> {
                   );
                 })}
               </ul>
-
             </div>
-
           </div>
 
           <div className={styles.projectsHeaderSpacer}>&nbsp;</div>
 
-          { projectFiles.map((projectFile) => {
-            const { childMarkdownRemark: { html, frontmatter: project } } = projectFile;
+          {projectFiles.map(projectFile => {
+            const {
+              childMarkdownRemark: { html, frontmatter: project },
+            } = projectFile;
             const { slug } = project;
-            return <Project key={slug} slug={slug} project={project} content={html} />;
-          }) }
-
+            return (
+              <Project
+                key={slug}
+                slug={slug}
+                project={project}
+                content={html}
+              />
+            );
+          })}
         </section>
-
       </div>
     );
   }
@@ -315,7 +323,7 @@ class Development extends Component<Props, State, Context> {
 
 export const pageQuery = graphql`
   query {
-    file(relativePath: {eq: "content/development/index.md"}) {
+    file(relativePath: { eq: "content/development/index.md" }) {
       childMarkdownRemark {
         frontmatter {
           title
@@ -325,10 +333,10 @@ export const pageQuery = graphql`
     }
     projectsFiles: allFile(
       filter: {
-        relativeDirectory: {eq: "content/development/projects"},
-        childMarkdownRemark: {frontmatter: {hidden: {ne: true}}},
-      },
-      sort: {fields: childMarkdownRemark___frontmatter___order},
+        relativeDirectory: { eq: "content/development/projects" }
+        childMarkdownRemark: { frontmatter: { hidden: { ne: true } } }
+      }
+      sort: { fields: childMarkdownRemark___frontmatter___order }
     ) {
       nodes {
         childMarkdownRemark {
@@ -341,7 +349,11 @@ export const pageQuery = graphql`
             link
             screenshot {
               childImageSharp {
-                fluid(maxWidth: 455, srcSetBreakpoints: [455, 910, 1365], jpegQuality: 80) {
+                fluid(
+                  maxWidth: 455
+                  srcSetBreakpoints: [455, 910, 1365]
+                  jpegQuality: 80
+                ) {
                   srcSet
                   src
                 }

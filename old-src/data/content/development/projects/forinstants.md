@@ -9,10 +9,10 @@ technologies: [react, wordpress, sass]
 hosting: [linode, aws]
 order: 5
 ---
+
 #### Background
 
 My wife and I love travelling, and we share our travels (and some other things occasionally) on this blog, called For Instants. My wife writes the posts, usually with photos shot mostly by me, and it provides both a place for us to keep a journal of our life and travels, while also sharing some of those "instants" with others. As such, we like to keep it simple: no crazy banner ads, or hyper marketing – just a post on a page.
-
 
 #### Development Work
 

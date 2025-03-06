@@ -4,7 +4,7 @@ import cx from 'classnames';
 import { ClassValue } from 'classnames/types';
 import { useMatch } from '@reach/router';
 
-interface Props extends GatsbyLinkProps<{ userScroll: boolean; }> {
+interface Props extends GatsbyLinkProps<{ userScroll: boolean }> {
   to: string;
   liClassName?: ClassValue;
   noLinkActive?: boolean;
@@ -23,18 +23,14 @@ const NavLink: React.FC<Props> = ({
   const active = useMatch(to);
 
   return (
-    <li
-      className={cx(
-        'nav-item',
-        liClassName,
-        { active },
+    <li className={cx('nav-item', liClassName, { active })}>
+      {noLinkActive ? (
+        children
+      ) : (
+        <Link className={cx('nav-link', { active })} {...rest} />
       )}
-    >
 
-      { noLinkActive ? children : <Link className={cx('nav-link', { active })} {...rest} /> }
-
-      { dropdown }
-
+      {dropdown}
     </li>
   );
 };

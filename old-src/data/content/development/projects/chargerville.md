@@ -10,6 +10,7 @@ technologies: [react, django, sass]
 hosting: [aws]
 order: 2
 ---
+
 #### Background
 
 Chargerville is a platform for electric vehicle drivers to share reviews, tips, and comments about charger locations and nearby amenities.

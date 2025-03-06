@@ -47,7 +47,10 @@ interface GalleriesByCategory {
 
 const Sidebar: React.FC = () => {
   const data: Data = useStaticQuery(query);
-  const { categories: { nodes: categories }, galleries: { nodes: galleries } } = data;
+  const {
+    categories: { nodes: categories },
+    galleries: { nodes: galleries },
+  } = data;
   const galleriesByCategory = galleries.reduce((acc, gallery) => {
     if (!acc[gallery.category]) acc[gallery.category] = [];
     acc[gallery.category].push(gallery);
@@ -55,23 +58,22 @@ const Sidebar: React.FC = () => {
   }, {} as GalleriesByCategory);
   return (
     <aside className={styles.sidebar}>
-
       <nav id='photo-nav' className={`${styles.photoNav} collapsed`}>
         <ul className={styles.menu}>
-          { categories.map((category) => {
+          {categories.map(category => {
             const categoryPath = `/photography/${category.slug}/`;
             const catGalleries = galleriesByCategory[category.slug];
             const subMenu = (
               <ul className='sub-menu'>
-                { catGalleries.map((gallery) => (
+                {catGalleries.map(gallery => (
                   <NavLink
                     key={gallery.slug}
                     to={`${categoryPath}${gallery.slug}/`}
                     partiallyActive
-                   >
+                  >
                     {gallery.title}
                   </NavLink>
-                )) }
+                ))}
               </ul>
             );
             return (
@@ -87,7 +89,6 @@ const Sidebar: React.FC = () => {
           })}
         </ul>
       </nav>
-
     </aside>
   );
 };

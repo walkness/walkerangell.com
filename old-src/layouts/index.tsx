@@ -34,20 +34,21 @@ class App extends Component<PageProps> {
     const isPhotography = pathname.startsWith('/photography');
     return (
       <div id='app' className={cx(styles.app, { home: isHome })}>
-
         <Helmet
           defaultTitle='Walker Angell'
           titleTemplate='%s | Walker Angell'
           script={[
             {
               type: 'text/javascript',
-              innerHTML: 'document.getElementsByTagName("html")[0].className+=" js"',
+              innerHTML:
+                'document.getElementsByTagName("html")[0].className+=" js"',
             },
             {
               src: '//use.typekit.net/ioi4abv.js',
               type: 'text/javascript',
               async: true,
-              onLoad: 'try{Typekit.load({async:true, active: window.onTypekitLoaded || function(){}});}catch(e){}', // eslint-disable-line max-len
+              onLoad:
+                'try{Typekit.load({async:true, active: window.onTypekitLoaded || function(){}});}catch(e){}', // eslint-disable-line max-len
             },
             {
               type: 'text/javascript',
@@ -65,21 +66,17 @@ class App extends Component<PageProps> {
         <Header />
 
         <main className='site-main'>
-
           <CSSTransitionGroup
             transitionName='sidebar'
             transitionEnterTimeout={150}
             transitionLeaveTimeout={150}
           >
-            { isPhotography && <Sidebar /> }
+            {isPhotography && <Sidebar />}
           </CSSTransitionGroup>
 
           <div id='main-content' className={styles.mainContent}>
-
-            { children }
-
+            {children}
           </div>
-
         </main>
 
         <Footer />
@@ -89,9 +86,8 @@ class App extends Component<PageProps> {
           transitionEnterTimeout={500}
           transitionLeave={false}
         >
-          { isHome && <BackgroundImage key='bg-img' /> }
+          {isHome && <BackgroundImage key='bg-img' />}
         </CSSTransitionGroup>
-
       </div>
     );
   }

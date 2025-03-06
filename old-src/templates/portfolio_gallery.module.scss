@@ -1,6 +1,5 @@
 @import '~@/styles/variables';
 
-
 $filmstrip-spacing: 1px;
 $filmstrip-height: (100px/16px * 1rem);
 $arrow-padding: (10px/16px * 1rem);
@@ -28,7 +27,6 @@ $arrow-padding: (10px/16px * 1rem);
       height: 0;
       margin: 0;
 
-
       .gallery-image {
         position: absolute;
         top: 0;
@@ -37,7 +35,9 @@ $arrow-padding: (10px/16px * 1rem);
         height: 100%;
         opacity: 0;
         visibility: hidden;
-        transition: visibility 0s linear 0.3s, opacity .3s ease-in;
+        transition:
+          visibility 0s linear 0.3s,
+          opacity 0.3s ease-in;
         z-index: 1000;
 
         &:global(.current) {
@@ -81,7 +81,9 @@ $arrow-padding: (10px/16px * 1rem);
         visibility: hidden;
         text-indent: -1000px;
         overflow: hidden;
-        transition: visibility 0s linear 0.3s, opacity .3s ease-in;
+        transition:
+          visibility 0s linear 0.3s,
+          opacity 0.3s ease-in;
         outline: none;
 
         &.previous {
@@ -148,7 +150,7 @@ $arrow-padding: (10px/16px * 1rem);
 
         img {
           height: 100%;
-          margin: - $filmstrip-spacing 0;
+          margin: -$filmstrip-spacing 0;
         }
       }
 

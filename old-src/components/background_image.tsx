@@ -14,19 +14,41 @@ interface State {
 
 const imgQuery = graphql`
   query {
-    file(relativePath: {eq: "home/Iceland-5497.jpg"}) {
+    file(relativePath: { eq: "home/Iceland-5497.jpg" }) {
       childImageSharp {
-        original { src }
-        crop750x1334: fixed(width: 750, height: 1334) { src }
-        crop1536x2048: fixed(width: 1536, height: 2048) { src }
-        crop1242x2208: fixed(width: 1242, height: 2208) { src }
-        x800: fluid(maxHeight: 800) { src }
-        x1200: fluid(maxHeight: 1200) { src }
-        x1600: fluid(maxHeight: 1600) { src }
-        x2000: fluid(maxHeight: 2000) { src }
-        x2400: fluid(maxHeight: 2400) { src }
-        x2800: fluid(maxHeight: 2800) { src }
-        x3200: fluid(maxHeight: 3200) { src }
+        original {
+          src
+        }
+        crop750x1334: fixed(width: 750, height: 1334) {
+          src
+        }
+        crop1536x2048: fixed(width: 1536, height: 2048) {
+          src
+        }
+        crop1242x2208: fixed(width: 1242, height: 2208) {
+          src
+        }
+        x800: fluid(maxHeight: 800) {
+          src
+        }
+        x1200: fluid(maxHeight: 1200) {
+          src
+        }
+        x1600: fluid(maxHeight: 1600) {
+          src
+        }
+        x2000: fluid(maxHeight: 2000) {
+          src
+        }
+        x2400: fluid(maxHeight: 2400) {
+          src
+        }
+        x2800: fluid(maxHeight: 2800) {
+          src
+        }
+        x3200: fluid(maxHeight: 3200) {
+          src
+        }
       }
     }
   }
@@ -35,17 +57,17 @@ const imgQuery = graphql`
 interface ImageQueryData {
   file: {
     childImageSharp: {
-      original: { src: string; };
-      crop750x1334: { src: string; };
-      crop1536x2048: { src: string; };
-      crop1242x2208: { src: string; };
-      x800: { src: string; };
-      x1200: { src: string; };
-      x1600: { src: string; };
-      x2000: { src: string; };
-      x2400: { src: string; };
-      x2800: { src: string; };
-      x3200: { src: string; };
+      original: { src: string };
+      crop750x1334: { src: string };
+      crop1536x2048: { src: string };
+      crop1242x2208: { src: string };
+      x800: { src: string };
+      x1200: { src: string };
+      x1600: { src: string };
+      x2000: { src: string };
+      x2400: { src: string };
+      x2800: { src: string };
+      x3200: { src: string };
     };
   };
 }
@@ -57,11 +79,7 @@ interface PictureProps extends Props {
 const Picture: React.FC<PictureProps> = ({ imgRef, onLoad }) => {
   const data = useStaticQuery(imgQuery);
   return (
-    <picture
-      style={{ display: 'none' }}
-      className='dummy'
-    >
-
+    <picture style={{ display: 'none' }} className='dummy'>
       <source
         srcSet={data.file.childImageSharp.crop750x1334.src}
         media='(max-width: 400px) and (max-height: 700px) and (orientation: portrait) and (max-resolution: 2.5dppx)' // eslint-disable-line max-len
@@ -118,7 +136,6 @@ const Picture: React.FC<PictureProps> = ({ imgRef, onLoad }) => {
         src={data.file.childImageSharp.original.src}
         role='presentation'
       />
-
     </picture>
   );
 };
@@ -139,7 +156,7 @@ class BackgroundImage extends Component<Props, State> {
     const { onLoad } = this.props;
     this.setState({ loaded: true });
     if (onLoad) onLoad(e);
-  }
+  };
 
   render(): React.ReactNode {
     const { loaded } = this.state;
@@ -147,7 +164,6 @@ class BackgroundImage extends Component<Props, State> {
     const imgSrc = img && (img.currentSrc || img.src);
     return (
       <div className={classNames(styles.backgroundImageWrapper, { loaded })}>
-
         <div className={styles.background} />
 
         <div
@@ -160,7 +176,6 @@ class BackgroundImage extends Component<Props, State> {
         <Picture imgRef={this.img} onLoad={this.handleLoad} />
 
         <div className={styles.placeholder} />
-
       </div>
     );
   }

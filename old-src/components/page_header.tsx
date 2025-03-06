@@ -9,8 +9,8 @@ interface Props {
 
 const PageHeader: React.FC<Props> = ({ title, children }) => (
   <div className={`page-header ${styles.pageHeader}`}>
-    <h1>{ title }</h1>
-    { children }
+    <h1>{title}</h1>
+    {children}
   </div>
 );
 

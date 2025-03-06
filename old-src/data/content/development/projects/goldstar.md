@@ -9,6 +9,7 @@ primaryColor: [255, 203, 5]
 technologies: [react, sass]
 order: 3
 ---
+
 #### Background
 
 Scholastic runs an annual contest to recognize new, high-quality toys, and needed a simple, static site to promote the contest to toy manufacturers. The site's content needed to be easily editable so that it could be reused on an annual basis. I worked with Scholastic's designers to develop a fun site that compiles to static HTML files hosted by Scholastic.

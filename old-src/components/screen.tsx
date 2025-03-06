@@ -7,15 +7,16 @@ interface DefaultProps {
   color?: [number, number, number];
 }
 
-type Props = Partial<DefaultProps> & DefaultProps
+type Props = Partial<DefaultProps> & DefaultProps;
 
 const Screen: React.FC<Props> = ({ url, children, color }) => (
   <div className={styles.screen}>
-
-    <div className={styles.topBar}><div className={styles.url}>{url}</div></div>
+    <div className={styles.topBar}>
+      <div className={styles.url}>{url}</div>
+    </div>
 
     <div className={styles.viewport}>
-      { children }
+      {children}
       <div
         className={styles.overlay}
         style={color && { backgroundColor: `rgb(${color.join(', ')})` }}
@@ -26,7 +27,6 @@ const Screen: React.FC<Props> = ({ url, children, color }) => (
       className={styles.overlay}
       style={color && { backgroundColor: `rgb(${color.join(', ')})` }}
     />
-
   </div>
 );
 

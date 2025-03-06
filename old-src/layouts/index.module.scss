@@ -1,6 +1,5 @@
 @import '~@/styles/variables';
 
-
 body,
 html {
   height: 100%;
@@ -24,9 +23,9 @@ main {
   position: relative;
 
   @media (min-width: $sidebar-breakpoint) {
-  //   // min-height: 100vh;
-  //   // background: $body-bg;
-  //   // border-left: $sidebar-border;
+    //   // min-height: 100vh;
+    //   // background: $body-bg;
+    //   // border-left: $sidebar-border;
   }
 
   .app:global(.home) & {

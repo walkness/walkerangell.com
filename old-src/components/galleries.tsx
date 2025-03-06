@@ -28,21 +28,24 @@ interface Props {
   galleries: Gallery[];
 }
 
-const Galleries: React.FC<Props> = ({ title, content, galleries, basePath }) => (
+const Galleries: React.FC<Props> = ({
+  title,
+  content,
+  galleries,
+  basePath,
+}) => (
   <div className={styles.galleries}>
+    {title && <Helmet title={title} />}
 
-    { title && <Helmet title={title} /> }
-
-    { content && (
+    {content && (
       <div
         className={styles.copy}
         dangerouslySetInnerHTML={{ __html: content }} // eslint-disable-line react/no-danger
       />
-    ) }
+    )}
 
     <ul className={styles.galleries}>
-
-      { galleries.map((gallery) => {
+      {galleries.map(gallery => {
         const { title: galleryTitle, slug, image } = gallery;
         const { fixed: img } = image.childImageSharp;
         return (
@@ -53,10 +56,8 @@ const Galleries: React.FC<Props> = ({ title, content, galleries, basePath }) => 
             </Link>
           </li>
         );
-      }) }
-
+      })}
     </ul>
-
   </div>
 );
 

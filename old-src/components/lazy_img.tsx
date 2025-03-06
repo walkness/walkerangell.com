@@ -23,11 +23,11 @@ class LazyImg extends Component<Props, State> {
     }
   }
 
-  onLoad: onLoadHandler = (e) => {
+  onLoad: onLoadHandler = e => {
     const { onLoad } = this.props;
     this.setState({ loaded: true });
     if (onLoad) onLoad(e);
-  }
+  };
 
   render(): React.ReactNode {
     const { className, ...rest } = this.props;

@@ -56,7 +56,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    content: file(relativePath: {eq: "content/photography/index.md"}) {
+    content: file(relativePath: { eq: "content/photography/index.md" }) {
       childMarkdownRemark {
         html
       }

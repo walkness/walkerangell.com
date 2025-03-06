@@ -1,6 +1,5 @@
 @import '~@/styles/variables';
 
-
 .home {
   .jumbotron {
     background: transparent;
@@ -14,7 +13,11 @@
     padding-bottom: 10vh;
 
     html:global(.no-blend) & {
-      background: linear-gradient(to bottom, transparent 0%, rgba(darken(#a54b0d, 10%), .8) 75%);
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(darken(#a54b0d, 10%), 0.8) 75%
+      );
     }
 
     @media (min-height: (1100px/16px * 1rem)) {

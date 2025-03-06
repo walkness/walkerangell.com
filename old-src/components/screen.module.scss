@@ -1,11 +1,10 @@
 @import '~@/styles/variables';
 
-
 .screen {
   border-radius: $border-radius-sm;
   overflow: hidden;
   position: relative;
-  box-shadow: 0 1px 1px rgba(#000, .2);
+  box-shadow: 0 1px 1px rgba(#000, 0.2);
 
   .overlay {
     position: absolute;
@@ -39,7 +38,7 @@
       top: 50%;
       transform: translateX(-50%) translateY(-50%);
       background-color: #fafafa;
-      font-size: $height * .4;
+      font-size: $height * 0.4;
       line-height: 1;
       border-radius: (2px/16px) * 1rem;
       padding: ((2px/16px) * 1rem) ((3px/16px) * 1rem);

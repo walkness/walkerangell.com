@@ -5,21 +5,27 @@ import Screen from '@/components/screen';
 
 import styles from './development_project.module.scss';
 
-type ExternalLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement>
+type ExternalLinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const ExternalLink: React.FC<ExternalLinkProps> = ({ children, ...rest }) => (
-  <a target='_blank' rel='noopener noreferrer' {...rest}>{ children }</a>
+  <a target='_blank' rel='noopener noreferrer' {...rest}>
+    {children}
+  </a>
 );
 
 const { technologies, hosting } = development;
 
-const isValidTechnology = (key: string): key is keyof typeof technologies => key in technologies;
+const isValidTechnology = (key: string): key is keyof typeof technologies =>
+  key in technologies;
 
-const getTechnology = (key: string) => (isValidTechnology(key) ? technologies[key] : undefined);
+const getTechnology = (key: string) =>
+  isValidTechnology(key) ? technologies[key] : undefined;
 
-const isValidHosting = (key: string): key is keyof typeof hosting => key in hosting;
+const isValidHosting = (key: string): key is keyof typeof hosting =>
+  key in hosting;
 
-const getHosting = (key: string) => (isValidHosting(key) ? hosting[key] : undefined);
+const getHosting = (key: string) =>
+  isValidHosting(key) ? hosting[key] : undefined;
 
 interface Project {
   slug: string;
@@ -32,7 +38,7 @@ interface Project {
   hosting?: string[];
   screenshot?: {
     childImageSharp: {
-      fluid: { srcSet: string; src: string; };
+      fluid: { srcSet: string; src: string };
     };
   };
 }
@@ -59,28 +65,26 @@ const Project: React.FC<Props> = ({ slug, project, content }) => {
     <article
       className={styles.project}
       id={slug}
-      style={project.primaryColor && {
-        backgroundColor: `rgba(${project.primaryColor.join(', ')}, .05)`,
-        borderBottomColor: `rgba(${project.primaryColor.join(', ')}, .1)`,
-      }}
+      style={
+        project.primaryColor && {
+          backgroundColor: `rgba(${project.primaryColor.join(', ')}, .05)`,
+          borderBottomColor: `rgba(${project.primaryColor.join(', ')}, .1)`,
+        }
+      }
     >
-
       <div className='container'>
-
         <div className='row'>
-
           <div className={styles.content}>
-
-            <h3>
-              { project.name }
-            </h3>
+            <h3>{project.name}</h3>
 
             <p>
               <span
                 className={`badge ${styles.badge}`}
-                style={project.primaryColor && {
-                  backgroundColor: `rgb(${project.primaryColor.join(', ')})`,
-                }}
+                style={
+                  project.primaryColor && {
+                    backgroundColor: `rgb(${project.primaryColor.join(', ')})`,
+                  }
+                }
               >
                 {launchDate
                   ? `${monthNames[launchDate.getMonth() - 1]} ${launchDate.getFullYear()}` // eslint-disable-line max-len
@@ -90,11 +94,13 @@ const Project: React.FC<Props> = ({ slug, project, content }) => {
             </p>
 
             <div className='row'>
-              { project.technologies && project.technologies.length > 0 && (
+              {project.technologies && project.technologies.length > 0 && (
                 <div className={styles.technologies}>
-                  <p><strong>Technologies</strong></p>
+                  <p>
+                    <strong>Technologies</strong>
+                  </p>
                   <ul>
-                    { project.technologies.map((key) => {
+                    {project.technologies.map(key => {
                       const tech = getTechnology(key);
                       if (!tech) return null;
                       return (
@@ -109,16 +115,18 @@ const Project: React.FC<Props> = ({ slug, project, content }) => {
                           </a>
                         </li>
                       );
-                    }) }
+                    })}
                   </ul>
                 </div>
-              ) }
+              )}
 
-              { project.hosting && project.hosting.length > 0 && (
+              {project.hosting && project.hosting.length > 0 && (
                 <div className={styles.hosting}>
-                  <p><strong>Hosting</strong></p>
+                  <p>
+                    <strong>Hosting</strong>
+                  </p>
                   <ul>
-                    { project.hosting.map((key) => {
+                    {project.hosting.map(key => {
                       const item = getHosting(key);
                       if (!item) return null;
                       return (
@@ -133,19 +141,18 @@ const Project: React.FC<Props> = ({ slug, project, content }) => {
                           </a>
                         </li>
                       );
-                    }) }
+                    })}
                   </ul>
                 </div>
-              ) }
+              )}
             </div>
 
-            { content && (
+            {content && (
               <div
                 className='body'
                 dangerouslySetInnerHTML={{ __html: content }} // eslint-disable-line react/no-danger
               />
-            ) }
-
+            )}
           </div>
 
           <div className={styles.screenshot}>
@@ -160,11 +167,8 @@ const Project: React.FC<Props> = ({ slug, project, content }) => {
               </Screen>
             </ExternalLink>
           </div>
-
         </div>
-
       </div>
-
     </article>
   );
 };
